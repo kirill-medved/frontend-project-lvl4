@@ -6,7 +6,7 @@ import NotFound from './Components/NotFound.js';
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <Switch>
         <Route path='/' exact render={() => <Main />} />
         <Route path='/login' render={() => <Login />} />
