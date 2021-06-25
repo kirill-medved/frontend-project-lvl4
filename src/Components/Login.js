@@ -26,19 +26,27 @@ export default (props) => {
       >
         {({ errors, touched }) => (
           <Form>
-            <Field name='username' />
+            <div class='form-group row'>
+              <label for='exampleInputEmail1'>Input username:</label>
+              <Field name='username' />
+            </div>
             {/* If this field has been touched, and it contains an error, display it
              */}
             {touched.username && errors.username && (
-              <div>{errors.username}</div>
+              <div style={{ color: 'red' }}>{errors.username}</div>
             )}
-            <Field name='password' />
+            <div class='form-group row'>
+              <label for='exampleInputEmail1'>Input password:</label>
+              <Field name='password' />
+            </div>
             {/* If this field has been touched, and it contains an error, display
            it */}
             {touched.password && errors.password && (
-              <div>{errors.password}</div>
+              <div style={{ color: 'red' }}>{errors.password}</div>
             )}
-            <button type='submit'>Submit</button>
+            <button className='btn btn-primary mb-2' type='submit'>
+              Submit
+            </button>
           </Form>
         )}
       </Formik>
