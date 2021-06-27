@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik, Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 export default (props) => {
   const validationSchema = yup.object({
@@ -11,6 +12,12 @@ export default (props) => {
       .required('Password is required'),
   });
 
+  const submitHandler = async (values) => {
+    // same shape as initial values
+    console.log(values);
+    const res = await axios.post('/api/v1/login', values);
+    console.log(res);
+  };
   return (
     <div>
       <Formik
@@ -19,10 +26,7 @@ export default (props) => {
           password: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          // same shape as initial values
-          console.log(values);
-        }}
+        onSubmit={submitHandler}
       >
         {({ errors, touched }) => (
           <Form>
