@@ -14,9 +14,14 @@ export default (props) => {
 
   const submitHandler = async (values) => {
     // same shape as initial values
-    console.log(values);
-    const res = await axios.post('/api/v1/login', values);
-    console.log(res);
+    try {
+      console.log(values);
+      const { data } = await axios.post('/api/v1/login', values);
+      console.log(data);
+      localStorage.setItem(data.username, data.token);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
