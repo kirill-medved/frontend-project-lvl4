@@ -20,6 +20,7 @@ const useProvideAuth = () => {
   const signin = (token, cb) => {
     return () => {
       setUser(token);
+      console.log(`token ${token}`);
       cb();
     };
   };
