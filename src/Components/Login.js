@@ -1,16 +1,29 @@
-import React from 'react';
-import { useFormik, Formik, Form, Field } from 'formik';
+import React, { useContext } from 'react';
+import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+import { useHistory, useLocation } from 'react-router-dom';
+import TokenContext from '../context.js';
+
+const validationSchema = yup.object({
+  username: yup.string().required('Email is required'),
+  password: yup
+    .string()
+    .min(4, 'Password should be of minimum 4 characters length')
+    .required('Password is required'),
+});
 
 export default (props) => {
-  const validationSchema = yup.object({
-    username: yup.string().required('Email is required'),
-    password: yup
-      .string()
-      .min(4, 'Password should be of minimum 8 characters length')
-      .required('Password is required'),
-  });
+  const history = useHistory();
+  const location = useLocation();
+  const auth = useContext(TokenContext);
+
+  const { from } = location.state || { from: { pathname: '/' } };
+  const login = () => {
+    auth.signin(() => {
+      history.replace(from);
+    });
+  };
 
   const submitHandler = async (values) => {
     // same shape as initial values
@@ -18,9 +31,10 @@ export default (props) => {
       console.log(values);
       const { data } = await axios.post('/api/v1/login', values);
       console.log(data);
-      localStorage.setItem(data.username, data.token);
+      localStorage.setItem('token', data.token);
+      login();
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
   return (
