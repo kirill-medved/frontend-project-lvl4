@@ -20,7 +20,7 @@ export default (props) => {
 
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
-    auth.signin(() => {
+    auth.signin(token, () => {
       history.replace(from);
     });
   };
@@ -32,9 +32,11 @@ export default (props) => {
       const { data } = await axios.post('/api/v1/login', values);
       console.log(data);
       localStorage.setItem('token', data.token);
-      login();
+      login(data.token);
     } catch (error) {
       console.log(error.message);
+      console.log(error);
+      console.log(error.data);
     }
   };
   return (

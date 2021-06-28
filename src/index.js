@@ -17,9 +17,9 @@ console.log('it works!');
 const useProvideAuth = () => {
   const [user, setUser] = useState(localStorage.getItem('token'));
 
-  const signin = (cb) => {
+  const signin = (token, cb) => {
     return () => {
-      setUser(localStorage.getItem('token'));
+      setUser(token);
       cb();
     };
   };
