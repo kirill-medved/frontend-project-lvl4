@@ -21,7 +21,6 @@ export default (props) => {
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
     auth.signin(() => {
-      console.log(from);
       history.replace(from);
     });
   };
