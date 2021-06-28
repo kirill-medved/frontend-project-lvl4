@@ -19,8 +19,8 @@ export default (props) => {
   const auth = useContext(TokenContext);
 
   const { from } = location.state || { from: { pathname: '/' } };
-  const login = (token) => {
-    auth.signin(token, () => {
+  const login = () => {
+    auth.signin(() => {
       console.log(from);
       history.replace(from);
     });
@@ -33,7 +33,7 @@ export default (props) => {
       const { data } = await axios.post('/api/v1/login', values);
       console.log(data);
       localStorage.setItem('token', data.token);
-      login(data.token);
+      login();
     } catch (error) {
       console.log(error.message);
       console.log(error);

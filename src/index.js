@@ -17,19 +17,16 @@ console.log('it works!');
 const useProvideAuth = () => {
   const [user, setUser] = useState(localStorage.getItem('token'));
 
-  const signin = (token, cb) => {
-    return () => {
-      setUser(token);
-      console.log(`token ${token}`);
-      cb();
-    };
+  const signin = (cb) => {
+    console.log(user);
+    setUser(localStorage.getItem('token'));
+    console.log(user);
+    cb();
   };
 
   const signout = (cb) => {
-    return () => {
-      setUser(null);
-      cb();
-    };
+    setUser(null);
+    cb();
   };
 
   return {
