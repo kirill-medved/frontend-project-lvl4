@@ -19,7 +19,7 @@ export default (props) => {
   const auth = useContext(TokenContext);
 
   const { from } = location.state || { from: { pathname: '/' } };
-  const login = () => {
+  const login = (token) => {
     auth.signin(token, () => {
       history.replace(from);
     });
