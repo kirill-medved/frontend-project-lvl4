@@ -10,9 +10,9 @@ export default (props) => {
       Authorization: `Bearer ${auth.user}`,
     },
   });
-
+  let data;
   useEffect(async () => {
-    const data = await instance.get(`data`);
+    data = await instance.get(`data`);
     console.log(data);
   }, []);
 
