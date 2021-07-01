@@ -6,6 +6,7 @@ import 'regenerator-runtime/runtime.js';
 import '../assets/application.scss';
 import App from './App.js';
 import TokenContext from './context.js';
+import store from './store/store.js';
 
 console.log('HIII');
 if (process.env.NODE_ENV !== 'production') {
@@ -38,9 +39,11 @@ const Main = () => {
   const auth = useProvideAuth();
   return (
     <React.StrictMode>
-      <TokenContext.Provider value={auth}>
-        <App />
-      </TokenContext.Provider>
+      <Provider store={store}>
+        <TokenContext.Provider value={auth}>
+          <App />
+        </TokenContext.Provider>
+      </Provider>
     </React.StrictMode>
   );
 };

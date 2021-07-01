@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import TokenContext from '../context.js';
+import { setMessages } from '../store/messagesSlice.js';
+import { setChannels } from '../store/channelsSlice.js';
 
 export default (props) => {
   const auth = useContext(TokenContext);
@@ -10,18 +13,26 @@ export default (props) => {
       Authorization: `Bearer ${auth.user}`,
     },
   });
-  let data = { channels: [], messages: [] };
+
+  const dispatch = useDispatch();
+  const channels = useSelector((state) => state.channels);
+  const messages = useSelector((state) => state.messages);
+  console.log(channels);
+  console.log(messages);
   useEffect(async () => {
     const res = await instance.get(`data`);
-    data = res.data;
-    console.log(data);
-  }, [data]);
 
+    dispatch(setMessages(res.data.messages));
+    dispatch(setChannels(res.data.channels));
+    console.log(res);
+  }, [dispatch]);
+
+  setChannels;
   return (
     <div>
       <div>
-        {data.channels.length &&
-          data.channels.map((channel) => {
+        {channels.length &&
+          channels.map((channel) => {
             return (
               <div key={channel.id}>
                 <p>{channel.name}</p>
@@ -30,8 +41,8 @@ export default (props) => {
           })}
       </div>
       <div>
-        {data.messages.length &&
-          data.messages.map((message) => {
+        {messages.length &&
+          messages.map((message) => {
             return (
               <div key={message.id}>
                 <p>{message.name}</p>
