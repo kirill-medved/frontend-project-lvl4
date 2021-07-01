@@ -10,7 +10,7 @@ export default (props) => {
       Authorization: `Bearer ${auth.user}`,
     },
   });
-  let data = {};
+  let data = { channels: [], messages: [] };
   useEffect(async () => {
     const res = await instance.get(`data`);
     data = res.data;
