@@ -6,9 +6,8 @@ export default (props) => {
   const auth = useContext(TokenContext);
   const instance = axios.create({
     baseURL: '/api/v1/',
-    withCredentials: true,
     headers: {
-      Authorization: `Basic ${auth.user}`,
+      Authorization: `Bearer ${auth.user}`,
     },
   });
 
