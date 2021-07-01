@@ -15,7 +15,7 @@ export default (props) => {
     const res = await instance.get(`data`);
     data = res.data;
     console.log(data);
-  }, []);
+  }, [data]);
 
   return (
     <div>
