@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
-import TokenContext from '../context';
+import TokenContext from '../context.js';
 
 export default (props) => {
   const auth = useContext(TokenContext);
