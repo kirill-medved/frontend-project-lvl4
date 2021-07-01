@@ -18,7 +18,7 @@ export default (props) => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         {data.data.channels.length &&
           data.data.channels.map((channel) => {
             return (
@@ -27,16 +27,16 @@ export default (props) => {
               </div>
             );
           })}
-      </div>
+      </div> */}
       <div>
-        {data.data.messages.length &&
+        {/* {data.data.messages.length &&
           data.data.messages.map((message) => {
             return (
               <div key={message.id}>
                 <p>{message.name}</p>
               </div>
             );
-          })}
+          })} */}
       </div>
     </div>
   );
