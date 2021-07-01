@@ -12,15 +12,16 @@ export default (props) => {
   });
   let data;
   useEffect(async () => {
-    data = await instance.get(`data`);
+    const res = await instance.get(`data`);
+    data = res.data;
     console.log(data);
   }, []);
 
   return (
     <div>
       <div>
-        {data.data.channels.length &&
-          data.data.channels.map((channel) => {
+        {data.channels.length &&
+          data.channels.map((channel) => {
             return (
               <div key={channel.id}>
                 <p>{channel.name}</p>
@@ -29,8 +30,8 @@ export default (props) => {
           })}
       </div>
       <div>
-        {data.data.messages.length &&
-          data.data.messages.map((message) => {
+        {data.messages.length &&
+          data.messages.map((message) => {
             return (
               <div key={message.id}>
                 <p>{message.name}</p>
