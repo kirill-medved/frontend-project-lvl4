@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
