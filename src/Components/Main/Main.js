@@ -1,9 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import TokenContext from '../context.js';
 import { setMessages } from '../store/messagesSlice.js';
 import { setChannels } from '../store/channelsSlice.js';
+import Channels from './Channels.js';
+import Messages from './Messages.js';
+import style from './Main.module.css';
+import { useState } from 'react';
 
 export default (props) => {
   const auth = useContext(TokenContext);
@@ -14,9 +18,11 @@ export default (props) => {
     },
   });
 
+  const [message, setMessage] = useState('');
+
   const dispatch = useDispatch();
-  const channels = useSelector((state) => state.channels);
-  const messages = useSelector((state) => state.messages);
+  const channels = useSelector((state) => state.channels.channels);
+  const messages = useSelector((state) => state.messages.messages);
   console.log(channels);
   console.log(messages);
   useEffect(async () => {
@@ -28,27 +34,13 @@ export default (props) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={style.wrapper}>
+      <Channels channels={channels} />
       <div>
-        {channels.channels.length &&
-          channels.channels.map((channel) => {
-            console.log(channel);
-            return (
-              <div key={channel.id}>
-                <p>{channel.name}</p>
-              </div>
-            );
-          })}
-      </div>
-      <div>
-        {messages.messages.length &&
-          messages.messages.map((message) => {
-            return (
-              <div key={message.id}>
-                <p>{message.name}</p>
-              </div>
-            );
-          })}
+        <Messages messages={messages} />
+        <form>
+          <input value={message} onChange={setMessage} />
+        </form>
       </div>
     </div>
   );
