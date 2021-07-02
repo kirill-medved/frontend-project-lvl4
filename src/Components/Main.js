@@ -27,12 +27,12 @@ export default (props) => {
     console.log(res);
   }, [dispatch]);
 
-  setChannels;
   return (
     <div>
       <div>
         {channels.length &&
           channels.map((channel) => {
+            console.log(channel);
             return (
               <div key={channel.id}>
                 <p>{channel.name}</p>
