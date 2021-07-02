@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import TokenContext from '../context.js';
-import { setMessages } from '../store/messagesSlice.js';
-import { setChannels } from '../store/channelsSlice.js';
+import TokenContext from '../../context.js';
+import { setMessages } from '../../store/messagesSlice.js';
+import { setChannels } from '../../store/channelsSlice.js';
 import Channels from './Channels.js';
 import Messages from './Messages.js';
 import style from './Main.module.sass';
