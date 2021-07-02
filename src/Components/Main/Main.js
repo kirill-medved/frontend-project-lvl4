@@ -24,6 +24,10 @@ export default (props) => {
   const messages = useSelector((state) => state.messages.messages);
   console.log(channels);
   console.log(messages);
+
+  const inputHandler = (e) => {
+    setMessage(e.target.value);
+  }
   useEffect(async () => {
     const res = await instance.get(`data`);
 
@@ -38,7 +42,7 @@ export default (props) => {
       <div className={style.border}>
         <Messages messages={messages} />
         <form>
-          <input value={message} onChange={setMessage} />
+          <input value={message} onChange={inputHandler} />
         </form>
       </div>
     </div>
