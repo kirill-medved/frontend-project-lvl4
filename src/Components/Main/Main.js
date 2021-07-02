@@ -7,7 +7,6 @@ import { setChannels } from '../store/channelsSlice.js';
 import Channels from './Channels.js';
 import Messages from './Messages.js';
 import style from './Main.module.css';
-import { useState } from 'react';
 
 export default (props) => {
   const auth = useContext(TokenContext);
