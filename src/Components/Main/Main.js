@@ -6,6 +6,7 @@ import { setMessages } from '../store/messagesSlice.js';
 import { setChannels } from '../store/channelsSlice.js';
 import Channels from './Channels.js';
 import Messages from './Messages.js';
+import style from './Main.module.sass';
 
 export default (props) => {
   const auth = useContext(TokenContext);
@@ -32,9 +33,9 @@ export default (props) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={style.wrapper}>
       <Channels channels={channels} />
-      <div>
+      <div className={style.border}>
         <Messages messages={messages} />
         <form>
           <input value={message} onChange={setMessage} />
