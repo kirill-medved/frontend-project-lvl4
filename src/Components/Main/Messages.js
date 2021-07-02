@@ -1,5 +1,4 @@
 import React from 'react';
-import style from './Messages.module.css';
 
 const Messages = (props) => {
   return (
@@ -7,7 +6,7 @@ const Messages = (props) => {
       {props.messages.length &&
         props.messages.map((message) => {
           return (
-            <div key={message.id} className={style.wrapper}>
+            <div key={message.id}>
               <p>{message.name}</p>
             </div>
           );

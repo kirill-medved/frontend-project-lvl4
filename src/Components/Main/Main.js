@@ -6,7 +6,6 @@ import { setMessages } from '../store/messagesSlice.js';
 import { setChannels } from '../store/channelsSlice.js';
 import Channels from './Channels.js';
 import Messages from './Messages.js';
-import style from './Main.module.css';
 
 export default (props) => {
   const auth = useContext(TokenContext);
@@ -33,7 +32,7 @@ export default (props) => {
   }, [dispatch]);
 
   return (
-    <div className={style.wrapper}>
+    <div>
       <Channels channels={channels} />
       <div>
         <Messages messages={messages} />
