@@ -22,8 +22,7 @@ export default (props) => {
   });
 
   const acknowledge = ({ status }) => {
-    if (status === 'ok') {
-    }
+    console.log(`status message ${status}`);
   };
 
   const auth = useContext(TokenContext);
