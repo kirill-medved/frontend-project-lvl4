@@ -32,8 +32,8 @@ export default (props) => {
     console.log(`status message ${status}`);
   };
 
-  socket.emit('newMessage', message, acknowledge);
-  dispatch(sendMessage());
+  // socket.emit('newMessage', message, acknowledge);
+  // dispatch(sendMessage());
 
   const dispatch = useDispatch();
   const channels = useSelector((state) => state.channels.channels);
@@ -58,7 +58,7 @@ export default (props) => {
   return (
     <div className={style.wrapper}>
       <Channels channels={channels} />
-      <Chat />
+      <Chat messages={messages} />
     </div>
   );
 };

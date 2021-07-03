@@ -5,7 +5,7 @@ import Form from './Form.js';
 export default (props) => {
   return (
     <div>
-      <Messages />
+      <Messages messages={props.messages} />
       <Form />
     </div>
   );
