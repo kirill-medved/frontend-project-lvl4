@@ -1,0 +1,7 @@
+.wrapper__channel {
+  border-bottom: 1px solid #d8d8d8;
+  border-radius: 15%;
+  color: rgb(175, 164, 164);
+  height: 200px;
+  width: 250px;
+}

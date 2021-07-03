@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 
 import TokenContext from '../../context.js';
-import { setMessages } from '../../store/messagesSlice.js';
+import { sendMessage, setMessages } from '../../store/messagesSlice.js';
 import { setChannels } from '../../store/channelsSlice.js';
-import Channels from './Channels.js';
-import Messages from './Messages.js';
-import style from './Main.module.sass';
+import Channels from './Channels/Channels.js';
+import style from './Main.module.scss';
+import Chat from './Chat/index.js';
 
 export default (props) => {
   const socket = io();
@@ -16,14 +16,9 @@ export default (props) => {
   socket.on('connect', () => {
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
   });
-
   socket.on('disconnect', () => {
     console.log(socket.id); // undefined
   });
-
-  const acknowledge = ({ status }) => {
-    console.log(`status message ${status}`);
-  };
 
   const auth = useContext(TokenContext);
   const instance = axios.create({
@@ -33,7 +28,12 @@ export default (props) => {
     },
   });
 
-  const [message, setMessage] = useState('');
+  const acknowledge = ({ status }) => {
+    console.log(`status message ${status}`);
+  };
+
+  socket.emit('newMessage', message, acknowledge);
+  dispatch(sendMessage());
 
   const dispatch = useDispatch();
   const channels = useSelector((state) => state.channels.channels);
@@ -41,34 +41,24 @@ export default (props) => {
   console.log(channels);
   console.log(messages);
 
-  const inputHandler = (e) => {
-    setMessage(e.target.value);
-  };
+  // useEffect(() => {
+  //   return () => {};
+  // }, []);
 
-  const formHandler = (e) => {
-    e.preventDefault();
-    socket.emit('newMessage', message, acknowledge);
-  };
   useEffect(async () => {
     const res = await instance.get(`data`);
 
     dispatch(setMessages(res.data.messages));
     dispatch(setChannels(res.data.channels));
     console.log(res);
+
+    return;
   }, [dispatch]);
 
   return (
     <div className={style.wrapper}>
       <Channels channels={channels} />
-      <div className={style.border}>
-        <Messages messages={messages} />
-        <form>
-          <input value={message} onChange={inputHandler} />
-          <button type='submit' onClick={formHandler}>
-            submit
-          </button>
-        </form>
-      </div>
+      <Chat />
     </div>
   );
 };

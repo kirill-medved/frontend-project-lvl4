@@ -1,14 +1,13 @@
 import React from 'react';
-import style from './Channels.module.sass';
+import style from './Channels.module.css';
 
 const Channels = (props) => {
   return (
-    <div>
+    <div className={style.wrapper}>
       {props.channels.length > 0 &&
         props.channels.map((channel) => {
-          console.log(channel);
           return (
-            <div key={channel.id} className={style.wrapper}>
+            <div key={channel.id} className={style.wrapper__channel}>
               <p>{channel.name}</p>
             </div>
           );
