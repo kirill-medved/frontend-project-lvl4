@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Channels.module.css';
+import style from './Channels.module.scss';
 
 const Channels = (props) => {
   return (
