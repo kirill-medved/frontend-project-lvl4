@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 
 import Login from './Components/Login.js';
-import Main from './Components/Main/Main.js';
+import Main from './Components/Main/index.js';
 import NotFound from './Components/NotFound.js';
 import TokenContext from './context.js';
 
