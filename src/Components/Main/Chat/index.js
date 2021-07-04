@@ -26,10 +26,13 @@ export default (props) => {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     });
 
+    socket.on('newMessage', (newMessage) => {
+      dispatch(sendMessage(newMessage));
+    });
     return () => {
       socket.disconnect();
     };
-  }, [socket]);
+  }, [socket, dispatch]);
   return (
     <div className={style.wrapper}>
       <Messages messages={props.messages} />
