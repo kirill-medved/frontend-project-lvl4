@@ -13,9 +13,10 @@ export default (props) => {
   const dispatch = useDispatch();
 
   const onSubmit = (message) => {
+    const date = new Date();
     const messageObj = {
       message: message,
-      date: new Date(),
+      date: date,
       username: props.username,
       channelId: props.currentChannelId,
     };
