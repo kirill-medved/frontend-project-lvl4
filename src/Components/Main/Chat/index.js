@@ -16,20 +16,18 @@ export default (props) => {
     socket.emit('newMessage', message, ({ status }) => {
       status === 'ok' ? console.log('OK') : console.log('False');
     });
-    socket.on('newMessage', (newMessage) => {
-      dispatch(sendMessage(newMessage));
-    });
   };
 
   useEffect(() => {
     socket.on('connect', () => {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
     });
-
+    // listen for new messages
     socket.on('newMessage', (newMessage) => {
       dispatch(sendMessage(newMessage));
     });
     return () => {
+      //if component unmount connection will be destroyed
       socket.disconnect();
     };
   }, [socket, dispatch]);
