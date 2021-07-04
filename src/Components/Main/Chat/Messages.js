@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from '../../Login';
+
 import style from './Messages.module.sass';
 
 const Messages = (props) => {
