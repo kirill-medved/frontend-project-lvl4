@@ -9,7 +9,7 @@ const Form = (props) => {
 
   const formHandler = (e) => {
     e.preventDefault();
-    props.onSubmit();
+    props.onSubmit(message);
     setMessage('');
   };
 

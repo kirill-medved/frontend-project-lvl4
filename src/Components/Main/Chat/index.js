@@ -12,13 +12,12 @@ export default (props) => {
 
   const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (message) => {
     socket.emit('newMessage', message, ({ status }) => {
       status === 'ok' ? console.log('OK') : console.log('False');
     });
-    socket.on('newMessage', (message) => {
-      dispatch(sendMessage(message));
+    socket.on('newMessage', (newMessage) => {
+      dispatch(sendMessage(newMessage));
     });
   };
 
