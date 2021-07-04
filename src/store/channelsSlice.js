@@ -4,16 +4,20 @@ const channelsReducer = createSlice({
   name: 'channels',
   initialState: {
     channels: [],
+    currentChannelId: null,
   },
   reducers: {
     setChannels(state, action) {
       state.channels = action.payload;
     },
+    setCurrentChannelId(state, action) {
+      state.currentChannelId = action.payload;
+    },
   },
 });
 
 // Destructure and export the plain action creators
-export const { setChannels } = channelsReducer.actions;
+export const { setChannels, setCurrentChannelId } = channelsReducer.actions;
 
 export default channelsReducer.reducer;
 

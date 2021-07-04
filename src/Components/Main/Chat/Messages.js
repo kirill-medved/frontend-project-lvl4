@@ -8,12 +8,15 @@ const Messages = (props) => {
         props.messages.map((message) => {
           return (
             <div key={message.id} className={style.wrapper}>
-              <p>
-                {Object.entries(message).reduce((acc, [key, value]) => {
-                  if (key === 'id') return acc;
-                  return acc + value;
-                }, '')}
-              </p>
+              <div>
+                <h4>{message.username}</h4>
+                <h5>
+                  {message.date.getMonth()}:{message.date.getMinutes()}
+                </h5>
+              </div>
+              <div>
+                <p>{message.message}</p>
+              </div>
             </div>
           );
         })}

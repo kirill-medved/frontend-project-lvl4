@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import TokenContext from '../../context.js';
 import { setMessages } from '../../store/messagesSlice.js';
-import { setChannels } from '../../store/channelsSlice.js';
+import { setChannels, setCurrentChannelId } from '../../store/channelsSlice.js';
 import Channels from './Channels/Channels.js';
 import style from './Main.module.scss';
 import Chat from './Chat/index.js';
@@ -18,17 +18,24 @@ export default (props) => {
     },
   });
 
+  const username = localStorage.getItem('username');
+
   const dispatch = useDispatch();
   const channels = useSelector((state) => state.channels.channels);
   const messages = useSelector((state) => state.messages.messages);
+  const currentChannelId = useSelector(
+    (state) => state.channels.currentChannelId,
+  );
   console.log(channels);
   console.log(messages);
+  console.log(currentChannelId);
 
   useEffect(async () => {
     const res = await instance.get(`data`);
 
     dispatch(setMessages(res.data.messages));
     dispatch(setChannels(res.data.channels));
+    dispatch(setCurrentChannelId(res.data.currentChannelId));
     console.log(res);
 
     return;
@@ -36,8 +43,12 @@ export default (props) => {
 
   return (
     <div className={style.wrapper}>
-      <Channels channels={channels} />
-      <Chat messages={messages} />
+      <Channels channels={channels} currentChannelId={currentChannelId} />
+      <Chat
+        messages={messages}
+        currentChannelId={currentChannelId}
+        username={username}
+      />
     </div>
   );
 };

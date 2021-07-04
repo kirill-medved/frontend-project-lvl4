@@ -32,6 +32,7 @@ export default (props) => {
       const { data } = await axios.post('/api/v1/login', values);
       console.log(data);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('username', data.username);
       login();
     } catch (error) {
       console.log(error.message);

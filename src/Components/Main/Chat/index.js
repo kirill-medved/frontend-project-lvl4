@@ -13,7 +13,13 @@ export default (props) => {
   const dispatch = useDispatch();
 
   const onSubmit = (message) => {
-    socket.emit('newMessage', message, ({ status }) => {
+    const messageObj = {
+      message: message,
+      date: new Data(),
+      username: props.username,
+      channelId: props.currentChannelId,
+    };
+    socket.emit('newMessage', messageObj, ({ status }) => {
       status === 'ok' ? console.log('OK') : console.log('False');
     });
   };
