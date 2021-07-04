@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { io } from 'socket.io-client';
 
 import Messages from './Messages.js';
@@ -30,7 +30,7 @@ export default (props) => {
     return () => {
       socket.disconnect();
     };
-  }, [input]);
+  }, [socket]);
   return (
     <div className={style.wrapper}>
       <Messages messages={props.messages} />
