@@ -7,11 +7,12 @@ const Messages = (props) => {
     <div>
       {props.messages.length > 0 &&
         props.messages.map((message) => {
+          console.log(message);
           return (
             <div key={message.id} className={style.wrapper}>
               <div>
                 <h4>{message.username}</h4>
-                <h5>{message.date.splite(11, -4)} </h5>
+                <h5>{message.date.slice(11, -4)} </h5>
               </div>
               <div>
                 <p>{message.message}</p>
