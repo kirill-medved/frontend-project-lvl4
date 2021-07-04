@@ -15,7 +15,7 @@ export default (props) => {
   const onSubmit = (message) => {
     const messageObj = {
       message: message,
-      date: new Data(),
+      date: new Date(),
       username: props.username,
       channelId: props.currentChannelId,
     };
