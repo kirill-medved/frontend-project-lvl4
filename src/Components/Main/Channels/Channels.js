@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames/bind';
+import classNames from 'classnames/bind.js';
 
 import style from './Channels.module.scss';
 
