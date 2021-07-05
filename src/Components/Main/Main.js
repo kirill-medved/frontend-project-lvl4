@@ -39,7 +39,7 @@ export default (props) => {
     console.log(res);
 
     return;
-  }, [dispatch]);
+  }, [dispatch, useSelector, setCurrentChannelId]);
 
   return (
     <div className={style.wrapper}>
