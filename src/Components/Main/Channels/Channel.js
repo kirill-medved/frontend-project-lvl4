@@ -14,6 +14,7 @@ const Channel = (props) => {
   };
   return (
     <div
+      id={props.id}
       ref={channelRef}
       onClick={changeChannel}
       className={cx({
