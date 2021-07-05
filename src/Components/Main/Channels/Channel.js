@@ -10,7 +10,7 @@ const Channel = (props) => {
   };
   return (
     <div ref={channelRef} onClick={changeChannel}>
-      <p>{channel.name}</p>
+      <p>{props.name}</p>
     </div>
   );
 };

@@ -19,6 +19,7 @@ const Channels = (props) => {
                 wrapper__channel: true,
                 active: channel.id === props.currentChannelId,
               })}
+              name={channel.name}
             />
           );
         })}
