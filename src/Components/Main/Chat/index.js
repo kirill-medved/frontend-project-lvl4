@@ -38,9 +38,13 @@ export default (props) => {
       socket.disconnect();
     };
   }, [socket, dispatch]);
+
+  const messages = props.messages.filter(
+    (message) => message.channelId === props.currentChannelId,
+  );
   return (
     <div className={style.wrapper}>
-      <Messages messages={props.messages} />
+      <Messages messages={messages} />
       <Form onSubmit={onSubmit} />
     </div>
   );
