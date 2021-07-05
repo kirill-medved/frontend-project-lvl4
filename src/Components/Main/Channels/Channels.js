@@ -9,7 +9,12 @@ const Channels = (props) => {
       {props.channels.length > 0 &&
         props.channels.map((channel) => {
           return (
-            <Channel key={channel.id} id={channel.id} name={channel.name} />
+            <Channel
+              key={channel.id}
+              id={channel.id}
+              name={channel.name}
+              currentChannelId={props.currentChannelId}
+            />
           );
         })}
     </div>

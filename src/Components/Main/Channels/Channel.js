@@ -18,7 +18,7 @@ const Channel = (props) => {
       onClick={changeChannel}
       className={cx({
         wrapper__channel: true,
-        active: channel.id === props.currentChannelId,
+        active: props.id === props.currentChannelId,
       })}
     >
       <p>{props.name}</p>
