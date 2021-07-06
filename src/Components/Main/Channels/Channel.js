@@ -25,6 +25,7 @@ const Channel = (props) => {
       })}
     >
       <p>{props.name}</p>
+      <p>{props.id + ' ' + props.currentChannelId}</p>
     </div>
   );
 };
