@@ -1,16 +1,18 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames/bind.js';
+import { useDispatch } from 'react-redux';
 
 import style from './Channels.module.scss';
 import { setCurrentChannelId } from '../../../store/channelsSlice.js';
 
 const Channel = (props) => {
-  let cx = classNames.bind(style);
+  const cx = classNames.bind(style);
   const channelRef = useRef(null);
+  const dispatch = useDispatch();
 
   const changeChannel = (e) => {
     console.log(channelRef.current.id);
-    setCurrentChannelId(channelRef.current.id);
+    dispatch(setCurrentChannelId(channelRef.current.id));
   };
   return (
     <div
