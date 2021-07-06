@@ -16,9 +16,12 @@ const CreateChannelModal = (props) => {
     // check for unique channel name
     console.log(
       'lodash' +
-        _.xorBy(props.channels, [{ name: e.target.value }], 'name').length,
+        !_.differenceBy([{ name: e.target.value }], props.channels, 'name')
+          .length,
     );
-    if (_.xorBy(props.channels, [{ name: e.target.value }], 'name').length) {
+    if (
+      !_.differenceBy([{ name: e.target.value }], props.channels, 'name').length
+    ) {
       setError(true);
     } else {
       setError(false);
