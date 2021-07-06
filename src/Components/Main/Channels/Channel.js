@@ -11,9 +11,10 @@ const Channel = (props) => {
   const dispatch = useDispatch();
 
   const changeChannel = (e) => {
-    console.log(channelRef.current.id);
     dispatch(setCurrentChannelId(channelRef.current.id));
   };
+  console.log('Channek rerender');
+
   console.log(
     cx({
       wrapper__channel: true,
