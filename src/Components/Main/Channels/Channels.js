@@ -43,7 +43,7 @@ const CreateChannelModal = (props) => {
                 type='email'
                 placeholder='Enter email'
                 value={channelName}
-                onClick={handleChannelName}
+                onChange={handleChannelName}
               />
               <Form.Text className='text-muted'>
                 Channel name should be unique!
