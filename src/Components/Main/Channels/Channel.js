@@ -14,6 +14,12 @@ const Channel = (props) => {
     console.log(channelRef.current.id);
     dispatch(setCurrentChannelId(channelRef.current.id));
   };
+  console.log(
+    cx({
+      wrapper__channel: true,
+      active: props.id === props.currentChannelId,
+    }),
+  );
   return (
     <div
       id={props.id}
