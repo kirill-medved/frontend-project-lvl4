@@ -14,6 +14,9 @@ const CreateChannelModal = (props) => {
   const handleChannelName = (e) => {
     setChannelName(e.target.value);
     // check for unique channel name
+    console.log(
+      _.differenceBy(props.channels, [{ name: e.target.value }], 'name').length,
+    );
     if (
       _.differenceBy(props.channels, [{ name: e.target.value }], 'name').length
     ) {
