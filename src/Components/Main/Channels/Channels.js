@@ -51,7 +51,10 @@ const CreateChannelModal = (props) => {
       dispatch(addNewChannel(newChannel));
       dispatch(setCurrentChannelId(newChannel.id));
     });
-    return;
+    return () => {
+      //if component unmount connection will be destroyed
+      socket.disconnect();
+    };
   }, [socket, dispatch]);
 
   // add submit handler with loading preloader and Этот канал еще пусть если сообщений нету
