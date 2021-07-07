@@ -9,7 +9,7 @@ import Channel from './Channel.js';
 import {
   addNewChannel,
   setCurrentChannelId,
-} from '../../../store/channelsSlice';
+} from '../../../store/channelsSlice.js';
 
 const CreateChannelModal = (props) => {
   const socket = io();
