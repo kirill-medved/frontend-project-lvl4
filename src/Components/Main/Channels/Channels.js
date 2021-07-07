@@ -41,23 +41,11 @@ const CreateChannelModal = (props) => {
       owner: props.username,
       users: [props.username],
     };
+    console.log(`username: ${props.username}`);
     socket.emit('newChannel', channelObj, ({ status }) => {
       status === 'ok' ? console.log('OK') : console.log('False');
     });
   };
-
-  useEffect(() => {
-    socket.on('newChannel', (newChannel) => {
-      dispatch(addNewChannel(newChannel));
-      dispatch(setCurrentChannelId(newChannel.id));
-    });
-    return () => {
-      //if component unmount connection will be destroyed
-      socket.disconnect();
-    };
-  }, [socket, dispatch]);
-
-  // add submit handler with loading preloader and Этот канал еще пусть если сообщений нету
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

@@ -25,20 +25,6 @@ export default (props) => {
     });
   };
 
-  useEffect(() => {
-    socket.on('connect', () => {
-      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-    });
-    // listen for new messages
-    socket.on('newMessage', (newMessage) => {
-      dispatch(sendMessage(newMessage));
-    });
-    return () => {
-      //if component unmount connection will be destroyed
-      socket.disconnect();
-    };
-  }, [socket, dispatch]);
-
   const messages = props.messages.filter(
     (message) => message.channelId === props.currentChannelId,
   );

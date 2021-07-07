@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TokenContext from '../../context.js';
-import { setMessages } from '../../store/messagesSlice.js';
-import { setChannels, setCurrentChannelId } from '../../store/channelsSlice.js';
+import { sendMessage, setMessages } from '../../store/messagesSlice.js';
+import { addNewChannel, setChannels, setCurrentChannelId } from '../../store/channelsSlice.js';
 import Channels from './Channels/Channels.js';
 import style from './Main.module.scss';
 import Chat from './Chat/index.js';
@@ -40,6 +40,25 @@ export default (props) => {
 
     return;
   }, [dispatch]);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+    });
+
+    socket.on('newMessage', (newMessage) => {
+      dispatch(sendMessage(newMessage));
+    });
+
+    socket.on('newChannel', (newChannel) => {
+      dispatch(addNewChannel(newChannel));
+      dispatch(setCurrentChannelId(newChannel.id));
+    });
+    return () => {
+      //if component unmount connection will be destroyed
+      socket.disconnect();
+    };
+  }, [socket, dispatch]);
 
   return (
     <div className={style.wrapper}>
