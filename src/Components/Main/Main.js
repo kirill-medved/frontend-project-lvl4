@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { io } from 'socket.io-client';
 
 import TokenContext from '../../context.js';
 import { sendMessage, setMessages } from '../../store/messagesSlice.js';
-import { addNewChannel, setChannels, setCurrentChannelId } from '../../store/channelsSlice.js';
+import {
+  addNewChannel,
+  setChannels,
+  setCurrentChannelId,
+} from '../../store/channelsSlice.js';
 import Channels from './Channels/Channels.js';
 import style from './Main.module.scss';
 import Chat from './Chat/index.js';
@@ -17,6 +22,8 @@ export default (props) => {
       Authorization: `Bearer ${auth.user}`,
     },
   });
+
+  const socket = io();
 
   const username = localStorage.getItem('username');
 
