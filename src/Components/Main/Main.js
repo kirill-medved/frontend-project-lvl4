@@ -39,11 +39,15 @@ export default (props) => {
     console.log(res);
 
     return;
-  }, [dispatch, useSelector, setCurrentChannelId]);
+  }, [dispatch]);
 
   return (
     <div className={style.wrapper}>
-      <Channels channels={channels} currentChannelId={currentChannelId} />
+      <Channels
+        channels={channels}
+        currentChannelId={currentChannelId}
+        username={username}
+      />
       <Chat
         messages={messages}
         currentChannelId={currentChannelId}

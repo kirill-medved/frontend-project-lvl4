@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import * as _ from 'lodash';
+import { io } from 'socket.io-client';
+import { useDispatch } from 'react-redux';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.js';
-import { reduce } from 'lodash';
+import {
+  addNewChannel,
+  setCurrentChannelId,
+} from '../../../store/channelsSlice';
 
 const CreateChannelModal = (props) => {
+  const socket = io();
+
+  const dispatch = useDispatch();
+
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
   const [error, setError] = useState(false);
@@ -14,11 +23,6 @@ const CreateChannelModal = (props) => {
   const handleChannelName = (e) => {
     setChannelName(e.target.value);
     // check for unique channel name
-    console.log(
-      'lodash' +
-        !_.differenceBy([{ name: e.target.value }], props.channels, 'name')
-          .length,
-    );
     if (
       !_.differenceBy([{ name: e.target.value }], props.channels, 'name').length
     ) {
@@ -27,6 +31,30 @@ const CreateChannelModal = (props) => {
       setError(false);
     }
   };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    handleClose();
+
+    const channelObj = {
+      name: channelName,
+      owner: props.username,
+      users: [props.username],
+    };
+    socket.emit('newChannel', channelObj, ({ status }) => {
+      status === 'ok' ? console.log('OK') : console.log('False');
+    });
+  };
+
+  useEffect(() => {
+    socket.on('newChannel', (newChannel) => {
+      dispatch(addNewChannel(newChannel));
+      dispatch(setCurrentChannelId(newChannel.id));
+    });
+    return;
+  }, [socket, dispatch]);
+
+  // add submit handler with loading preloader and Этот канал еще пусть если сообщений нету
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,10 +71,10 @@ const CreateChannelModal = (props) => {
         <Form>
           <Modal.Body>
             <Form.Group controlId='formBasicEmail'>
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Channel name</Form.Label>
               <Form.Control
-                type='email'
-                placeholder='Enter email'
+                type='text'
+                placeholder='Enter channel name'
                 value={channelName}
                 onChange={handleChannelName}
               />
@@ -63,10 +91,10 @@ const CreateChannelModal = (props) => {
               Close
             </Button>
             <Button
-              disabled={error !== null}
+              disabled={error}
               type='submit'
               variant='primary'
-              onClick={handleClose}
+              onClick={submitHandler}
             >
               Save Changes
             </Button>
