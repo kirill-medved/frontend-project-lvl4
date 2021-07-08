@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
+import { useDispatch } from 'react-redux';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.js';
