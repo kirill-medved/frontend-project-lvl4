@@ -11,6 +11,7 @@ import {
 } from '../../store/messagesSlice.js';
 import {
   addNewChannel,
+  filterChannelUsers,
   setChannels,
   setCurrentChannelId,
 } from '../../store/channelsSlice.js';
@@ -72,6 +73,7 @@ export default (props) => {
     socket.on('removeChannel', ({ id }) => {
       console.log(`remove id: ${id}`);
       dispatch(filterChannelMessages(id));
+      dispatch(filterChannelUsers(id));
       dispatch(setCurrentChannelId(1));
     });
     return () => {

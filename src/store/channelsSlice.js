@@ -17,13 +17,7 @@ const channelsReducer = createSlice({
       state.channels.push(action.payload);
     },
     filterChannelUsers(state, action) {
-      // пока что заглушка скорее всего делается через
-      // extraReducer + thunk
-      // state.channels
-      //   .filter((c) => c.id === action.payload)[0]
-      //   .users.map((u) => {
-      //     u.currentChannelId =
-      //   });
+      state.channels.filter((c) => c.id !== action.payload);
     },
   },
 });
