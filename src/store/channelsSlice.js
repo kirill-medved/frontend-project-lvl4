@@ -17,7 +17,8 @@ const channelsReducer = createSlice({
       state.channels.push(action.payload);
     },
     filterChannelUsers(state, action) {
-      return state.channels.filter((c) => c.id !== action.payload);
+      const newChannels = state.channels.filter((c) => c.id !== action.payload);
+      state.channels = newChannels;
     },
   },
 });
