@@ -18,10 +18,10 @@ const DeleteChannelModal = (props) => {
   };
 
   const submitHandler = (e) => {
-    e.preventDefaut();
+    e.preventDefault();
     handleClose();
 
-    socket.emit('removeChannel', { id: props.id }, ({ status, data }) => {
+    socket.emit('removeChannel', { id: props.id }, ({ status }) => {
       status === 'ok' ? console.log('REmove OK') : console.log('Remove False');
     });
   };
