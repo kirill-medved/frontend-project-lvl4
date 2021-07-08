@@ -90,7 +90,7 @@ const Channel = (props) => {
     >
       <div>
         <p>{props.name}</p>
-        {channel.removable && (
+        {props.removable && (
           <DeleteChannelModal name={props.name} id={props.id} />
         )}
       </div>

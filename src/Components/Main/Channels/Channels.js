@@ -101,6 +101,7 @@ const Channels = (props) => {
                 id={channel.id}
                 name={channel.name}
                 currentChannelId={props.currentChannelId}
+                removable={channel.removable}
               />
             );
           })}
