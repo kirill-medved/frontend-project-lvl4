@@ -5,7 +5,7 @@ import { io } from 'socket.io-client';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.js';
-import { setCurrentChannelId } from '../../../store/channelsSlice';
+import { setCurrentChannelId } from '../../../store/channelsSlice.js';
 
 const CreateChannelModal = (props) => {
   const socket = io();
