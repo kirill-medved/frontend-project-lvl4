@@ -13,7 +13,14 @@ const messagesReducer = createSlice({
       state.messages.push(action.payload);
     },
     filterChannelMessages(state, action) {
-      state.messages.filter((m) => m.channelId !== action.payload);
+      state.messages.filter((m) => {
+        console.log(m.channelId);
+        console.log(typeof m.channelId);
+        console.log(action.payload);
+        console.log(typeof action.payload);
+        console.log(m.channelId !== action.payload);
+        return m.channelId !== action.payload;
+      });
     },
   },
 });
