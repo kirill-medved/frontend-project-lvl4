@@ -48,6 +48,9 @@ export default (props) => {
     return;
   }, [dispatch]);
 
+  // до того как вынес сокет вверх
+  // при создании нового канала происходило миллион
+  // re-render и один канал отрисовывался много раз
   useEffect(() => {
     socket.on('connect', () => {
       console.log(socket.id); // x8WIv7-mJelg7on_ALbx
@@ -60,6 +63,10 @@ export default (props) => {
     socket.on('newChannel', (newChannel) => {
       dispatch(addNewChannel(newChannel));
       dispatch(setCurrentChannelId(newChannel.id));
+    });
+
+    socket.on('removeChannel', ({ id }) => {
+      console.log(`remove id: ${id}`);
     });
     return () => {
       //if component unmount connection will be destroyed

@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
-import { useDispatch } from 'react-redux';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.js';
-import {
-  addNewChannel,
-  setCurrentChannelId,
-} from '../../../store/channelsSlice.js';
 
 const CreateChannelModal = (props) => {
   const socket = io();
-
-  const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
@@ -98,7 +91,7 @@ const CreateChannelModal = (props) => {
 const Channels = (props) => {
   return (
     <div className={style.wrapper}>
-      <CreateChannelModal channels={props.channels} />
+      <CreateChannelModal username={props.username} channels={props.channels} />
       <div>
         {props.channels.length > 0 &&
           props.channels.map((channel) => {

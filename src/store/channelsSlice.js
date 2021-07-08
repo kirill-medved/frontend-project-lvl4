@@ -16,12 +16,25 @@ const channelsReducer = createSlice({
     addNewChannel(state, action) {
       state.channels.push(action.payload);
     },
+    filterChannelUsers(state, action) {
+      // пока что заглушка скорее всего делается через
+      // extraReducer + thunk
+      // state.channels
+      //   .filter((c) => c.id === action.payload)[0]
+      //   .users.map((u) => {
+      //     u.currentChannelId =
+      //   });
+    },
   },
 });
 
 // Destructure and export the plain action creators
-export const { setChannels, setCurrentChannelId, addNewChannel } =
-  channelsReducer.actions;
+export const {
+  setChannels,
+  setCurrentChannelId,
+  addNewChannel,
+  filterChannelUsers,
+} = channelsReducer.actions;
 
 export default channelsReducer.reducer;
 
