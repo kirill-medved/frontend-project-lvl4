@@ -5,9 +5,11 @@ import { io } from 'socket.io-client';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.js';
+import { setCurrentChannelId } from '../../../store/channelsSlice';
 
 const CreateChannelModal = (props) => {
   const socket = io();
+  const dispatch = useDispatch();
 
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
@@ -35,8 +37,9 @@ const CreateChannelModal = (props) => {
       users: [props.username],
     };
     console.log(`username: ${props.username}`);
-    socket.emit('newChannel', channelObj, ({ status }) => {
+    socket.emit('newChannel', channelObj, ({ status, data }) => {
       status === 'ok' ? console.log('OK') : console.log('False');
+      dispatch(setCurrentChannelId(data.id));
     });
   };
 

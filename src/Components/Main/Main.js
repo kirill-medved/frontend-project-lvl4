@@ -66,7 +66,7 @@ export default (props) => {
 
     socket.on('newChannel', (newChannel) => {
       dispatch(addNewChannel(newChannel));
-      dispatch(setCurrentChannelId(newChannel.id));
+      //dispatch(setCurrentChannelId(newChannel.id));
     });
 
     socket.on('removeChannel', ({ id }) => {

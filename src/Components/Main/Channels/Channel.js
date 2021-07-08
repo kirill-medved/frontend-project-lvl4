@@ -14,14 +14,14 @@ const DeleteChannelModal = (props) => {
   const [isConfirm, setIsConfirm] = useState(false);
 
   const checkHandler = (e) => {
-    setIsConfirm(e.target.value);
+    setIsConfirm((c) => !c);
   };
 
   const submitHandler = (e) => {
     e.preventDefaut();
     handleClose();
 
-    socket.emit('removeChannel', { id: props.id }, ({ status }) => {
+    socket.emit('removeChannel', { id: props.id }, ({ status, data }) => {
       status === 'ok' ? console.log('REmove OK') : console.log('Remove False');
     });
   };
@@ -54,7 +54,7 @@ const DeleteChannelModal = (props) => {
               Close
             </Button>
             <Button
-              disabled={isConfirm}
+              disabled={!isConfirm}
               type='submit'
               variant='primary'
               onClick={submitHandler}
