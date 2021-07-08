@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 
 import TokenContext from '../../context.js';
-import { sendMessage, setMessages } from '../../store/messagesSlice.js';
+import {
+  filterChannelMessages,
+  sendMessage,
+  setMessages,
+} from '../../store/messagesSlice.js';
 import {
   addNewChannel,
   setChannels,
@@ -67,6 +71,8 @@ export default (props) => {
 
     socket.on('removeChannel', ({ id }) => {
       console.log(`remove id: ${id}`);
+      dispatch(filterChannelMessages(id));
+      dispatch(setCurrentChannelId(1));
     });
     return () => {
       //if component unmount connection will be destroyed

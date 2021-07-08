@@ -42,7 +42,7 @@ const DeleteChannelModal = (props) => {
           <Modal.Body>
             <Form.Group controlId='formBasicCheckbox'>
               <Form.Check
-                value={isConfirm}
+                checked={isConfirm}
                 type='checkbox'
                 label='Check me out'
                 onClick={checkHandler}
