@@ -44,8 +44,8 @@ const CreateChannelModal = (props) => {
     });
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow((f) => !f);
+  const handleShow = () => setShow((f) => !f);
   return (
     <div>
       <Button variant='primary' onClick={handleShow}>
@@ -92,6 +92,7 @@ const CreateChannelModal = (props) => {
     </div>
   );
 };
+
 const Channels = (props) => {
   return (
     <div className={style.wrapper}>
@@ -106,6 +107,7 @@ const Channels = (props) => {
                 name={channel.name}
                 currentChannelId={props.currentChannelId}
                 removable={channel.removable}
+                channels={props.channels}
               />
             );
           })}

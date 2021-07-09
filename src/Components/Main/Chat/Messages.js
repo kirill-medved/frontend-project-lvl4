@@ -7,8 +7,6 @@ const Messages = (props) => {
     <div>
       {props.messages.length > 0 &&
         props.messages.map((message) => {
-          console.log(message);
-          console.log(typeof message.date);
           return (
             <div key={message.id} className={style.wrapper}>
               <div>

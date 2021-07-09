@@ -3,6 +3,7 @@ import classNames from 'classnames/bind.js';
 import { useDispatch } from 'react-redux';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { io } from 'socket.io-client';
+import * as _ from 'lodash';
 
 import style from './Channels.module.scss';
 import { setCurrentChannelId } from '../../../store/channelsSlice.js';
@@ -68,6 +69,90 @@ const DeleteChannelModal = (props) => {
   );
 };
 
+const RenameChannelModal = (props) => {
+  const socket = io();
+
+  const [show, setShow] = useState(false);
+  const [channelName, setChannelName] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleChannelName = (e) => {
+    setChannelName(e.target.value);
+    // check for unique channel name
+    if (
+      !_.differenceBy([{ name: e.target.value }], props.channels, 'name').length
+    ) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    handleClose();
+
+    const channelObj = {
+      id: props.id,
+      name: channelName,
+    };
+
+    socket.emit('renameChannel', channelObj, ({ status }) => {
+      status === 'ok' ? console.log('Raneme OK') : console.log('Rename False');
+    });
+  };
+
+  const handleClose = () => setShow((f) => !f);
+  const handleShow = () => setShow((f) => !f);
+  return (
+    <div>
+      <Button variant='primary' onClick={handleShow}>
+        +
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Переименовать канал</Modal.Title>
+        </Modal.Header>
+        <Form>
+          <Modal.Body>
+            <Form.Group controlId='formBasicEmail'>
+              <Form.Label>Название канала</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter channel name'
+                value={channelName}
+                onChange={handleChannelName}
+              />
+              <Form.Text className='text-muted'>
+                Channel name should be unique!
+              </Form.Text>
+              {error && (
+                <div style={{ color: 'red' }}>
+                  <p>This name is already taken</p>
+                </div>
+              )}
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant='secondary' onClick={handleClose}>
+              Close
+            </Button>
+            <Button
+              disabled={error}
+              type='submit'
+              variant='primary'
+              onClick={submitHandler}
+            >
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+    </div>
+  );
+};
+
 const Channel = (props) => {
   const cx = classNames.bind(style);
   const channelRef = useRef(null);
@@ -91,10 +176,12 @@ const Channel = (props) => {
       <div>
         <p>{props.name}</p>
         {props.removable && (
-          <DeleteChannelModal name={props.name} id={props.id} />
+          <>
+            <DeleteChannelModal name={props.name} id={props.id} />
+            <RenameChannelModal id={props.id} channels={props.channels} />
+          </>
         )}
       </div>
-      <p>{props.id + ' ' + props.currentChannelId}</p>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
 import {
   addNewChannel,
   filterChannelUsers,
+  renameChannel,
   setChannels,
   setCurrentChannelId,
 } from '../../store/channelsSlice.js';
@@ -75,6 +76,10 @@ export default (props) => {
       dispatch(filterChannelMessages(id));
       dispatch(filterChannelUsers(id));
       dispatch(setCurrentChannelId(1));
+    });
+
+    socket.on('renameChannel', (channel) => {
+      dispatch(renameChannel(channel));
     });
     return () => {
       //if component unmount connection will be destroyed
