@@ -20,8 +20,8 @@ const DeleteChannelModal = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    checkHandler();
     handleClose();
-
     socket.emit('removeChannel', { id: props.id }, ({ status }) => {
       status === 'ok' ? console.log('REmove OK') : console.log('Remove False');
     });
@@ -90,8 +90,8 @@ const RenameChannelModal = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setError(true);
     handleClose();
-
     const channelObj = {
       id: props.id,
       name: channelName,

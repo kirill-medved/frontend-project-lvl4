@@ -4,6 +4,7 @@ import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import Login from './Components/Login.js';
 import Main from './Components/Main/index.js';
 import NotFound from './Components/NotFound.js';
+import SingUp from './Components/SingUp.js';
 import TokenContext from './context.js';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
         <PrivateRoute path='/' exact>
           <Main />
         </PrivateRoute>
-        {/* <Route path='/' exact render={() => <Main />} /> */}
         <Route path='/login' render={() => <Login />} />
+        <Route path='/singup' render={() => <SingUp />} />
         <Route render={() => <NotFound />} />
       </Switch>
     </BrowserRouter>

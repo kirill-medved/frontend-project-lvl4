@@ -30,8 +30,8 @@ const CreateChannelModal = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setError(true);
     handleClose();
-
     const channelObj = {
       name: channelName,
       owner: props.username,
