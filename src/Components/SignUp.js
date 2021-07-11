@@ -32,7 +32,10 @@ export default (props) => {
     });
   };
 
-  const submitHandler = async (values) => {
+  const submitHandler = async (
+    values,
+    { props, resetForm, setErrors, setSubmitting },
+  ) => {
     // same shape as initial values
     try {
       const { data } = await axios.post('/api/v1/signup', values);
@@ -40,6 +43,9 @@ export default (props) => {
       localStorage.setItem('username', data.username);
       login();
     } catch (error) {
+      if (error.message.endsWith('409')) {
+        setErrors({ username: 'This is a dummy procedure error' });
+      }
       console.log(error.message);
       console.log(error);
     }
