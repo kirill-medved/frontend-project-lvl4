@@ -35,7 +35,7 @@ export default (props) => {
   const submitHandler = async (values) => {
     // same shape as initial values
     try {
-      const { data } = await axios.post('/api/v1/singup', values);
+      const { data } = await axios.post('/api/v1/signup', values);
       localStorage.setItem('token', data.token);
       localStorage.setItem('username', data.username);
       login();
