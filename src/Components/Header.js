@@ -18,7 +18,7 @@ const Header = (props) => {
   };
   return (
     <header>
-      <Navbar className='bg-light justify-content-between' fixed='top'>
+      <Navbar className='bg-light justify-content-between'>
         <Navbar.Brand onClick={redirectHandler}>Hexlet Chat</Navbar.Brand>
         {auth.user && (
           <Button onClick={signoutHandler} variant='outline-primary'>
