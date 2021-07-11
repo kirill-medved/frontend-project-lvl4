@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
-import Header from './Components/Header.js';
+import { Container } from 'react-bootstrap';
 
+import Header from './Components/Header.js';
 import Login from './Components/Login.js';
 import Main from './Components/Main/index.js';
 import NotFound from './Components/NotFound.js';
@@ -12,15 +13,16 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-
-      <Switch>
-        <PrivateRoute path='/' exact>
-          <Main />
-        </PrivateRoute>
-        <Route path='/login' render={() => <Login />} />
-        <Route path='/signup' render={() => <SignUp />} />
-        <Route render={() => <NotFound />} />
-      </Switch>
+      <Container>
+        <Switch>
+          <PrivateRoute path='/' exact>
+            <Main />
+          </PrivateRoute>
+          <Route path='/login' render={() => <Login />} />
+          <Route path='/signup' render={() => <SignUp />} />
+          <Route render={() => <NotFound />} />
+        </Switch>
+      </Container>
     </BrowserRouter>
   );
 }
