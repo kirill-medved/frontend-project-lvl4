@@ -44,7 +44,7 @@ export default (props) => {
       login();
     } catch (error) {
       if (error.message.endsWith('409')) {
-        setErrors({ username: 'This is a dummy procedure error' });
+        setErrors({ username: 'Этот ник уже занят' });
       }
       console.log(error.message);
       console.log(error);

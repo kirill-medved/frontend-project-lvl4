@@ -25,7 +25,10 @@ const useProvideAuth = () => {
   };
 
   const signout = (cb) => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
     setUser(null);
+
     cb();
   };
 
