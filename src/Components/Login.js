@@ -3,6 +3,8 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+
 import TokenContext from '../context.js';
 
 const validationSchema = yup.object({
@@ -73,6 +75,15 @@ export default (props) => {
           </Form>
         )}
       </Formik>
+      <Navbar>
+        <Container>
+          <Navbar.Collapse className='justify-content-center'>
+            <Navbar.Text>
+              Нет аккаунта? <a href='/signup'>Регистрация</a>
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
   );
 };

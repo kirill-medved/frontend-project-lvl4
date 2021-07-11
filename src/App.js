@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Container className='mp-2'>
+      <Container>
         <Switch>
           <PrivateRoute path='/' exact>
             <Main />
