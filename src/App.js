@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import Header from './Components/Header.js';
 
 import Login from './Components/Login.js';
 import Main from './Components/Main/index.js';
@@ -10,6 +11,7 @@ import TokenContext from './context.js';
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Switch>
         <PrivateRoute path='/' exact>
           <Main />
