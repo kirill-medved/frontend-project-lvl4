@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import Header from './Components/Header.js';
-import { Container, Row } from 'react-bootstrap';
 
 import Login from './Components/Login.js';
 import Main from './Components/Main/index.js';
@@ -12,21 +11,16 @@ import TokenContext from './context.js';
 function App() {
   return (
     <BrowserRouter>
-      <Container fluid='lg'>
-        <Row>
-          <Header />
-        </Row>
-        <Row>
-          <Switch>
-            <PrivateRoute path='/' exact>
-              <Main />
-            </PrivateRoute>
-            <Route path='/login' render={() => <Login />} />
-            <Route path='/signup' render={() => <SignUp />} />
-            <Route render={() => <NotFound />} />
-          </Switch>
-        </Row>
-      </Container>
+      <Header />
+
+      <Switch>
+        <PrivateRoute path='/' exact>
+          <Main />
+        </PrivateRoute>
+        <Route path='/login' render={() => <Login />} />
+        <Route path='/signup' render={() => <SignUp />} />
+        <Route render={() => <NotFound />} />
+      </Switch>
     </BrowserRouter>
   );
 }
