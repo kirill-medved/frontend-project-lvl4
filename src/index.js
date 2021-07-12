@@ -10,7 +10,7 @@ import '../assets/application.scss';
 import App from './App.js';
 import TokenContext from './context.js';
 import store from './store/store.js';
-import resources from './public/locales';
+import resources from './public/locales/index.js';
 
 console.log('HIII');
 if (process.env.NODE_ENV !== 'production') {
