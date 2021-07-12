@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import { Button, Navbar } from 'react-bootstrap';
 import { Redirect, useHistory } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 import TokenContext from '../context.js';
 
 const Header = (props) => {
   const auth = useContext(TokenContext);
+
+  const [t, i18n] = useTranslation();
+
   const history = useHistory();
   const { from } = { from: { pathname: '/login' } };
   const redirectHandler = () => {
@@ -18,14 +22,17 @@ const Header = (props) => {
       history.replace(from);
     });
   };
+
   return (
     <header>
       <Navbar className='bg-light justify-content-between'>
         <Container>
-          <Navbar.Brand onClick={redirectHandler}>Hexlet Chat</Navbar.Brand>
+          <Navbar.Brand onClick={redirectHandler}>
+            {t('header.textLogo')}
+          </Navbar.Brand>
           {auth.user && (
             <Button onClick={signoutHandler} variant='outline-primary'>
-              Выйти
+              {t('header.button.signout')}
             </Button>
           )}
         </Container>
