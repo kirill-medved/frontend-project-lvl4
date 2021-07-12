@@ -3,27 +3,16 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
-import TokenContext from '../context.js';
+import { useTranslation } from 'react-i18next';
 
-const validationSchema = yup.object({
-  username: yup
-    .string()
-    .required('Username is required')
-    .min(3, 'длина от 3 до 20 символов')
-    .max(20, 'длина от 3 до 20 символов'),
-  password: yup
-    .string()
-    .min(6, 'Password should be of minimum 6 characters length')
-    .required('Password is required'),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
-});
+import TokenContext from '../context.js';
 
 export default (props) => {
   const history = useHistory();
   const location = useLocation();
   const auth = useContext(TokenContext);
+
+  const [t, i18n] = useTranslation();
 
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
@@ -31,6 +20,21 @@ export default (props) => {
       history.replace(from);
     });
   };
+
+  const validationSchema = yup.object({
+    username: yup
+      .string()
+      .required(t('signup.username.required'))
+      .min(3, t('signup.username.min'))
+      .max(20, t('signup.username.max')),
+    password: yup
+      .string()
+      .min(6, t('signup.password.min'))
+      .required(t('signup.password.required')),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], t('signup.confirmPassword.error')),
+  });
 
   const submitHandler = async (
     values,
@@ -44,10 +48,8 @@ export default (props) => {
       login();
     } catch (error) {
       if (error.message.endsWith('409')) {
-        setErrors({ username: 'Этот ник уже занят' });
+        setErrors({ username: t('signup.username.notuniq') });
       }
-      console.log(error.message);
-      console.log(error);
     }
   };
   return (
@@ -63,8 +65,9 @@ export default (props) => {
       >
         {({ errors, touched }) => (
           <Form>
+            <h1>{t('signup.title')}</h1>
             <div class='form-group row'>
-              <label for='username'>Input username:</label>
+              <label for='username'>{t('signup.username.text')}</label>
               <Field name='username' />
             </div>
             {/* If this field has been touched, and it contains an error, display it
@@ -73,7 +76,7 @@ export default (props) => {
               <div style={{ color: 'red' }}>{errors.username}</div>
             )}
             <div class='form-group row'>
-              <label for='password'>Input password:</label>
+              <label for='password'>{t('signup.password.text')}</label>
               <Field name='password' type='password' placeholder='Password' />
             </div>
             {/* If this field has been touched, and it contains an error, display
@@ -82,7 +85,9 @@ export default (props) => {
               <div style={{ color: 'red' }}>{errors.password}</div>
             )}
             <div class='form-group row'>
-              <label for='confirmPassword'>Confirm password:</label>
+              <label for='confirmPassword'>
+                {t('signup.confirmPassword.text')}
+              </label>
               <Field
                 name='confirmPassword'
                 type='password'
@@ -96,7 +101,7 @@ export default (props) => {
             )}
 
             <button className='btn btn-primary mb-2' type='submit'>
-              Submit
+              {t('signup.formSubmit')}
             </button>
           </Form>
         )}

@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 import TokenContext from '../context.js';
 
@@ -20,6 +21,8 @@ export default (props) => {
   const location = useLocation();
   const auth = useContext(TokenContext);
 
+  const [t, i18n] = useTranslation();
+
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
     auth.signin(() => {
@@ -27,7 +30,10 @@ export default (props) => {
     });
   };
 
-  const submitHandler = async (values) => {
+  const submitHandler = async (
+    values,
+    { props, resetForm, setErrors, setSubmitting },
+  ) => {
     // same shape as initial values
     try {
       const { data } = await axios.post('/api/v1/login', values);
@@ -35,8 +41,7 @@ export default (props) => {
       localStorage.setItem('username', data.username);
       login();
     } catch (error) {
-      console.log(error.message);
-      console.log(error);
+      setErrors({ password: t('login.error') });
     }
   };
   return (
@@ -51,8 +56,9 @@ export default (props) => {
       >
         {({ errors, touched }) => (
           <Form>
+            <h1>{t('login.title')}</h1>
             <div class='form-group row'>
-              <label for='exampleInputEmail1'>Input username:</label>
+              <label for='exampleInputEmail1'>{t('login.username')}</label>
               <Field name='username' />
             </div>
             {/* If this field has been touched, and it contains an error, display it
@@ -61,7 +67,7 @@ export default (props) => {
               <div style={{ color: 'red' }}>{errors.username}</div>
             )}
             <div class='form-group row'>
-              <label for='exampleInputEmail1'>Input password:</label>
+              <label for='exampleInputEmail1'>{t('login.password')}</label>
               <Field name='password' />
             </div>
             {/* If this field has been touched, and it contains an error, display
