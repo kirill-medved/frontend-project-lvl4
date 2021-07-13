@@ -39,9 +39,6 @@ export default (props) => {
   const currentChannelId = useSelector(
     (state) => state.channels.currentChannelId,
   );
-  console.log(channels);
-  console.log(messages);
-  console.log(currentChannelId);
 
   useEffect(async () => {
     const res = await instance.get(`data`);

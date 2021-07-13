@@ -3,6 +3,7 @@ import { Button, Modal, Form } from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.js';
@@ -11,6 +12,8 @@ import { setCurrentChannelId } from '../../../store/channelsSlice.js';
 const CreateChannelModal = (props) => {
   const socket = io();
   const dispatch = useDispatch();
+
+  const [t, i18n] = useTranslation();
 
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
@@ -54,7 +57,7 @@ const CreateChannelModal = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Create new channel!</Modal.Title>
+          <Modal.Title>{t('api.createChannelModal.title')}</Modal.Title>
         </Modal.Header>
         <Form>
           <Modal.Body>
@@ -71,13 +74,13 @@ const CreateChannelModal = (props) => {
                 Channel name should be unique!
               </Form.Text>
               {error && (
-                <div style={{ color: 'red' }}>This name is already taken</div>
+                <div style={{ color: 'red' }}>Должно быть уникальным</div>
               )}
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
-              Close
+              {t('api.createChannelModal.cancel')}
             </Button>
             <Button
               disabled={error}
@@ -85,7 +88,7 @@ const CreateChannelModal = (props) => {
               variant='primary'
               onClick={submitHandler}
             >
-              Save Changes
+              {t('api.createChannelModal.submit')}
             </Button>
           </Modal.Footer>
         </Form>

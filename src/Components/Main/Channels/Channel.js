@@ -4,12 +4,15 @@ import { useDispatch } from 'react-redux';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { io } from 'socket.io-client';
 import * as _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 import style from './Channels.module.scss';
 import { setCurrentChannelId } from '../../../store/channelsSlice.js';
 
 const DeleteChannelModal = (props) => {
   const socket = io();
+
+  const [t, i18n] = useTranslation();
 
   const [show, setShow] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
@@ -37,7 +40,9 @@ const DeleteChannelModal = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Delete channel {props.name}!</Modal.Title>
+          <Modal.Title>
+            {t('api.deleteChannelModal.title')} {props.name}!
+          </Modal.Title>
         </Modal.Header>
         <Form>
           <Modal.Body>
@@ -52,7 +57,7 @@ const DeleteChannelModal = (props) => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
-              Close
+              {t('api.deleteChannelModal.cancel')}
             </Button>
             <Button
               disabled={!isConfirm}
@@ -60,7 +65,7 @@ const DeleteChannelModal = (props) => {
               variant='primary'
               onClick={submitHandler}
             >
-              Save Changes
+              {t('api.deleteChannelModal.submit')}
             </Button>
           </Modal.Footer>
         </Form>
@@ -71,6 +76,8 @@ const DeleteChannelModal = (props) => {
 
 const RenameChannelModal = (props) => {
   const socket = io();
+
+  const [t, i18n] = useTranslation();
 
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
@@ -112,7 +119,7 @@ const RenameChannelModal = (props) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Переименовать канал</Modal.Title>
+          <Modal.Title>{t('api.renameChannelModal.title')}</Modal.Title>
         </Modal.Header>
         <Form>
           <Modal.Body>
@@ -130,14 +137,14 @@ const RenameChannelModal = (props) => {
               </Form.Text>
               {error && (
                 <div style={{ color: 'red' }}>
-                  <p>This name is already taken</p>
+                  <p>Должно быть уникальным</p>
                 </div>
               )}
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
-              Close
+              {t('api.renameChannelModal.cancel')}
             </Button>
             <Button
               disabled={error}
@@ -145,7 +152,7 @@ const RenameChannelModal = (props) => {
               variant='primary'
               onClick={submitHandler}
             >
-              Save Changes
+              {t('api.renameChannelModal.submit')}
             </Button>
           </Modal.Footer>
         </Form>

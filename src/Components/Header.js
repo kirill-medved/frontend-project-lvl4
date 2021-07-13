@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button, Navbar } from 'react-bootstrap';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 

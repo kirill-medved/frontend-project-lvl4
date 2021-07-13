@@ -44,7 +44,7 @@ export default {
         submit: 'Отправить',
         cancel: 'Отменить',
       },
-      renameChannelModal: {
+      deleteChannelModal: {
         title: 'Удалить канал',
         submit: 'Удалить',
         cancel: 'Отменить',
