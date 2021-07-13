@@ -9,7 +9,7 @@ extends:
   - 'plugin:functional/external-recommended'
   - 'plugin:functional/recommended'
   - prettier
-  - plugin:prettier/recommended
+  - 'plugin:prettier/recommended'
 
 parser: babel-eslint
 
