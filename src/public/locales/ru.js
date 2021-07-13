@@ -33,5 +33,22 @@ export default {
       },
       formSubmit: 'Зарегистрироваться',
     },
+    api: {
+      createChannelModal: {
+        title: 'Добавить канал',
+        submit: 'Отправить',
+        cancel: 'Отменить',
+      },
+      renameChannelModal: {
+        title: 'Переименовать канал',
+        submit: 'Отправить',
+        cancel: 'Отменить',
+      },
+      renameChannelModal: {
+        title: 'Удалить канал',
+        submit: 'Удалить',
+        cancel: 'Отменить',
+      },
+    },
   },
 };

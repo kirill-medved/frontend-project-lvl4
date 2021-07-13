@@ -13,9 +13,6 @@ const Header = (props) => {
 
   const history = useHistory();
   const { from } = { from: { pathname: '/login' } };
-  const redirectHandler = () => {
-    return <Redirect to='/' />;
-  };
 
   const signoutHandler = () => {
     auth.signout(() => {
@@ -27,9 +24,7 @@ const Header = (props) => {
     <header>
       <Navbar className='bg-light justify-content-between'>
         <Container>
-          <Navbar.Brand onClick={redirectHandler}>
-            {t('header.textLogo')}
-          </Navbar.Brand>
+          <Navbar.Brand href='/'>{t('header.textLogo')}</Navbar.Brand>
           {auth.user && (
             <Button onClick={signoutHandler} variant='outline-primary'>
               {t('header.button.signout')}

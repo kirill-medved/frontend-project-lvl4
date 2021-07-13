@@ -65,6 +65,7 @@ const CreateChannelModal = (props) => {
                 placeholder='Enter channel name'
                 value={channelName}
                 onChange={handleChannelName}
+                data-testid='add-channel'
               />
               <Form.Text className='text-muted'>
                 Channel name should be unique!

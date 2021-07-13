@@ -123,6 +123,7 @@ const RenameChannelModal = (props) => {
                 placeholder='Enter channel name'
                 value={channelName}
                 onChange={handleChannelName}
+                data-testid='rename-channel'
               />
               <Form.Text className='text-muted'>
                 Channel name should be unique!

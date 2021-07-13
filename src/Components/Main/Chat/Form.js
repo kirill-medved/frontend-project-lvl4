@@ -16,7 +16,11 @@ const Form = (props) => {
   return (
     <>
       <form>
-        <input value={message} onChange={inputHandler} />
+        <input
+          value={message}
+          data-testid='new-message'
+          onChange={inputHandler}
+        />
         <button type='submit' onClick={formHandler}>
           submit
         </button>
