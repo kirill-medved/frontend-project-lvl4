@@ -45,6 +45,7 @@ const CreateChannelModal = (props) => {
       status === 'ok' ? console.log('OK') : console.log('False');
       dispatch(setCurrentChannelId(data.id));
     });
+    setChannelName('');
   };
 
   const handleClose = () => setShow((f) => !f);
