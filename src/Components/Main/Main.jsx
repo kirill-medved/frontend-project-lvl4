@@ -76,7 +76,7 @@ export default () => {
       dispatch(renameChannel(channel));
     });
     return () => {
-      //if component unmount connection will be destroyed
+      // if component unmount connection will be destroyed
       socket.disconnect();
     };
   }, [socket, dispatch]);
