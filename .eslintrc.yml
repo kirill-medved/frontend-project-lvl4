@@ -36,7 +36,6 @@ rules:
     - warn
     - singleQuote: true
       semi: true
-      trailingComma: 'none'
       endOfLine: auto
       jsxSingleQuote: true
-      trailingComma: all
+      trailingComma: 'all'

@@ -13,7 +13,7 @@ const CreateChannelModal = (props) => {
   const socket = io();
   const dispatch = useDispatch();
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
@@ -31,6 +31,9 @@ const CreateChannelModal = (props) => {
     }
   };
 
+  const handleClose = () => setShow((f) => !f);
+  const handleShow = () => setShow((f) => !f);
+
   const submitHandler = (e) => {
     e.preventDefault();
     setError(true);
@@ -41,15 +44,12 @@ const CreateChannelModal = (props) => {
       users: [props.username],
     };
     console.log(`username: ${props.username}`);
-    socket.emit('newChannel', channelObj, ({ status, data }) => {
-      status === 'ok' ? console.log('OK') : console.log('False');
+    socket.emit('newChannel', channelObj, ({ data }) => {
       dispatch(setCurrentChannelId(data.id));
     });
     setChannelName('');
   };
 
-  const handleClose = () => setShow((f) => !f);
-  const handleShow = () => setShow((f) => !f);
   return (
     <div>
       <Button variant='primary' onClick={handleShow}>
@@ -98,21 +98,21 @@ const CreateChannelModal = (props) => {
   );
 };
 
-const Channels = (props) => {
+const Channels = ({ username, channels, currentChannelId }) => {
   return (
     <div className={style.wrapper}>
-      <CreateChannelModal username={props.username} channels={props.channels} />
+      <CreateChannelModal username={username} channels={channels} />
       <div>
-        {props.channels.length > 0 &&
-          props.channels.map((channel) => {
+        {channels.length > 0 &&
+          channels.map((channel) => {
             return (
               <Channel
                 key={channel.id}
                 id={channel.id}
                 name={channel.name}
-                currentChannelId={props.currentChannelId}
+                currentChannelId={currentChannelId}
                 removable={channel.removable}
-                channels={props.channels}
+                channels={channels}
               />
             );
           })}

@@ -16,12 +16,12 @@ const validationSchema = yup.object({
     .required('Password is required'),
 });
 
-export default (props) => {
+export default () => {
   const history = useHistory();
   const location = useLocation();
   const auth = useContext(TokenContext);
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
@@ -30,10 +30,7 @@ export default (props) => {
     });
   };
 
-  const submitHandler = async (
-    values,
-    { props, resetForm, setErrors, setSubmitting },
-  ) => {
+  const submitHandler = async (values, { setErrors }) => {
     // same shape as initial values
     try {
       const { data } = await axios.post('/api/v1/login', values);
@@ -57,8 +54,8 @@ export default (props) => {
         {({ errors, touched }) => (
           <Form>
             <h1>{t('login.title')}</h1>
-            <div class='form-group row'>
-              <label for='exampleInputEmail1'>{t('login.username')}</label>
+            <div className='form-group row'>
+              <label htmlFor='username'>{t('login.username')}</label>
               <Field name='username' />
             </div>
             {/* If this field has been touched, and it contains an error, display it
@@ -66,8 +63,8 @@ export default (props) => {
             {touched.username && errors.username && (
               <div style={{ color: 'red' }}>{errors.username}</div>
             )}
-            <div class='form-group row'>
-              <label for='exampleInputEmail1'>{t('login.password')}</label>
+            <div className='form-group row'>
+              <label htmlFor='password'>{t('login.password')}</label>
               <Field name='password' />
             </div>
             {/* If this field has been touched, and it contains an error, display

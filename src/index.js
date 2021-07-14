@@ -7,17 +7,14 @@ import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 
 import '../assets/application.scss';
-import App from './App.js';
+import App from './App.jsx';
 import TokenContext from './context.js';
 import store from './store/store.js';
 import resources from './public/locales/index.js';
 
-console.log('HIII');
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
 }
-
-console.log('it works!');
 
 const useProvideAuth = () => {
   const [user, setUser] = useState(localStorage.getItem('token'));

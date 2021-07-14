@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
@@ -16,9 +16,9 @@ import {
   setChannels,
   setCurrentChannelId,
 } from '../../store/channelsSlice.js';
-import Channels from './Channels/Channels.js';
+import Channels from './Channels/Channels.jsx';
 import style from './Main.module.scss';
-import Chat from './Chat/index.js';
+import Chat from './Chat/index.jsx';
 
 export default (props) => {
   const auth = useContext(TokenContext);

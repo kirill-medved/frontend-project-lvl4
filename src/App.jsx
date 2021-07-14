@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
-import Header from './Components/Header.js';
-import Login from './Components/Login.js';
+import Header from './Components/Header.jsx';
+import Login from './Components/Login.jsx';
 import Main from './Components/Main/index.js';
-import NotFound from './Components/NotFound.js';
-import SignUp from './Components/SignUp.js';
+import NotFound from './Components/NotFound.jsx';
+import SignUp from './Components/SignUp.jsx';
 import TokenContext from './context.js';
 
 function App() {

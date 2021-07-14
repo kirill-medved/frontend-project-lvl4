@@ -9,29 +9,28 @@ import { useTranslation } from 'react-i18next';
 import style from './Channels.module.scss';
 import { setCurrentChannelId } from '../../../store/channelsSlice.js';
 
-const DeleteChannelModal = (props) => {
+const DeleteChannelModal = ({ name, id }) => {
   const socket = io();
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const [show, setShow] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
 
-  const checkHandler = (e) => {
+  const checkHandler = () => {
     setIsConfirm((c) => !c);
   };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const submitHandler = (e) => {
     e.preventDefault();
     checkHandler();
     handleClose();
-    socket.emit('removeChannel', { id: props.id }, ({ status }) => {
-      status === 'ok' ? console.log('REmove OK') : console.log('Remove False');
-    });
+    socket.emit('removeChannel', { id });
   };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   return (
     <div>
       <Button variant='primary' onClick={handleShow}>
@@ -41,7 +40,7 @@ const DeleteChannelModal = (props) => {
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
-            {t('api.deleteChannelModal.title')} {props.name}!
+            {t('api.deleteChannelModal.title')} {name}!
           </Modal.Title>
         </Modal.Header>
         <Form>
@@ -74,10 +73,10 @@ const DeleteChannelModal = (props) => {
   );
 };
 
-const RenameChannelModal = (props) => {
+const RenameChannelModal = ({ channels, id }) => {
   const socket = io();
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const [show, setShow] = useState(false);
   const [channelName, setChannelName] = useState('');
@@ -86,31 +85,28 @@ const RenameChannelModal = (props) => {
   const handleChannelName = (e) => {
     setChannelName(e.target.value);
     // check for unique channel name
-    if (
-      !_.differenceBy([{ name: e.target.value }], props.channels, 'name').length
-    ) {
+    if (!_.differenceBy([{ name: e.target.value }], channels, 'name').length) {
       setError(true);
     } else {
       setError(false);
     }
   };
 
+  const handleClose = () => setShow((f) => !f);
+  const handleShow = () => setShow((f) => !f);
+
   const submitHandler = (e) => {
     e.preventDefault();
     setError(true);
     handleClose();
     const channelObj = {
-      id: props.id,
+      id,
       name: channelName,
     };
 
-    socket.emit('renameChannel', channelObj, ({ status }) => {
-      status === 'ok' ? console.log('Raneme OK') : console.log('Rename False');
-    });
+    socket.emit('renameChannel', channelObj);
   };
 
-  const handleClose = () => setShow((f) => !f);
-  const handleShow = () => setShow((f) => !f);
   return (
     <div>
       <Button variant='primary' onClick={handleShow}>
@@ -161,32 +157,33 @@ const RenameChannelModal = (props) => {
   );
 };
 
-const Channel = (props) => {
+const Channel = ({ id, currentChannelId, name, removable, channels }) => {
   const cx = classNames.bind(style);
   const channelRef = useRef(null);
   const dispatch = useDispatch();
 
-  const changeChannel = (e) => {
+  const changeChannel = () => {
     dispatch(setCurrentChannelId(+channelRef.current.id));
   };
-  console.log('Channek rerender');
 
   return (
     <div
-      id={props.id}
+      id={id}
       ref={channelRef}
       onClick={changeChannel}
       className={cx({
         wrapper__channel: true,
-        active: props.id === props.currentChannelId,
+        active: id === currentChannelId,
       })}
+      role='search'
+      aria-hidden='true'
     >
       <div>
-        <p>{props.name}</p>
-        {props.removable && (
+        <p>{name}</p>
+        {removable && (
           <>
-            <DeleteChannelModal name={props.name} id={props.id} />
-            <RenameChannelModal id={props.id} channels={props.channels} />
+            <DeleteChannelModal name={name} id={id} />
+            <RenameChannelModal id={id} channels={channels} />
           </>
         )}
       </div>

@@ -5,10 +5,10 @@ import { useTranslation } from 'react-i18next';
 
 import TokenContext from '../context.js';
 
-const Header = (props) => {
+const Header = () => {
   const auth = useContext(TokenContext);
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const history = useHistory();
   const { from } = { from: { pathname: '/login' } };

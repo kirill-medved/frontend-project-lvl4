@@ -7,12 +7,12 @@ import { useTranslation } from 'react-i18next';
 
 import TokenContext from '../context.js';
 
-export default (props) => {
+export default () => {
   const history = useHistory();
   const location = useLocation();
   const auth = useContext(TokenContext);
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
@@ -36,10 +36,7 @@ export default (props) => {
       .oneOf([yup.ref('password'), null], t('signup.confirmPassword.error')),
   });
 
-  const submitHandler = async (
-    values,
-    { props, resetForm, setErrors, setSubmitting },
-  ) => {
+  const submitHandler = async (values, { setErrors }) => {
     // same shape as initial values
     try {
       const { data } = await axios.post('/api/v1/signup', values);
@@ -66,8 +63,8 @@ export default (props) => {
         {({ errors, touched }) => (
           <Form>
             <h1>{t('signup.title')}</h1>
-            <div class='form-group row'>
-              <label for='username'>{t('signup.username.text')}</label>
+            <div className='form-group row'>
+              <label htmlFor='username'>{t('signup.username.text')}</label>
               <Field name='username' />
             </div>
             {/* If this field has been touched, and it contains an error, display it
@@ -75,8 +72,8 @@ export default (props) => {
             {touched.username && errors.username && (
               <div style={{ color: 'red' }}>{errors.username}</div>
             )}
-            <div class='form-group row'>
-              <label for='password'>{t('signup.password.text')}</label>
+            <div className='form-group row'>
+              <label htmlFor='password'>{t('signup.password.text')}</label>
               <Field name='password' type='password' placeholder='Password' />
             </div>
             {/* If this field has been touched, and it contains an error, display
@@ -84,8 +81,8 @@ export default (props) => {
             {touched.password && errors.password && (
               <div style={{ color: 'red' }}>{errors.password}</div>
             )}
-            <div class='form-group row'>
-              <label for='confirmPassword'>
+            <div className='form-group row'>
+              <label htmlFor='confirmPassword'>
                 {t('signup.confirmPassword.text')}
               </label>
               <Field

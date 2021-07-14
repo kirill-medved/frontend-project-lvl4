@@ -2,11 +2,11 @@ import React from 'react';
 
 import style from './Messages.module.sass';
 
-const Messages = (props) => {
+const Messages = ({ messages }) => {
   return (
     <div>
-      {props.messages.length > 0 &&
-        props.messages.map((message) => {
+      {messages.length > 0 &&
+        messages.map((message) => {
           return (
             <div key={message.id} className={style.wrapper}>
               <div>
