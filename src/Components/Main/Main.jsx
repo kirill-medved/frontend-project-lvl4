@@ -20,7 +20,7 @@ import Channels from './Channels/Channels.jsx';
 import style from './Main.module.scss';
 import Chat from './Chat/index.jsx';
 
-export default (props) => {
+export default () => {
   const auth = useContext(TokenContext);
   const instance = axios.create({
     baseURL: '/api/v1/',
@@ -46,9 +46,6 @@ export default (props) => {
     dispatch(setMessages(res.data.messages));
     dispatch(setChannels(res.data.channels));
     dispatch(setCurrentChannelId(res.data.currentChannelId));
-    console.log(res);
-
-    return;
   }, [dispatch]);
 
   // до того как вынес сокет вверх
@@ -65,7 +62,7 @@ export default (props) => {
 
     socket.on('newChannel', (newChannel) => {
       dispatch(addNewChannel(newChannel));
-      //dispatch(setCurrentChannelId(newChannel.id));
+      // dispatch(setCurrentChannelId(newChannel.id));
     });
 
     socket.on('removeChannel', ({ id }) => {

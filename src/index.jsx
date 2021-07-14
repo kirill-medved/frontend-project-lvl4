@@ -42,7 +42,7 @@ const useProvideAuth = () => {
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
   lng: 'ru',
-  resources: resources,
+  resources,
 });
 
 const Main = () => {
