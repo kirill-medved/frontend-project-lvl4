@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { Button, Navbar } from 'react-bootstrap';
+import { Button, Navbar, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 import TokenContext from '../context.js';

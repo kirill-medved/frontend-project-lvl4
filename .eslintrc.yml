@@ -35,5 +35,5 @@ rules:
   prettier/prettier:
     - warn
     - singleQuote: true
-    - semi: false
-    - trailingComma: 'none'
+      semi: false
+      trailingComma: 'none'
