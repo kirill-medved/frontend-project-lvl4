@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import style from './Channels.module.scss';
-import Channel from './Channel.js';
+import Channel from './Channel.jsx';
 import { setCurrentChannelId } from '../../../store/channelsSlice.js';
 
 const CreateChannelModal = (props) => {
