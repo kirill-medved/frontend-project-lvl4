@@ -9,13 +9,16 @@ import fastifySocketIo from 'fastify-socket.io';
 import fastifyStatic from 'fastify-static';
 import fastifyJWT from 'fastify-jwt';
 import HttpErrors from 'http-errors';
+import codegen from 'codegen.macro';
 
 import addRoutes from './routes.js';
 
 const { Unauthorized } = HttpErrors;
 
 // eslint-disable-next-line no-underscore-dangle
-const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(
+  codegen`module.exports = process.env.NODE_ENV === "test" ? "{ADD VALID VALUE FOR TESTS}" : "import.meta.url"`,
+);
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(__filename);
 
