@@ -16,14 +16,26 @@ const Form = (props) => {
   return (
     <div className='mt-auto px-5 py-3'>
       <form>
-        <input
-          value={message}
-          data-testid='new-message'
-          onChange={inputHandler}
-        />
-        <button type='submit' onClick={formHandler}>
-          submit
-        </button>
+        <div className='input-group has-validation'>
+          <input
+            value={message}
+            data-testid='new-message'
+            onChange={inputHandler}
+            className='border-0 p-0 ps-2 form-control'
+          />
+          <div className='input-group-append'>
+            <button
+              type='submit'
+              onClick={formHandler}
+              className='btn btn-outline-secondary'
+            >
+              <img
+                src='https://img.icons8.com/material-outlined/24/000000/sent.png'
+                alt='Отправить'
+              />
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
