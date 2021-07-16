@@ -84,22 +84,20 @@ export default () => {
 
   return (
     <Row className='justify-content-md-center'>
-      <div className={style.wrapper}>
-        <Col md={3}>
-          <Channels
-            channels={channels}
-            currentChannelId={currentChannelId}
-            username={username}
-          />
-        </Col>
-        <Col>
-          <Chat
-            messages={messages}
-            currentChannelId={currentChannelId}
-            username={username}
-          />
-        </Col>
-      </div>
+      <Col md={3}>
+        <Channels
+          channels={channels}
+          currentChannelId={currentChannelId}
+          username={username}
+        />
+      </Col>
+      <Col md='auto'>
+        <Chat
+          messages={messages}
+          currentChannelId={currentChannelId}
+          username={username}
+        />
+      </Col>
     </Row>
   );
 };
