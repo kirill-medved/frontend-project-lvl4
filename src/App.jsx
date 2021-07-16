@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Container>
+      <Container className='container h-100 my-4 overflow-hidden rounded shadow'>
         <Switch>
           <PrivateRoute path='/' exact>
             <Main />
