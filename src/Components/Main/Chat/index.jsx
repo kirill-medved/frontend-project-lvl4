@@ -23,9 +23,9 @@ export default ({ username, currentChannelId, messages }) => {
     (message) => message.channelId === currentChannelId,
   );
   return (
-    <div className={style.wrapper}>
+    <>
       <Messages messages={newMessages} />
       <Form onSubmit={onSubmit} />
-    </div>
+    </>
   );
 };
