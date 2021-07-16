@@ -83,7 +83,7 @@ export default () => {
   }, [socket, dispatch]);
 
   return (
-    <Row className='row h-100 bg-white flex-md-row'>
+    <Row className='row h-100 bg-white flex-md-row px-0'>
       <Col md={3} className='bg-light'>
         <Channels
           channels={channels}
