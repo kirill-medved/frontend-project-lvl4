@@ -83,7 +83,7 @@ export default () => {
   }, [socket, dispatch]);
 
   return (
-    <Row>
+    <Row className='row h-100 bg-white flex-md-row'>
       <Col md={3}>
         <Channels
           channels={channels}
@@ -91,7 +91,7 @@ export default () => {
           username={username}
         />
       </Col>
-      <Col md='auto'>
+      <Col md={9}>
         <Chat
           messages={messages}
           currentChannelId={currentChannelId}
