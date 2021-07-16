@@ -4,7 +4,7 @@ import style from './Messages.module.sass';
 
 const Messages = ({ messages }) => {
   return (
-    <div>
+    <div className='mw-100 overflow-auto'>
       {messages.length > 0 &&
         messages.map((message) => {
           return (
