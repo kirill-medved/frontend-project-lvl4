@@ -84,7 +84,7 @@ export default () => {
 
   return (
     <Row className='row h-100 bg-white flex-md-row'>
-      <Col md={3}>
+      <Col md={3} className='bg-light'>
         <Channels
           channels={channels}
           currentChannelId={currentChannelId}
