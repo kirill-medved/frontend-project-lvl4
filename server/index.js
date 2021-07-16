@@ -2,22 +2,20 @@
 
 import Pug from 'pug';
 import path from 'path';
-// import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'url';
 import fastify from 'fastify';
 import pointOfView from 'point-of-view';
 import fastifySocketIo from 'fastify-socket.io';
 import fastifyStatic from 'fastify-static';
 import fastifyJWT from 'fastify-jwt';
 import HttpErrors from 'http-errors';
-// import codegen from 'codegen.macro';
 
 import addRoutes from './routes.js';
 
 const { Unauthorized } = HttpErrors;
 
 // eslint-disable-next-line no-underscore-dangle
-const __filename = '\\frontend-project-lvl4\\server\\index.js';
-// const __filename = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
 
 // eslint-disable-next-line no-underscore-dangle
 const __dirname = path.dirname(__filename);
