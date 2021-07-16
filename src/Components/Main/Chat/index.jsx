@@ -3,7 +3,6 @@ import { io } from 'socket.io-client';
 
 import Messages from './Messages.jsx';
 import Form from './Form.jsx';
-import style from './Chat.module.scss';
 
 export default ({ username, currentChannelId, messages }) => {
   const socket = io();

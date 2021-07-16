@@ -14,7 +14,7 @@ const Form = (props) => {
   };
 
   return (
-    <>
+    <div className='mt-auto px-5 py-3'>
       <form>
         <input
           value={message}
@@ -25,7 +25,7 @@ const Form = (props) => {
           submit
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
