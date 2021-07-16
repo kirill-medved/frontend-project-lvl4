@@ -15,13 +15,14 @@ const Form = (props) => {
 
   return (
     <div className='mt-auto px-5 py-3'>
-      <form>
+      <form className='py-1 border rounded-2'>
         <div className='input-group has-validation'>
           <input
             value={message}
             data-testid='new-message'
             onChange={inputHandler}
             className='border-0 p-0 ps-2 form-control'
+            placeholder='Введите сообщение...'
           />
           <div className='input-group-append'>
             <button
