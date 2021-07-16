@@ -91,7 +91,7 @@ export default () => {
           username={username}
         />
       </Col>
-      <Col md={9}>
+      <Col md={9} className='row h-100 flex-md-row'>
         <Chat
           messages={messages}
           currentChannelId={currentChannelId}
