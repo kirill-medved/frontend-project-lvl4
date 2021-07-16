@@ -83,7 +83,7 @@ export default () => {
   }, [socket, dispatch]);
 
   return (
-    <Row className='justify-content-md-center'>
+    <Row>
       <Col md={3}>
         <Channels
           channels={channels}
