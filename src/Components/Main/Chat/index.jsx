@@ -23,7 +23,7 @@ export default ({ username, currentChannelId, messages }) => {
   );
   return (
     <>
-      <Messages messages={newMessages} />
+      <Messages messages={newMessages} username={username} />
       <Form onSubmit={onSubmit} />
     </>
   );

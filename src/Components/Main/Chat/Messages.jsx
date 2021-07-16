@@ -1,17 +1,33 @@
 import React from 'react';
+import classNames from 'classnames/bind.js';
 
 import style from './Messages.module.sass';
 
-const Messages = ({ messages }) => {
+const Messages = ({ messages, username }) => {
+  const cx = classNames.bind(style);
+
   return (
-    <div className='mw-100 overflow-auto'>
+    <div
+      className={cx({
+        wrapper__channel: true,
+        'w-100': true,
+        'overflow-auto': true,
+      })}
+    >
       {messages.length > 0 &&
         messages.map((message) => {
           return (
-            <div key={message.id} className={style.wrapper}>
+            <div
+              key={message.id}
+              className={cx({
+                wrapper: true,
+                myMessage: message.username === username,
+                notMyMessage: !(message.username === username),
+              })}
+            >
               <div>
-                <h4>{message.username}</h4>
-                <h5>{message.date.slice(11, -5)} </h5>
+                <div>{message.username}</div>
+                <div>{message.date.slice(11, -5)} </div>
               </div>
               <div>
                 <p>{message.message}</p>
