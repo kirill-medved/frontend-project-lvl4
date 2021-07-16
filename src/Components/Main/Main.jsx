@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
+import { Col, Row } from 'react-bootstrap';
 
 import TokenContext from '../../context.js';
 import {
@@ -82,17 +83,23 @@ export default () => {
   }, [socket, dispatch]);
 
   return (
-    <div className={style.wrapper}>
-      <Channels
-        channels={channels}
-        currentChannelId={currentChannelId}
-        username={username}
-      />
-      <Chat
-        messages={messages}
-        currentChannelId={currentChannelId}
-        username={username}
-      />
-    </div>
+    <Row className='justify-content-md-center'>
+      <div className={style.wrapper}>
+        <Col md={3}>
+          <Channels
+            channels={channels}
+            currentChannelId={currentChannelId}
+            username={username}
+          />
+        </Col>
+        <Col>
+          <Chat
+            messages={messages}
+            currentChannelId={currentChannelId}
+            username={username}
+          />
+        </Col>
+      </div>
+    </Row>
   );
 };
