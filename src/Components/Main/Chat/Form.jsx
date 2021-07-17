@@ -15,7 +15,7 @@ const Form = (props) => {
 
   return (
     <div className='mt-auto px-5 py-3'>
-      <form className='py-1 border rounded-2'>
+      <form className='py-2 border rounded-2'>
         <div className='input-group has-validation'>
           <input
             value={message}

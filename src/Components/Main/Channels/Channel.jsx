@@ -7,7 +7,10 @@ import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import style from './Channels.module.scss';
-import { setCurrentChannelId } from '../../../store/channelsSlice.js';
+import {
+  setCurrentChannelId,
+  setCurrentChannelName,
+} from '../../../store/channelsSlice.js';
 
 const DeleteChannelModal = ({ name, id }) => {
   const socket = io();
@@ -164,6 +167,7 @@ const Channel = ({ id, currentChannelId, name, removable, channels }) => {
 
   const changeChannel = () => {
     dispatch(setCurrentChannelId(+channelRef.current.id));
+    dispatch(setCurrentChannelName(name));
   };
 
   return (

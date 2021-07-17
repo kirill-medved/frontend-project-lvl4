@@ -18,7 +18,6 @@ import {
   setCurrentChannelId,
 } from '../../store/channelsSlice.js';
 import Channels from './Channels/Channels.jsx';
-import style from './Main.module.scss';
 import Chat from './Chat/index.jsx';
 
 export default () => {
