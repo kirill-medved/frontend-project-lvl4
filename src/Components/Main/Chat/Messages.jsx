@@ -18,7 +18,14 @@ const Messages = ({ messages, username }) => {
       {messages.length > 0 &&
         messages.map((message) => {
           return (
-            <Container key={message.id}>
+            <Container
+              key={message.id}
+              className={cx({
+                'd-flex': true,
+                'justify-content-start': message.username === username,
+                'justify-content-end': !(message.username === username),
+              })}
+            >
               <div
                 className={cx({
                   wrapper: true,
