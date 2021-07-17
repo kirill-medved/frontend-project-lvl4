@@ -7,3 +7,10 @@
   background-color: #cccccc;
   color: white;
 }
+
+.lastMessage__truncate {
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -50,7 +50,7 @@ const DeleteChannelModal = ({ name, id }) => {
           <Modal.Body>
             <Form.Group controlId='formBasicCheckbox'>
               <Form.Check
-                checked={isConfirm}
+                checked={isConfirm && 'checked'}
                 type='checkbox'
                 label='Check me out'
                 onClick={checkHandler}
@@ -190,20 +190,29 @@ const Channel = ({
       aria-hidden='true'
     >
       <div>
-        <p>{name}</p>
-        <p>{lastMessage && lastMessage.message}</p>
-        {removable && (
-          <>
-            <NavDropdown>
-              <NavDropdown.Item>
-                <DeleteChannelModal name={name} id={id} />
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <RenameChannelModal id={id} channels={channels} />
-              </NavDropdown.Item>
-            </NavDropdown>
-          </>
-        )}
+        <div className='d-flex justify-content-between'>
+          <p>{name}</p>
+          {removable && (
+            <>
+              <NavDropdown>
+                <NavDropdown.Item>
+                  <DeleteChannelModal name={name} id={id} />
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <RenameChannelModal id={id} channels={channels} />
+                </NavDropdown.Item>
+              </NavDropdown>
+            </>
+          )}
+        </div>
+        <p
+          className={cx({
+            lastMessage__truncate: true,
+            active: id === currentChannelId,
+          })}
+        >
+          {lastMessage && lastMessage.message}
+        </p>
       </div>
     </div>
   );
