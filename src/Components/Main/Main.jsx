@@ -92,7 +92,7 @@ export default () => {
 
   return (
     <Row className='row h-100 bg-white flex-md-row'>
-      <Col md={3} className='col-4 col-md-2 border-end pt-5 px-0 bg-light'>
+      <Col md={3} className='border-end pt-5 px-0 bg-light'>
         <Channels
           channels={channels}
           currentChannelId={currentChannelId}
@@ -100,7 +100,7 @@ export default () => {
           messages={messages}
         />
       </Col>
-      <Col className='col p-0 h-100'>
+      <Col md={9} className='p-0 h-100'>
         <Chat
           messages={messages}
           currentChannelId={currentChannelId}
