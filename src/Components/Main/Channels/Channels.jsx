@@ -98,13 +98,17 @@ const CreateChannelModal = (props) => {
   );
 };
 
-const Channels = ({ username, channels, currentChannelId }) => {
+const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
       <CreateChannelModal username={username} channels={channels} />
       <div>
         {channels.length > 0 &&
           channels.map((channel) => {
+            const lastMessage = _.findLast(
+              messages,
+              (message) => message.channelId === currentChannelId,
+            );
             return (
               <Channel
                 key={channel.id}
@@ -113,6 +117,7 @@ const Channels = ({ username, channels, currentChannelId }) => {
                 currentChannelId={currentChannelId}
                 removable={channel.removable}
                 channels={channels}
+                lastMessage={lastMessage}
               />
             );
           })}

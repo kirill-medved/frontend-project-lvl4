@@ -160,7 +160,14 @@ const RenameChannelModal = ({ channels, id }) => {
   );
 };
 
-const Channel = ({ id, currentChannelId, name, removable, channels }) => {
+const Channel = ({
+  id,
+  currentChannelId,
+  name,
+  removable,
+  channels,
+  lastMessage,
+}) => {
   const cx = classNames.bind(style);
   const channelRef = useRef(null);
   const dispatch = useDispatch();
@@ -184,6 +191,7 @@ const Channel = ({ id, currentChannelId, name, removable, channels }) => {
     >
       <div>
         <p>{name}</p>
+        <p>{lastMessage}</p>
         {removable && (
           <>
             <NavDropdown>

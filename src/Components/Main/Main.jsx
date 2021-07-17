@@ -45,7 +45,7 @@ export default () => {
   useEffect(async () => {
     const res = await instance.get(`data`);
 
-    const currentChannelName = _.find(
+    const currentChannel = _.find(
       res.data.channels,
       (channel) => channel.id === res.data.currentChannelId,
     );
@@ -54,7 +54,7 @@ export default () => {
     dispatch(setChannels(res.data.channels));
     dispatch(setCurrentChannelId(res.data.currentChannelId));
 
-    dispatch(setCurrentChannelName(currentChannelName)); // with this server
+    dispatch(setCurrentChannelName(currentChannel.name)); // with this server
   }, [dispatch]);
 
   // до того как вынес сокет вверх
@@ -97,6 +97,7 @@ export default () => {
           channels={channels}
           currentChannelId={currentChannelId}
           username={username}
+          messages={messages}
         />
       </Col>
       <Col md={9} className='row h-100 flex-md-column'>
