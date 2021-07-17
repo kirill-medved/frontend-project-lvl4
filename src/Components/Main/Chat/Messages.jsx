@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind.js';
+import { Container } from 'react-bootstrap';
 
 import style from './Messages.module.scss';
 
@@ -17,7 +18,7 @@ const Messages = ({ messages, username }) => {
       {messages.length > 0 &&
         messages.map((message) => {
           return (
-            <div key={message.id} className='w-100'>
+            <Container key={message.id}>
               <div
                 className={cx({
                   wrapper: true,
@@ -33,7 +34,7 @@ const Messages = ({ messages, username }) => {
                   <p className={cx({ message: true })}>{message.message}</p>
                 </div>
               </div>
-            </div>
+            </Container>
           );
         })}
     </div>
