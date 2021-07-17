@@ -107,7 +107,7 @@ const Channels = ({ username, channels, currentChannelId, messages }) => {
           channels.map((channel) => {
             const lastMessage = _.findLast(
               messages,
-              (message) => message.channelId === currentChannelId,
+              (message) => message.channelId === channel.id,
             );
             return (
               <Channel
