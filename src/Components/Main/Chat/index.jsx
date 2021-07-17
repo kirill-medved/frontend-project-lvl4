@@ -34,7 +34,7 @@ export default ({ username, currentChannelId, messages }) => {
     (message) => message.channelId === currentChannelId,
   );
   return (
-    <div className='d-flex flex-column h-100'>
+    <div className='d-flex flex-column h-100 w-100'>
       <ChatHeader />
       <Messages messages={newMessages} username={username} />
       <Form onSubmit={onSubmit} />

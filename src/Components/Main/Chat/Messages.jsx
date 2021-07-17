@@ -26,21 +26,19 @@ const Messages = ({ messages, username }) => {
                 'justify-content-start': !(message.username === username),
               })}
             >
-              <div>
-                <div
-                  className={cx({
-                    wrapper: true,
-                    myMessage: message.username === username,
-                    notMyMessage: !(message.username === username),
-                  })}
-                >
-                  <div className='d-flex justify-content-around'>
-                    <div>{message.username}</div>
-                    <div>{message.date.slice(11, -8)} </div>
-                  </div>
-                  <div>
-                    <p className={cx({ message: true })}>{message.message}</p>
-                  </div>
+              <div
+                className={cx({
+                  wrapper: true,
+                  myMessage: message.username === username,
+                  notMyMessage: !(message.username === username),
+                })}
+              >
+                <div className='d-flex justify-content-around'>
+                  <div>{message.username}</div>
+                  <div>{message.date.slice(11, -8)} </div>
+                </div>
+                <div>
+                  <p className={cx({ message: true })}>{message.message}</p>
                 </div>
               </div>
             </Container>
