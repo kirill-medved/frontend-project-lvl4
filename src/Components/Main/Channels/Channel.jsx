@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames/bind.js';
 import { useDispatch } from 'react-redux';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, NavDropdown } from 'react-bootstrap';
 import { io } from 'socket.io-client';
 import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
@@ -186,8 +186,14 @@ const Channel = ({ id, currentChannelId, name, removable, channels }) => {
         <p>{name}</p>
         {removable && (
           <>
-            <DeleteChannelModal name={name} id={id} />
-            <RenameChannelModal id={id} channels={channels} />
+            <NavDropdown>
+              <NavDropdown.Item>
+                <DeleteChannelModal name={name} id={id} />
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <RenameChannelModal id={id} channels={channels} />
+              </NavDropdown.Item>
+            </NavDropdown>
           </>
         )}
       </div>

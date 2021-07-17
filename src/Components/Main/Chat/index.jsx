@@ -1,5 +1,6 @@
-import React, { useSelector } from 'react';
+import React from 'react';
 import { io } from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
 import Messages from './Messages.jsx';
 import Form from './Form.jsx';
