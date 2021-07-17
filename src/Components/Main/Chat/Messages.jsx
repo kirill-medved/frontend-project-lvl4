@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind.js';
 
-import style from './Messages.module.sass';
+import style from './Messages.module.scss';
 
 const Messages = ({ messages, username }) => {
   const cx = classNames.bind(style);
@@ -30,7 +30,7 @@ const Messages = ({ messages, username }) => {
                 <div>{message.date.slice(11, -5)} </div>
               </div>
               <div>
-                <p>{message.message}</p>
+                <p className={cx({ message: true })}>{message.message}</p>
               </div>
             </div>
           );
