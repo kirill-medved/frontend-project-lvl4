@@ -22,8 +22,8 @@ const Messages = ({ messages, username }) => {
               key={message.id}
               className={cx({
                 'd-flex': true,
-                'justify-content-start': message.username === username,
-                'justify-content-end': !(message.username === username),
+                'justify-content-end': message.username === username,
+                'justify-content-start': !(message.username === username),
               })}
             >
               <div
