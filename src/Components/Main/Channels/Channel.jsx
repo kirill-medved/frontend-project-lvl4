@@ -209,7 +209,7 @@ const Channel = ({
           className={cx({
             lastMessage__truncate: true,
             'text-info': true,
-            'text-primary': id === currentChannelId,
+            active: id === currentChannelId,
           })}
         >
           {lastMessage && lastMessage.message}
