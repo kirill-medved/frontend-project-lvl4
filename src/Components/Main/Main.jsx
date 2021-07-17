@@ -16,6 +16,7 @@ import {
   renameChannel,
   setChannels,
   setCurrentChannelId,
+  setCurrentChannelName,
 } from '../../store/channelsSlice.js';
 import Channels from './Channels/Channels.jsx';
 import Chat from './Chat/index.jsx';
@@ -42,10 +43,11 @@ export default () => {
 
   useEffect(async () => {
     const res = await instance.get(`data`);
-
+    console.log(res);
     dispatch(setMessages(res.data.messages));
     dispatch(setChannels(res.data.channels));
     dispatch(setCurrentChannelId(res.data.currentChannelId));
+    // dispatch(setCurrentChannelName(res.data.))
   }, [dispatch]);
 
   // до того как вынес сокет вверх
