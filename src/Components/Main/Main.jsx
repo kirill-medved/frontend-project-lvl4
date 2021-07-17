@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import { Col, Row } from 'react-bootstrap';
+import * as _ from 'lodash';
 
 import TokenContext from '../../context.js';
 import {
@@ -43,11 +44,17 @@ export default () => {
 
   useEffect(async () => {
     const res = await instance.get(`data`);
-    console.log(res);
+
+    const currentChannelName = _.find(
+      res.data.channels,
+      (channel) => channel.id === res.data.currentChannelId,
+    );
+
     dispatch(setMessages(res.data.messages));
     dispatch(setChannels(res.data.channels));
     dispatch(setCurrentChannelId(res.data.currentChannelId));
-    // dispatch(setCurrentChannelName(res.data.))
+
+    dispatch(setCurrentChannelName(currentChannelName)); // with this server
   }, [dispatch]);
 
   // до того как вынес сокет вверх
