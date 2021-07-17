@@ -21,8 +21,8 @@ const Messages = ({ messages, username }) => {
               key={message.id}
               className={cx({
                 wrapper: true,
-                myMessage: message.username === username,
-                notMyMessage: !(message.username === username),
+                // myMessage: message.username === username,
+                // notMyMessage: !(message.username === username),
               })}
             >
               <div>
