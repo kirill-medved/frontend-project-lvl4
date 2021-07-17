@@ -5,11 +5,13 @@
   margin: 5px;
 }
 .myMessage {
-  float: right;
+  display: flex;
+  justify-self: flex-end;
   background-color: #d9c5f3;
 }
 .notMyMessage {
-  float: left;
+  display: flex;
+  justify-self: flex-start;
   background-color: #86b0d8;
 }
 .message {
