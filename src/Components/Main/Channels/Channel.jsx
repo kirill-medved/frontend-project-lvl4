@@ -191,7 +191,7 @@ const Channel = ({
     >
       <div>
         <p>{name}</p>
-        <p>{lastMessage}</p>
+        <p>{lastMessage.message}</p>
         {removable && (
           <>
             <NavDropdown>
