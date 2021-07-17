@@ -21,11 +21,11 @@ const Messages = ({ messages, username }) => {
               key={message.id}
               className={cx({
                 wrapper: true,
-                // myMessage: message.username === username,
-                // notMyMessage: !(message.username === username),
+                myMessage: message.username === username,
+                notMyMessage: !(message.username === username),
               })}
             >
-              <div>
+              <div className='d-flex justify-content-between'>
                 <div>{message.username}</div>
                 <div>{message.date.slice(11, -5)} </div>
               </div>
