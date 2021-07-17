@@ -50,8 +50,8 @@ const DeleteChannelModal = ({ name, id }) => {
           <Modal.Body>
             <Form.Group controlId='formBasicCheckbox'>
               <Form.Check
-                checked={isConfirm && 'checked'}
                 type='checkbox'
+                checked={isConfirm && 'checked'}
                 label='Check me out'
                 onClick={checkHandler}
               />
@@ -208,7 +208,6 @@ const Channel = ({
         <p
           className={cx({
             lastMessage__truncate: true,
-            'text-info': true,
             active: id === currentChannelId,
           })}
         >
