@@ -208,7 +208,8 @@ const Channel = ({
         <p
           className={cx({
             lastMessage__truncate: true,
-            active: id === currentChannelId,
+            'text-info': true,
+            'text-primary': id === currentChannelId,
           })}
         >
           {lastMessage && lastMessage.message}
