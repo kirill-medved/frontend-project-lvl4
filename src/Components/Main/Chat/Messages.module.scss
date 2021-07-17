@@ -6,12 +6,12 @@
 }
 .myMessage {
   display: flex;
-  justify-self: flex-end;
+  align-self: flex-end;
   background-color: #d9c5f3;
 }
 .notMyMessage {
   display: flex;
-  justify-self: flex-start;
+  align-self: flex-start;
   background-color: #86b0d8;
 }
 .message {
