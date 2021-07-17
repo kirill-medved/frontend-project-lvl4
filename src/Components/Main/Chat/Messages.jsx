@@ -25,7 +25,7 @@ const Messages = ({ messages, username }) => {
                 notMyMessage: !(message.username === username),
               })}
             >
-              <div className='d-flex justify-content-between'>
+              <div className='d-flex justify-content-around'>
                 <div>{message.username}</div>
                 <div>{message.date.slice(11, -5)} </div>
               </div>
