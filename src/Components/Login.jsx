@@ -82,7 +82,7 @@ export default () => {
           </Form>
         )}
       </Formik>
-      <Navbar className='mt-auto'>
+      <Navbar className={cx({ redirect__wrapper: true, 'card-footer': true })}>
         <Container>
           <Navbar.Collapse className='justify-content-center'>
             <Navbar.Text>
