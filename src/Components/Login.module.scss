@@ -1,13 +1,21 @@
-.form__wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  border: 1px solid #cecece;
-  border-radius: 15%;
-  width: 60%;
-  height: 70%;
-  padding: 10%;
+.form {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 1px solid #cecece;
+    border-radius: 15%;
+    width: 60%;
+    height: 70%;
+    padding: 10%;
+  }
+  &__submit {
+    margin: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10%;
+  }
 }
 
 .redirect__wrapper {

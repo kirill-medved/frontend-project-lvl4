@@ -76,8 +76,16 @@ export default () => {
             {touched.password && errors.password && (
               <div style={{ color: 'red' }}>{errors.password}</div>
             )}
-            <button className='btn btn-primary mb-2' type='submit'>
-              Submit
+            <button
+              className={cx({
+                form__submit: true,
+                btn: true,
+                'btn-primary': true,
+                'mb-2': true,
+              })}
+              type='submit'
+            >
+              Войти
             </button>
           </Form>
         )}
@@ -89,7 +97,7 @@ export default () => {
           'justify-content-center': true,
         })}
       >
-        <Navbar.Collapse>
+        <Navbar.Collapse className='justify-content-center'>
           <Navbar.Text>
             Нет аккаунта? <a href='/signup'>Регистрация</a>
           </Navbar.Text>
