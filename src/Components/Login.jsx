@@ -82,14 +82,18 @@ export default () => {
           </Form>
         )}
       </Formik>
-      <Navbar className={cx({ redirect__wrapper: true, 'card-footer': true })}>
-        <Container>
-          <Navbar.Collapse className='justify-content-center'>
-            <Navbar.Text>
-              Нет аккаунта? <a href='/signup'>Регистрация</a>
-            </Navbar.Text>
-          </Navbar.Collapse>
-        </Container>
+      <Navbar>
+        <Navbar.Collapse
+          className={cx({
+            redirect__wrapper: true,
+            'card-footer': true,
+            'justify-content-center': true,
+          })}
+        >
+          <Navbar.Text>
+            Нет аккаунта? <a href='/signup'>Регистрация</a>
+          </Navbar.Text>
+        </Navbar.Collapse>
       </Navbar>
     </>
   );
