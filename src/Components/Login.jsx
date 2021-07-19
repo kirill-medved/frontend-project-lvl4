@@ -46,7 +46,7 @@ export default () => {
     }
   };
   return (
-    <div className='d-flex flex-column'>
+    <>
       <Formik
         initialValues={{
           username: '',
@@ -91,6 +91,6 @@ export default () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
+    </>
   );
 };
