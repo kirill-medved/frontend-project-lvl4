@@ -36,9 +36,7 @@ const DeleteChannelModal = ({ name, id }) => {
 
   return (
     <div>
-      <Button variant='primary' onClick={handleShow}>
-        Удалить
-      </Button>
+      <p onClick={handleShow}>Удалить</p>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -112,9 +110,7 @@ const RenameChannelModal = ({ channels, id }) => {
 
   return (
     <div>
-      <Button variant='primary' onClick={handleShow}>
-        +
-      </Button>
+      <p onClick={handleShow}>+</p>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
