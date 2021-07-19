@@ -52,8 +52,12 @@ const CreateChannelModal = (props) => {
 
   return (
     <div>
-      <Button variant='primary' onClick={handleShow}>
-        +
+      <Button
+        variant='primary'
+        onClick={handleShow}
+        style={{ textAlign: 'center' }}
+      >
+        Создать новый канал
       </Button>
 
       <Modal show={show} onHide={handleClose}>
