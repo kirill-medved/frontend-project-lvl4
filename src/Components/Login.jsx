@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Container, Navbar } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames/bind.js';
 
@@ -58,19 +58,19 @@ export default () => {
         {({ errors, touched }) => (
           <Form className={cx({ form__wrapper: true })}>
             <h1>{t('login.title')}</h1>
-            <div className='form-group row'>
-              <label htmlFor='username'>{t('login.username')}</label>
-              <Field name='username' />
-            </div>
+
+            <label htmlFor='username'>{t('login.username')}</label>
+            <Field name='username' />
+
             {/* If this field has been touched, and it contains an error, display it
              */}
             {touched.username && errors.username && (
               <div style={{ color: 'red' }}>{errors.username}</div>
             )}
-            <div className='form-group row'>
-              <label htmlFor='password'>{t('login.password')}</label>
-              <Field name='password' />
-            </div>
+
+            <label htmlFor='password'>{t('login.password')}</label>
+            <Field name='password' />
+
             {/* If this field has been touched, and it contains an error, display
            it */}
             {touched.password && errors.password && (
