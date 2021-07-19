@@ -60,7 +60,7 @@ export default () => {
             <h1>{t('login.title')}</h1>
 
             <label htmlFor='username'>{t('login.username')}</label>
-            <Field name='username' />
+            <Field name='username' type='text' />
 
             {/* If this field has been touched, and it contains an error, display it
              */}
@@ -69,7 +69,7 @@ export default () => {
             )}
 
             <label htmlFor='password'>{t('login.password')}</label>
-            <Field name='password' />
+            <Field name='password' type='password' />
 
             {/* If this field has been touched, and it contains an error, display
            it */}
