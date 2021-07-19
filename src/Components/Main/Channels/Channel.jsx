@@ -58,13 +58,13 @@ const DeleteChannelModal = ({ name, id }) => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant='danger' onClick={handleClose}>
+            <Button variant='primary' onClick={handleClose}>
               {t('api.deleteChannelModal.cancel')}
             </Button>
             <Button
               disabled={!isConfirm}
               type='submit'
-              variant='primary'
+              variant='danger'
               onClick={submitHandler}
             >
               {t('api.deleteChannelModal.submit')}
