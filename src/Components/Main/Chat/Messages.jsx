@@ -15,7 +15,7 @@ const Messages = ({ messages, username }) => {
         'overflow-auto': true,
       })}
     >
-      {messages.length > 0 &&
+      {messages.length > 0 ? (
         messages.map((message) => {
           return (
             <Container
@@ -43,7 +43,10 @@ const Messages = ({ messages, username }) => {
               </div>
             </Container>
           );
-        })}
+        })
+      ) : (
+        <p>Чат пока что пуст. Напишите первое сообщение!</p>
+      )}
     </div>
   );
 };
