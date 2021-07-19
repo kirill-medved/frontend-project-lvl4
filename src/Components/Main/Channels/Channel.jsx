@@ -36,7 +36,9 @@ const DeleteChannelModal = ({ name, id }) => {
 
   return (
     <div>
-      <p onClick={handleShow}>Удалить</p>
+      <p aria-hidden='true' onClick={handleShow}>
+        Удалить
+      </p>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -56,7 +58,7 @@ const DeleteChannelModal = ({ name, id }) => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant='secondary' onClick={handleClose}>
+            <Button variant='danger' onClick={handleClose}>
               {t('api.deleteChannelModal.cancel')}
             </Button>
             <Button
@@ -76,6 +78,8 @@ const DeleteChannelModal = ({ name, id }) => {
 
 const RenameChannelModal = ({ channels, id }) => {
   const socket = io();
+
+  const dispatch = useDispatch();
 
   const [t] = useTranslation();
 
@@ -104,13 +108,15 @@ const RenameChannelModal = ({ channels, id }) => {
       id,
       name: channelName,
     };
-
+    dispatch(setCurrentChannelName(channelName));
     socket.emit('renameChannel', channelObj);
   };
 
   return (
     <div>
-      <p onClick={handleShow}>+</p>
+      <p aria-hidden='true' onClick={handleShow}>
+        +
+      </p>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

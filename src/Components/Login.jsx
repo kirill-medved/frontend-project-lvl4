@@ -5,8 +5,10 @@ import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames/bind.js';
 
 import TokenContext from '../context.js';
+import style from './Login.module.scss';
 
 const validationSchema = yup.object({
   username: yup.string().required('Email is required'),
@@ -20,6 +22,8 @@ export default () => {
   const history = useHistory();
   const location = useLocation();
   const auth = useContext(TokenContext);
+
+  const cx = classNames.bind(style);
 
   const [t] = useTranslation();
 
@@ -42,7 +46,7 @@ export default () => {
     }
   };
   return (
-    <div>
+    <div className='d-flex flex-column'>
       <Formik
         initialValues={{
           username: '',
@@ -52,7 +56,7 @@ export default () => {
         onSubmit={submitHandler}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form className={cx({ form__wrapper: true })}>
             <h1>{t('login.title')}</h1>
             <div className='form-group row'>
               <label htmlFor='username'>{t('login.username')}</label>
