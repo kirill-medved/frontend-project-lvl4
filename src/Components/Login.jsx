@@ -46,7 +46,7 @@ export default () => {
     }
   };
   return (
-    <div className='h-100 w-100 d-flex flex-column'>
+    <div className='row h-100 bg-white flex-md-column'>
       <Formik
         initialValues={{
           username: '',
