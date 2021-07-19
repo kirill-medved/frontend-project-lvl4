@@ -115,7 +115,7 @@ const RenameChannelModal = ({ channels, id }) => {
   return (
     <div>
       <p aria-hidden='true' onClick={handleShow}>
-        +
+        Изменить название
       </p>
 
       <Modal show={show} onHide={handleClose}>

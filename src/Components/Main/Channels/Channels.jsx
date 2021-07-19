@@ -105,7 +105,7 @@ const CreateChannelModal = (props) => {
 const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
-      Каналы <CreateChannelModal username={username} channels={channels} />
+      <CreateChannelModal username={username} channels={channels} />
       <div className='overflow-auto'>
         {channels.length > 0 &&
           channels.map((channel) => {
