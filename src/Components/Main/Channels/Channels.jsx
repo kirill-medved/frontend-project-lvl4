@@ -51,7 +51,7 @@ const CreateChannelModal = (props) => {
   };
 
   return (
-    <div>
+    <div className='d-flex justify-content-center'>
       <Button
         variant='primary'
         onClick={handleShow}
@@ -106,7 +106,7 @@ const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
       <CreateChannelModal username={username} channels={channels} />
-      <div>
+      <div className='overflow-auto'>
         {channels.length > 0 &&
           channels.map((channel) => {
             const lastMessage = _.findLast(
