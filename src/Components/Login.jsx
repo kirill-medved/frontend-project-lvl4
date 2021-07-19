@@ -82,7 +82,7 @@ export default () => {
           </Form>
         )}
       </Formik>
-      <Navbar>
+      <Navbar className='mt-auto'>
         <Container>
           <Navbar.Collapse className='justify-content-center'>
             <Navbar.Text>
