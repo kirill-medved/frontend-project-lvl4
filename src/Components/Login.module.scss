@@ -1,3 +1,9 @@
 .form__wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
   border: 1px solid #cecece;
+  border-radius: 5%;
+  align-self: center;
+  padding: 15px;
 }
