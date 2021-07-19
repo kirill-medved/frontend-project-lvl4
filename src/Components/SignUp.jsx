@@ -4,8 +4,10 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames/bind.js';
 
 import TokenContext from '../context.js';
+import style from './Login.module.scss';
 
 export default () => {
   const history = useHistory();
@@ -13,6 +15,8 @@ export default () => {
   const auth = useContext(TokenContext);
 
   const [t] = useTranslation();
+
+  const cx = classNames.bind(style);
 
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
@@ -50,7 +54,7 @@ export default () => {
     }
   };
   return (
-    <div>
+    <div className='row h-100 bg-white flex-md-column'>
       <Formik
         initialValues={{
           username: '',
@@ -61,43 +65,51 @@ export default () => {
         onSubmit={submitHandler}
       >
         {({ errors, touched }) => (
-          <Form>
+          <Form className={cx({ form__wrapper: true })}>
             <h1>{t('signup.title')}</h1>
-            <div className='form-group row'>
-              <label htmlFor='username'>{t('signup.username.text')}</label>
-              <Field name='username' />
-            </div>
+
+            <label htmlFor='username'>{t('signup.username.text')}</label>
+            <Field name='username' />
+
             {/* If this field has been touched, and it contains an error, display it
              */}
             {touched.username && errors.username && (
               <div style={{ color: 'red' }}>{errors.username}</div>
             )}
-            <div className='form-group row'>
-              <label htmlFor='password'>{t('signup.password.text')}</label>
-              <Field name='password' type='password' placeholder='Password' />
-            </div>
+
+            <label htmlFor='password'>{t('signup.password.text')}</label>
+            <Field name='password' type='password' placeholder='Password' />
+
             {/* If this field has been touched, and it contains an error, display
            it */}
             {touched.password && errors.password && (
               <div style={{ color: 'red' }}>{errors.password}</div>
             )}
-            <div className='form-group row'>
-              <label htmlFor='confirmPassword'>
-                {t('signup.confirmPassword.text')}
-              </label>
-              <Field
-                name='confirmPassword'
-                type='password'
-                placeholder='Confirm password'
-              />
-            </div>
+
+            <label htmlFor='confirmPassword'>
+              {t('signup.confirmPassword.text')}
+            </label>
+            <Field
+              name='confirmPassword'
+              type='password'
+              placeholder='Confirm password'
+            />
+
             {/* If this field has been touched, and it contains an error, display
            it */}
             {touched.confirmPassword && errors.confirmPassword && (
               <div style={{ color: 'red' }}>{errors.confirmPassword}</div>
             )}
 
-            <button className='btn btn-primary mb-2' type='submit'>
+            <button
+              className={cx({
+                form__submit: true,
+                btn: true,
+                'btn-primary': true,
+                'mb-2': true,
+              })}
+              type='submit'
+            >
               {t('signup.formSubmit')}
             </button>
           </Form>
