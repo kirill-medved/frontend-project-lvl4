@@ -192,8 +192,8 @@ const Channel = ({
       role='search'
       aria-hidden='true'
     >
-      <Card.Body>
-        <Card.Title className='d-flex justify-content-between'>
+      <Card.Body className='p-0'>
+        <Card.Title className='d-flex justify-content-between h6'>
           {name}
           {removable && (
             <>
