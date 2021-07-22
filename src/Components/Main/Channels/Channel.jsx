@@ -198,9 +198,8 @@ const Channel = ({
           {removable && (
             <>
               <NavDropdown
-                variant={id === currentChannelId ? 'primary' : 'light'}
-                menuVariant={id === currentChannelId ? 'primary' : 'light'}
-                className='py-0'
+                color={id === currentChannelId ? 'light' : 'primary'}
+                className='p-0'
               >
                 <NavDropdown.Item>
                   <DeleteChannelModal name={name} id={id} />
