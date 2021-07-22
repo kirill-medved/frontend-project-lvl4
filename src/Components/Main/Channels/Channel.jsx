@@ -200,7 +200,7 @@ const Channel = ({
               <NavDropdown
                 color={id === currentChannelId ? 'light' : 'primary'}
                 className='p-0'
-                menuVariant='secondary'
+                menuVariant='dark'
               >
                 <NavDropdown.Item>
                   <DeleteChannelModal name={name} id={id} />
