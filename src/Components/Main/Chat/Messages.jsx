@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 
 import style from './Messages.module.scss';
 
-const Messages = ({ messages, username }) => {
+const Messages = ({ messages, username, containerRef }) => {
   const cx = classNames.bind(style);
 
   return (
@@ -14,6 +14,7 @@ const Messages = ({ messages, username }) => {
         'w-100': true,
         'overflow-auto': true,
       })}
+      ref={containerRef}
     >
       {messages.length > 0 ? (
         messages.map((message) => {

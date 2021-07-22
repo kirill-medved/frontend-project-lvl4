@@ -105,6 +105,12 @@ const CreateChannelModal = (props) => {
 const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
+      <button type='button'>
+        <img
+          src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
+          alt='settings'
+        />
+      </button>
       <CreateChannelModal username={username} channels={channels} />
       <div className='overflow-auto'>
         {channels.length > 0 &&
