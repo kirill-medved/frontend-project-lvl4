@@ -188,14 +188,13 @@ const Channel = ({
       onClick={changeChannel}
       className={cx({
         wrapper__channel: true,
-        active: id === currentChannelId,
       })}
       role='search'
       aria-hidden='true'
     >
       <Card.Body>
         <Card.Title className='d-flex justify-content-between'>
-          <p>{name}</p>
+          {name}
           {removable && (
             <>
               <NavDropdown>
@@ -212,7 +211,6 @@ const Channel = ({
         <Card.Text
           className={cx({
             lastMessage__truncate: true,
-            active: id === currentChannelId,
           })}
         >
           {lastMessage && lastMessage.message}

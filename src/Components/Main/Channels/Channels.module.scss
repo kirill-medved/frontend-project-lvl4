@@ -1,18 +1,9 @@
 .wrapper__channel {
   padding: 5px;
   height: 80px;
-  &:hover {
-    background-color: #9c9b9b;
-  }
-}
-
-.active {
-  background-color: #cccccc;
-  color: white !important;
 }
 
 .lastMessage__truncate {
-  color: #999999;
   padding-right: 10px;
   white-space: nowrap;
   overflow: hidden;
