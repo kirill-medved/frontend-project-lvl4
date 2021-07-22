@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import classNames from 'classnames/bind.js';
 import { useDispatch } from 'react-redux';
-import { Button, Modal, Form, NavDropdown } from 'react-bootstrap';
+import { Button, Modal, Form, NavDropdown, Card } from 'react-bootstrap';
 import { io } from 'socket.io-client';
 import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
@@ -180,9 +180,11 @@ const Channel = ({
   };
 
   return (
-    <div
+    <Card
       id={id}
       ref={channelRef}
+      bg={id === currentChannelId ? 'primary' : 'light'}
+      text={id === currentChannelId ? 'white' : 'dark'}
       onClick={changeChannel}
       className={cx({
         wrapper__channel: true,
@@ -191,8 +193,8 @@ const Channel = ({
       role='search'
       aria-hidden='true'
     >
-      <div>
-        <div className='d-flex justify-content-between'>
+      <Card.Body>
+        <Card.Title className='d-flex justify-content-between'>
           <p>{name}</p>
           {removable && (
             <>
@@ -206,17 +208,17 @@ const Channel = ({
               </NavDropdown>
             </>
           )}
-        </div>
-        <p
+        </Card.Title>
+        <Card.Text
           className={cx({
             lastMessage__truncate: true,
             active: id === currentChannelId,
           })}
         >
           {lastMessage && lastMessage.message}
-        </p>
-      </div>
-    </div>
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
