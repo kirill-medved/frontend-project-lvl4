@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Modal, Form, OverlayTrigger, Popover } from 'react-bootstrap';
+import React, { useState, useRef } from 'react';
+import { Button, Modal, Form, Popover, Overlay } from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
@@ -103,31 +103,41 @@ const CreateChannelModal = (props) => {
 };
 
 const Channels = ({ username, channels, currentChannelId, messages }) => {
+  const [show, setShow] = useState(false);
+  const [target, setTarget] = useState(null);
+  const ref = useRef(null);
+
+  const handleClick = (event) => {
+    setShow(!show);
+    setTarget(event.target);
+  };
   return (
     <div className={style.wrapper}>
-      <div className='d-flex justify-content-between'>
-        <OverlayTrigger
-          trigger='click'
+      <div className='d-flex justify-content-between' ref={ref}>
+        <Overlay
+          show={show}
+          target={target}
           placement='right'
-          overlay={
-            <Popover id='popover-basic'>
-              <Popover.Header as='h3'>
-                Вы изменили мод отправления сообщений
-              </Popover.Header>
-              <Popover.Body>
-                Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а
-                для перехода на новую строку - <strong>Enter</strong>.
-              </Popover.Body>
-            </Popover>
-          }
+          container={ref.current}
+          containerPadding={20}
         >
-          <button type='button' className='btn btn-primary'>
-            <img
-              src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
-              alt='settings'
-            />
-          </button>
-        </OverlayTrigger>
+          <Popover id='popover-contained'>
+            <Popover.Header as='h3'>
+              Вы изменили мод отправления сообщений
+            </Popover.Header>
+            <Popover.Body>
+              Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а
+              для перехода на новую строку - <strong>Enter</strong>.
+            </Popover.Body>
+          </Popover>
+        </Overlay>
+        <button type='button' className='btn btn-primary' onClick={handleClick}>
+          <img
+            src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
+            alt='settings'
+          />
+        </button>
+
         <CreateChannelModal username={username} channels={channels} />
       </div>
       <div className='overflow-auto'>
