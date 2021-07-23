@@ -22,15 +22,18 @@ const Form = (props) => {
       <form className='py-1 px-1 border rounded-2'>
         <div className='input-group has-validation'>
           <textarea
+            name='Text1'
+            cols='40'
+            rows='5'
             value={message}
             data-testid='new-message'
             onChange={inputHandler}
-            className='border-0 p-0 form-control'
+            className='border-0 px-1 form-control'
             placeholder='Введите сообщение...'
             onKeyDown={(e) => {
-              console.log(e.code);
-              console.log(e.ctrlKey);
-              console.log(e.code === 'Enter' && e.ctrlKey);
+              if (e.code === 'Enter' && e.ctrlKey) {
+                console.log('РАБОТАЕТ');
+              }
               if (e.shiftKey && e.code === 'Enter') {
                 setMessage((m) => `${m}\n`);
               }
