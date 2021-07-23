@@ -21,7 +21,7 @@ const Form = (props) => {
     <div className='mt-auto px-5 py-3'>
       <form className='py-1 px-1 border rounded-2'>
         <div className='input-group has-validation'>
-          <input
+          <textarea
             value={message}
             data-testid='new-message'
             onChange={inputHandler}
