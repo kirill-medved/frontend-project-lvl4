@@ -27,6 +27,10 @@ const Form = (props) => {
             onChange={inputHandler}
             className='border-0 p-0 form-control'
             placeholder='Введите сообщение...'
+            onKeyDown={(e) => {
+              console.log(e.code);
+              console.log(e.ctrlKey);
+            }}
           />
           <div className='input-group-append'>
             <button
