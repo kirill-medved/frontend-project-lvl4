@@ -70,6 +70,7 @@ export default () => {
 
     socket.on('newMessage', (newMessage) => {
       dispatch(sendMessage(newMessage));
+      // make scrooll to last send message
       messagesContainerRef.current.scrollTop =
         messagesContainerRef.current.scrollHeight;
     });
