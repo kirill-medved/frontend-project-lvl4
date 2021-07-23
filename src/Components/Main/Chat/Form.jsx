@@ -30,6 +30,10 @@ const Form = (props) => {
             onKeyDown={(e) => {
               console.log(e.code);
               console.log(e.ctrlKey);
+              console.log(e.code === 'Enter' && e.ctrlKey);
+              if (e.shiftKey && e.code === 'Enter') {
+                setMessage((m) => `${m}\n`);
+              }
             }}
           />
           <div className='input-group-append'>
