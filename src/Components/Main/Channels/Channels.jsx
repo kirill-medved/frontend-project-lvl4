@@ -124,7 +124,7 @@ function Example() {
         containerPadding={20}
       >
         <Popover id='popover-contained'>
-          <Popover.Header as='h3'>Popover bottom</Popover.Header>
+          <Popover.Header>Popover bottom</Popover.Header>
           <Popover.Body>
             <strong>Holy guacamole!</strong> Check this info.
           </Popover.Body>
