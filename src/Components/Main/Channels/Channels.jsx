@@ -102,7 +102,7 @@ const CreateChannelModal = (props) => {
   );
 };
 
-const Channels = ({ username, channels, currentChannelId, messages }) => {
+function Example() {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const ref = useRef(null);
@@ -111,27 +111,35 @@ const Channels = ({ username, channels, currentChannelId, messages }) => {
     setShow(!show);
     setTarget(event.target);
   };
+
+  return (
+    <div ref={ref}>
+      <Button onClick={handleClick}>Holy guacamole!</Button>
+
+      <Overlay
+        show={show}
+        target={target}
+        placement='bottom'
+        container={ref.current}
+        containerPadding={20}
+      >
+        <Popover id='popover-contained'>
+          <Popover.Header as='h3'>Popover bottom</Popover.Header>
+          <Popover.Body>
+            <strong>Holy guacamole!</strong> Check this info.
+          </Popover.Body>
+        </Popover>
+      </Overlay>
+    </div>
+  );
+}
+
+const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
-      <div className='d-flex justify-content-between' ref={ref}>
-        <Overlay
-          show={show}
-          target={target}
-          placement='right'
-          container={ref.current}
-          containerPadding={20}
-        >
-          <Popover id='popover-contained'>
-            <Popover.Header as='h3'>
-              Вы изменили мод отправления сообщений
-            </Popover.Header>
-            <Popover.Body>
-              Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а
-              для перехода на новую строку - <strong>Enter</strong>.
-            </Popover.Body>
-          </Popover>
-        </Overlay>
-        <button type='button' className='btn btn-primary' onClick={handleClick}>
+      <div className='d-flex justify-content-between'>
+        <Example />
+        <button type='button' className='btn btn-primary'>
           <img
             src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
             alt='settings'
