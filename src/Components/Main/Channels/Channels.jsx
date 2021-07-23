@@ -102,19 +102,18 @@ const CreateChannelModal = (props) => {
   );
 };
 
-const changeSubmitModePopover = (
-  <Popover>
-    <Popover.Header as='h3'>
-      Вы изменили мод отправления сообщений
-    </Popover.Header>
-    <Popover.Body>
-      Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а для
-      перехода на новую строку - <strong>Enter</strong>.
-    </Popover.Body>
-  </Popover>
-);
-
 const Channels = ({ username, channels, currentChannelId, messages }) => {
+  const changeSubmitModePopover = (
+    <Popover id='popover-basic'>
+      <Popover.Header as='h3'>
+        Вы изменили мод отправления сообщений
+      </Popover.Header>
+      <Popover.Body>
+        Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а для
+        перехода на новую строку - <strong>Enter</strong>.
+      </Popover.Body>
+    </Popover>
+  );
   return (
     <div className={style.wrapper}>
       <div className='d-flex justify-content-between'>
