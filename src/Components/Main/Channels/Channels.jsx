@@ -103,24 +103,23 @@ const CreateChannelModal = (props) => {
 };
 
 const Channels = ({ username, channels, currentChannelId, messages }) => {
-  const changeSubmitModePopover = (
-    <Popover id='popover-basic'>
-      <Popover.Header as='h3'>
-        Вы изменили мод отправления сообщений
-      </Popover.Header>
-      <Popover.Body>
-        Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а для
-        перехода на новую строку - <strong>Enter</strong>.
-      </Popover.Body>
-    </Popover>
-  );
   return (
     <div className={style.wrapper}>
       <div className='d-flex justify-content-between'>
         <OverlayTrigger
           trigger='click'
           placement='right'
-          overlay={changeSubmitModePopover}
+          overlay={
+            <Popover id='popover-basic'>
+              <Popover.Header as='h3'>
+                Вы изменили мод отправления сообщений
+              </Popover.Header>
+              <Popover.Body>
+                Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а
+                для перехода на новую строку - <strong>Enter</strong>.
+              </Popover.Body>
+            </Popover>
+          }
         >
           <button type='button' className='btn btn-primary'>
             <img
