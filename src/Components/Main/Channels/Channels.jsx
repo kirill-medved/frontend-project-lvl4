@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Button, Modal, Form, OverlayTrigger, Popover } from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
@@ -102,16 +102,36 @@ const CreateChannelModal = (props) => {
   );
 };
 
+const changeSubmitModePopover = () => {
+  return (
+    <Popover>
+      <Popover.Header as='h3'>
+        Вы изменили мод отправления сообщений
+      </Popover.Header>
+      <Popover.Body>
+        Для отправки сообщения нажмите <strong>Ctrl + Enter</strong>, а для
+        перехода на новую строку - <strong>Enter</strong>.
+      </Popover.Body>
+    </Popover>
+  );
+};
+
 const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
       <div className='d-flex justify-content-between'>
-        <button type='button' className='btn btn-primary'>
-          <img
-            src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
-            alt='settings'
-          />
-        </button>
+        <OverlayTrigger
+          trigger='click'
+          placement='right'
+          overlay={changeSubmitModePopover}
+        >
+          <button type='button' className='btn btn-primary'>
+            <img
+              src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
+              alt='settings'
+            />
+          </button>
+        </OverlayTrigger>
         <CreateChannelModal username={username} channels={channels} />
       </div>
       <div className='overflow-auto'>

@@ -70,9 +70,12 @@ export default () => {
 
     socket.on('newMessage', (newMessage) => {
       dispatch(sendMessage(newMessage));
-      // make scrooll to last send message
-      messagesContainerRef.current.scrollTop =
-        messagesContainerRef.current.scrollHeight;
+      const scrollToBotton = () => {
+        messagesContainerRef.current.scrollTop =
+          messagesContainerRef.current.scrollHeight;
+      };
+      // make scrooll to last send message for all users
+      scrollToBotton();
     });
 
     socket.on('newChannel', (newChannel) => {

@@ -4,13 +4,17 @@ const Form = (props) => {
   const [message, setMessage] = useState('');
 
   const inputHandler = (e) => {
+    console.log(e);
+
     setMessage(e.target.value);
   };
 
   const formHandler = (e) => {
     e.preventDefault();
-    props.onSubmit(message);
-    setMessage('');
+    if (message.length) {
+      props.onSubmit(message);
+      setMessage('');
+    }
   };
 
   return (
