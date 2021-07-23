@@ -1,5 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { Button, Modal, Form, Popover, Overlay } from 'react-bootstrap';
+import {
+  Button,
+  Modal,
+  Form,
+  Popover,
+  Overlay,
+  Tooltip,
+  OverlayTrigger,
+} from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
@@ -103,34 +111,18 @@ const CreateChannelModal = (props) => {
 };
 
 function Example() {
-  const [show, setShow] = useState(false);
-  const [target, setTarget] = useState(null);
-  const ref = useRef(null);
-
-  const handleClick = (event) => {
-    setShow(!show);
-    setTarget(event.target);
-  };
+  const renderTooltip = () => (
+    <Tooltip id='button-tooltip'>Simple tooltip</Tooltip>
+  );
 
   return (
-    <div ref={ref}>
-      <Button onClick={handleClick}>Holy guacamole!</Button>
-
-      <Overlay
-        show={show}
-        target={target}
-        placement='bottom'
-        container={ref.current}
-        containerPadding={20}
-      >
-        <Popover id='popover-contained'>
-          <Popover.Header>Popover bottom</Popover.Header>
-          <Popover.Body>
-            <strong>Holy guacamole!</strong> Check this info.
-          </Popover.Body>
-        </Popover>
-      </Overlay>
-    </div>
+    <OverlayTrigger
+      placement='right'
+      delay={{ show: 250, hide: 400 }}
+      overlay={renderTooltip}
+    >
+      <Button variant='success'>Hover me to see</Button>
+    </OverlayTrigger>
   );
 }
 
