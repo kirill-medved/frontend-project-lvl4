@@ -111,18 +111,18 @@ const CreateChannelModal = (props) => {
 };
 
 function Example() {
-  const renderTooltip = () => (
-    <Tooltip id='button-tooltip'>Simple tooltip</Tooltip>
-  );
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
   return (
-    <OverlayTrigger
-      placement='right'
-      delay={{ show: 250, hide: 400 }}
-      overlay={renderTooltip}
-    >
-      <Button variant='success'>Hover me to see</Button>
-    </OverlayTrigger>
+    <>
+      <Button ref={target} variant='success' onClick={() => setShow(!show)}>
+        Hover me to see
+      </Button>
+      <Overlay placement='right' target={target.current} show={show}>
+        {() => <Tooltip id='button-tooltip'>Simple tooltip</Tooltip>}
+      </Overlay>
+    </>
   );
 }
 
