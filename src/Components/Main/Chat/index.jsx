@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
 
@@ -16,9 +16,13 @@ const ChatHeader = () => {
   );
 };
 
-export default ({ username, currentChannelId, messages }) => {
+export default ({
+  username,
+  currentChannelId,
+  messages,
+  messagesContainerRef,
+}) => {
   const socket = io();
-  const containerRef = useRef(null);
 
   const onSubmit = (message) => {
     const date = new Date();
@@ -29,7 +33,6 @@ export default ({ username, currentChannelId, messages }) => {
       channelId: currentChannelId,
     };
     socket.emit('newMessage', messageObj);
-    containerRef.current.scrollTop = containerRef.current.scrollHeight;
   };
 
   const newMessages = messages.filter(
@@ -41,7 +44,7 @@ export default ({ username, currentChannelId, messages }) => {
       <Messages
         messages={newMessages}
         username={username}
-        containerRef={containerRef}
+        containerRef={messagesContainerRef}
       />
       <Form onSubmit={onSubmit} />
     </div>

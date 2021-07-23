@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
@@ -35,6 +35,9 @@ export default () => {
 
   const username = localStorage.getItem('username');
 
+  // to scroll messages to bottom
+  const messagesContainerRef = useRef(null);
+
   const dispatch = useDispatch();
   const channels = useSelector((state) => state.channels.channels);
   const messages = useSelector((state) => state.messages.messages);
@@ -67,6 +70,8 @@ export default () => {
 
     socket.on('newMessage', (newMessage) => {
       dispatch(sendMessage(newMessage));
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
     });
 
     socket.on('newChannel', (newChannel) => {
@@ -105,6 +110,7 @@ export default () => {
           messages={messages}
           currentChannelId={currentChannelId}
           username={username}
+          messagesContainerRef={messagesContainerRef}
         />
       </Col>
     </Row>
