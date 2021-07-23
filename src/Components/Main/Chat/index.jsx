@@ -11,7 +11,7 @@ const ChatHeader = () => {
   );
   return (
     <header className='bg-light mb-4 p-3 shadow-sm small'>
-      <p className='m-0'>{currentChannelName}</p>
+      <p className='m-0 text-center h-6'>{currentChannelName}</p>
     </header>
   );
 };
