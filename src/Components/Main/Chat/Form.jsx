@@ -30,6 +30,7 @@ const Form = (props) => {
             onKeyDown={(e) => {
               if (e.code === 'Enter' && e.ctrlKey) {
                 console.log('РАБОТАЕТ');
+                setMessage((m) => `${m}\n`);
               }
               if (e.shiftKey && e.code === 'Enter') {
                 setMessage((m) => `${m}\n`);
