@@ -26,6 +26,7 @@ const Form = ({ onSubmit }) => {
     }
     if (e.code === 'Enter') {
       submitBtRef.current.click();
+      return;
     }
     setMessage(e.target.value);
 
