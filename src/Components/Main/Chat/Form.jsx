@@ -29,7 +29,7 @@ const Form = ({ onSubmit }) => {
                 console.log('IIIIIIIIII');
                 setMessage(`${message}\n`);
               }
-              if (e.code === 'Enter') {
+              if (e.code === 'Enter' && !e.shiftKey) {
                 formHandler();
               }
             }}
