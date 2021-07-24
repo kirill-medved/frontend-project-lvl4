@@ -39,7 +39,9 @@ const Messages = ({ messages, username, containerRef }) => {
                   <div>{message.date.slice(11, -8)} </div>
                 </div>
                 <div>
-                  <p className={cx({ message: true })}>{message.message}</p>
+                  {message.message.split('\n').map((text) => (
+                    <p className={cx({ message: true })}>{text}</p>
+                  ))}
                 </div>
               </div>
             </Container>
