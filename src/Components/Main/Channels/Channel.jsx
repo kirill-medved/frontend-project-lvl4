@@ -183,7 +183,7 @@ const Channel = ({
     <Card
       id={id}
       ref={channelRef}
-      // bg={id === currentChannelId ? 'primary' : 'light'}
+      bg={id === currentChannelId ? 'primary' : 'light'}
       text={id === currentChannelId ? 'white' : 'dark'}
       onClick={changeChannel}
       className={cx({
