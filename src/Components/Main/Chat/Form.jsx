@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react';
+import 'emoji-mart/css/emoji-mart.css';
+import { Picker } from 'emoji-mart';
 
 const Form = ({ onSubmit, sendMessageMode }) => {
   const [message, setMessage] = useState('');
@@ -63,6 +65,7 @@ const Form = ({ onSubmit, sendMessageMode }) => {
             onKeyDown={onKeyDown}
           />
           <div className='input-group-append'>
+            <Picker set='apple' />
             <button
               type='submit'
               onClick={formHandler}
