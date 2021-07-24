@@ -102,11 +102,29 @@ const CreateChannelModal = (props) => {
   );
 };
 
-const Channels = ({ username, channels, currentChannelId, messages }) => {
+const Channels = ({
+  username,
+  channels,
+  currentChannelId,
+  messages,
+  setSendMessageMode,
+}) => {
+  const sendMessageModeHandler = () => {
+    const mapping = {
+      standart: () => 'alternative',
+      alternative: () => 'standart',
+    };
+    setSendMessageMode((mode) => mapping[mode]());
+  };
+
   return (
     <div className={style.wrapper}>
       <div className='d-flex justify-content-between'>
-        <button type='button' className='btn btn-primary'>
+        <button
+          type='button'
+          className='btn btn-primary'
+          onClick={sendMessageModeHandler}
+        >
           <img
             src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
             alt='settings'

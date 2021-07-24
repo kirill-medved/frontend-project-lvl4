@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-const Form = ({ onSubmit }) => {
+const Form = ({ onSubmit, sendMessageMode }) => {
   const [message, setMessage] = useState('');
 
   const submitBtRef = useRef(null);
@@ -13,21 +13,41 @@ const Form = ({ onSubmit }) => {
     }
   };
 
+  const onKeyDown = (e) => {
+    const mapping = {
+      standart: () => {
+        if (e.code === 'Enter' && e.ctrlKey) {
+          console.log('standart');
+          submitBtRef.current.click();
+        }
+      },
+      alternative: () => {
+        if (e.code === 'Enter' && e.shftKey) {
+          console.log('alternative');
+          setMessage(`${message}\n`);
+        }
+      },
+    };
+
+    mapping[sendMessageMode]();
+  };
+
   const inputHandler = (e) => {
-    console.log(e.code); // Destructure to get a more accurate log
+    console.log(e); // Destructure to get a more accurate log
 
     // Return if user presses the enter key
+    if (sendMessageMode === 'alternative') {
+      if (e.nativeEvent.inputType === 'insertLineBreak') {
+        submitBtRef.current.click();
+      }
+    } else {
+      setMessage(e.target.value);
+    }
 
-    // if (e.nativeEvent.inputType === 'insertLineBreak') {
-    //   // setMessage(`${e.target.value}\n`);
-    //   submitBtRef.current.click();
-    //   return;
-    // }
     // if (e.code === 'Enter') {
 
     //   return;
     // }
-    setMessage(e.target.value);
   };
 
   return (
@@ -40,12 +60,7 @@ const Form = ({ onSubmit }) => {
             onChange={inputHandler}
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
-            onKeyDown={(e) => {
-              if (e.code === 'Enter' && e.ctrlKey) {
-                console.log('IIIIIIIIII');
-                submitBtRef.current.click();
-              }
-            }}
+            onKeyDown={onKeyDown}
           />
           <div className='input-group-append'>
             <button

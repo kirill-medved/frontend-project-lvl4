@@ -21,6 +21,7 @@ export default ({
   currentChannelId,
   messages,
   messagesContainerRef,
+  sendMessageMode,
 }) => {
   const socket = io();
 
@@ -46,7 +47,7 @@ export default ({
         username={username}
         containerRef={messagesContainerRef}
       />
-      <Form onSubmit={onSubmit} />
+      <Form onSubmit={onSubmit} sendMessageMode={sendMessageMode} />
     </div>
   );
 };
