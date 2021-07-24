@@ -1,13 +1,5 @@
-import React, { useState, useRef } from 'react';
-import {
-  Button,
-  Modal,
-  Form,
-  Popover,
-  Overlay,
-  Tooltip,
-  OverlayTrigger,
-} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Modal, Form } from 'react-bootstrap';
 import * as _ from 'lodash';
 import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
@@ -110,27 +102,10 @@ const CreateChannelModal = (props) => {
   );
 };
 
-function Example() {
-  const [show, setShow] = useState(false);
-  const target = useRef(null);
-
-  return (
-    <>
-      <Button ref={target} variant='success' onClick={() => setShow(!show)}>
-        Hover me to see
-      </Button>
-      <Overlay placement='right' target={target.current} show={show}>
-        {() => <Tooltip id='button-tooltip'>Simple tooltip</Tooltip>}
-      </Overlay>
-    </>
-  );
-}
-
 const Channels = ({ username, channels, currentChannelId, messages }) => {
   return (
     <div className={style.wrapper}>
       <div className='d-flex justify-content-between'>
-        <Example />
         <button type='button' className='btn btn-primary'>
           <img
             src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'

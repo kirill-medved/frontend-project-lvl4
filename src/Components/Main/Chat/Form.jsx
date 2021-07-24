@@ -16,19 +16,16 @@ const Form = (props) => {
       setMessage('');
     }
   };
-
+  console.log(message);
   return (
     <div className='mt-auto px-5 py-3'>
       <form className='py-1 px-1 border rounded-2'>
         <div className='input-group has-validation'>
-          <textarea
-            name='Text1'
-            cols='40'
-            rows='5'
+          <input
             value={message}
             data-testid='new-message'
             onChange={inputHandler}
-            className='border-0 px-1 form-control'
+            className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
             onKeyDown={(e) => {
               if (e.code === 'Enter' && e.ctrlKey) {
