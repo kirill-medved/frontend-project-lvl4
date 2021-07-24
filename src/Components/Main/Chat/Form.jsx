@@ -28,7 +28,10 @@ const Form = ({ onSubmit }) => {
             onKeyDown={(e) => {
               if (e.code === 'Enter' && e.shiftKey) {
                 console.log('IIIIIIIIII');
-                setMessage(`${message}H`);
+                setMessage(`${message}\n`);
+              }
+              if (e.code === 'Enter') {
+                formHandler();
               }
             }}
           />
