@@ -22,7 +22,7 @@ const Form = ({ onSubmit, sendMessageMode }) => {
         }
       },
       alternative: () => {
-        if (e.code === 'Enter' && e.shftKey) {
+        if (e.code === 'Enter' && e.shiftKey) {
           console.log('alternative');
           setMessage(`${message}\n`);
         }
