@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 
-const Form = (props) => {
+const Form = ({ onSubmit }) => {
   const [message, setMessage] = useState('');
 
   const inputHandler = (e) => {
-    console.log(e);
-
     setMessage(e.target.value);
   };
 
   const formHandler = (e) => {
     e.preventDefault();
-    if (message.length) {
-      props.onSubmit(message);
+    if (message.length > 0) {
+      onSubmit(message);
       setMessage('');
     }
   };
@@ -21,21 +19,12 @@ const Form = (props) => {
     <div className='mt-auto px-5 py-3'>
       <form className='py-1 px-1 border rounded-2'>
         <div className='input-group has-validation'>
-          <input
+          <textarea
             value={message}
             data-testid='new-message'
             onChange={inputHandler}
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
-            onKeyDown={(e) => {
-              if (e.code === 'Enter' && e.ctrlKey) {
-                console.log('РАБОТАЕТ');
-                setMessage((m) => `${m}\n`);
-              }
-              if (e.shiftKey && e.code === 'Enter') {
-                setMessage((m) => `${m}\n`);
-              }
-            }}
           />
           <div className='input-group-append'>
             <button
