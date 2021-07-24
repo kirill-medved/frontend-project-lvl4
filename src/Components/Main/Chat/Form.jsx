@@ -7,8 +7,7 @@ const Form = ({ onSubmit }) => {
     setMessage(e.target.value);
   };
 
-  const formHandler = (e) => {
-    e.preventDefault();
+  const formHandler = () => {
     if (message.length > 0) {
       onSubmit(message.trim());
       setMessage('');
