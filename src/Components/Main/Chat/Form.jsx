@@ -10,7 +10,7 @@ const Form = ({ onSubmit }) => {
   const formHandler = (e) => {
     e.preventDefault();
     if (message.length > 0) {
-      onSubmit(message);
+      onSubmit(message.trim());
       setMessage('');
     }
   };
@@ -25,6 +25,12 @@ const Form = ({ onSubmit }) => {
             onChange={inputHandler}
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
+            onKeyDown={(e) => {
+              if (e.code === 'Enter' && e.shiftKey) {
+                console.log('IIIIIIIIII');
+                setMessage(`${message}H`);
+              }
+            }}
           />
           <div className='input-group-append'>
             <button
