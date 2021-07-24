@@ -3,16 +3,31 @@ import React, { useState } from 'react';
 const Form = ({ onSubmit }) => {
   const [message, setMessage] = useState('');
 
-  const inputHandler = (e) => {
-    setMessage(e.target.value);
-  };
-
   const formHandler = () => {
     if (message.length > 0) {
       onSubmit(message.trim());
       setMessage('');
     }
   };
+
+  const inputHandler = (e) => {
+    console.log({ e }); // Destructure to get a more accurate log
+
+    // Return if user presses the enter key
+    if (e.nativeEvent.inputType === 'insertLineBreak') return;
+
+    if (e.code === 'Enter' && e.shiftKey) {
+      console.log('IIIIIIIIII');
+      setMessage(`${message}\n`);
+    }
+    if (e.code === 'Enter' && !e.shiftKey) {
+      formHandler();
+    }
+    setMessage(e.target.value);
+
+    // setMessage(e.target.value);
+  };
+
   console.log(message);
   return (
     <div className='mt-auto px-5 py-3'>
@@ -24,15 +39,6 @@ const Form = ({ onSubmit }) => {
             onChange={inputHandler}
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
-            onKeyDown={(e) => {
-              if (e.code === 'Enter' && e.shiftKey) {
-                console.log('IIIIIIIIII');
-                setMessage(`${message}\n`);
-              }
-              if (e.code === 'Enter' && !e.shiftKey) {
-                formHandler();
-              }
-            }}
           />
           <div className='input-group-append'>
             <button
