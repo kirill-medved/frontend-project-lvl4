@@ -14,15 +14,10 @@ const Form = ({ onSubmit }) => {
   };
 
   const inputHandler = (e) => {
-    console.log({ e }); // Destructure to get a more accurate log
+    console.log(e.code); // Destructure to get a more accurate log
 
     // Return if user presses the enter key
 
-    if (e.code === 'Enter' && e.shiftKey) {
-      console.log('IIIIIIIIII');
-      setMessage(`${message}\n`);
-      return;
-    }
     if (e.nativeEvent.inputType === 'insertLineBreak') {
       submitBtRef.current.click();
       return;
@@ -46,6 +41,12 @@ const Form = ({ onSubmit }) => {
             onChange={inputHandler}
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
+            onKeyDown={(e) => {
+              if (e.code === 'Enter' && e.shiftKey) {
+                console.log('IIIIIIIIII');
+                setMessage(`${message}\n`);
+              }
+            }}
           />
           <div className='input-group-append'>
             <button
