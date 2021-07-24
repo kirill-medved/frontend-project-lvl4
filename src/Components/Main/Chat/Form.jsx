@@ -18,17 +18,16 @@ const Form = ({ onSubmit }) => {
 
     // Return if user presses the enter key
 
-    if (e.nativeEvent.inputType === 'insertLineBreak') {
-      submitBtRef.current.click();
-      return;
-    }
+    // if (e.nativeEvent.inputType === 'insertLineBreak') {
+    //   // setMessage(`${e.target.value}\n`);
+    //   submitBtRef.current.click();
+    //   return;
+    // }
     // if (e.code === 'Enter') {
 
     //   return;
     // }
     setMessage(e.target.value);
-
-    // setMessage(e.target.value);
   };
 
   return (
@@ -42,9 +41,9 @@ const Form = ({ onSubmit }) => {
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
             onKeyDown={(e) => {
-              if (e.code === 'Enter' && e.shiftKey) {
+              if (e.code === 'Enter' && e.ctrlKey) {
                 console.log('IIIIIIIIII');
-                setMessage(`${message}\n`);
+                submitBtRef.current.click();
               }
             }}
           />
