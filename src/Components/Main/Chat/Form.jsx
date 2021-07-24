@@ -39,10 +39,10 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     if (sendMessageMode === 'alternative') {
       if (e.nativeEvent.inputType === 'insertLineBreak') {
         submitBtRef.current.click();
+        return;
       }
-    } else {
-      setMessage(e.target.value);
     }
+    setMessage(e.target.value);
 
     // if (e.code === 'Enter') {
 
