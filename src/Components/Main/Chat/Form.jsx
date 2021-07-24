@@ -17,17 +17,20 @@ const Form = ({ onSubmit }) => {
     console.log({ e }); // Destructure to get a more accurate log
 
     // Return if user presses the enter key
-    // if (e.nativeEvent.inputType === 'insertLineBreak') return;
 
     if (e.code === 'Enter' && e.shiftKey) {
       console.log('IIIIIIIIII');
       setMessage(`${message}\n`);
       return;
     }
-    if (e.code === 'Enter') {
+    if (e.nativeEvent.inputType === 'insertLineBreak') {
       submitBtRef.current.click();
       return;
     }
+    // if (e.code === 'Enter') {
+
+    //   return;
+    // }
     setMessage(e.target.value);
 
     // setMessage(e.target.value);
