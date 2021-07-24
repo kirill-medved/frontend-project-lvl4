@@ -188,9 +188,6 @@ const Channel = ({
       onClick={changeChannel}
       className={cx({
         wrapper__channel: true,
-        btn: true,
-        'btn-light': !(id === currentChannelId),
-        'btn-primary': id === currentChannelId,
       })}
       role='button'
       aria-hidden='true'

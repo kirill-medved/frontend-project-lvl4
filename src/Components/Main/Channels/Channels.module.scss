@@ -1,6 +1,9 @@
 .wrapper__channel {
   padding: 5px;
   height: 100px;
+  &:hover {
+    background-color: #d3d3d3;
+  }
 }
 
 .lastMessage__truncate {
