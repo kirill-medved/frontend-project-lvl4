@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind.js';
 import { Container } from 'react-bootstrap';
+import { Emoji } from 'emoji-mart';
+import reactStringReplace from 'react-string-replace';
 
 import style from './Messages.module.scss';
 
@@ -40,7 +42,11 @@ const Messages = ({ messages, username, containerRef }) => {
                 </div>
                 <div>
                   {message.message.split('\n').map((text) => (
-                    <p className={cx({ message: true })}>{text}</p>
+                    <p className={cx({ message: true })}>
+                      {reactStringReplace(text, /:(.+?):/g, (match, i) => (
+                        <Emoji key={i} emoji={match} set='apple' size={16} />
+                      ))}
+                    </p>
                   ))}
                 </div>
               </div>

@@ -5,7 +5,6 @@ import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 const Form = ({ onSubmit, sendMessageMode }) => {
   const [message, setMessage] = useState('');
-  const [isEmojiShown, setIsEmojiShown] = useState(false);
 
   const submitBtRef = useRef(null);
 
@@ -54,12 +53,8 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     // }
   };
 
-  const toogleEmojiBar = () => {
-    setIsEmojiShown(!isEmojiShown);
-  };
-
-  const addEmoji = ({ native }) => {
-    setMessage(`${message} ${native}`.trim());
+  const addEmoji = ({ colons }) => {
+    setMessage(`${message} ${colons}`.trim());
   };
 
   return (
@@ -75,10 +70,6 @@ const Form = ({ onSubmit, sendMessageMode }) => {
             onKeyDown={onKeyDown}
           />
           <div className='input-group-append'>
-            {/* {isEmojiShown && (
-              <Picker set='apple' onSelect={(emojiTag) => addEmoji(emojiTag)} />
-            )} */}
-
             <OverlayTrigger
               key='top'
               trigger='click'
