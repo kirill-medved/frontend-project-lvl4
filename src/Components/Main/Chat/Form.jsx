@@ -83,7 +83,7 @@ const Form = ({ onSubmit, sendMessageMode }) => {
                 </Popover>
               }
             >
-              <button type='button'>
+              <button type='button' className='btn btn-outline-secondary'>
                 <img
                   src='https://img.icons8.com/ios-glyphs/30/000000/happy--v2.png'
                   alt='Смайлики'
