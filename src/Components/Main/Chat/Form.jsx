@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
-import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 
 const Form = ({ onSubmit, sendMessageMode }) => {
   const [message, setMessage] = useState('');
@@ -81,17 +81,18 @@ const Form = ({ onSubmit, sendMessageMode }) => {
 
             <OverlayTrigger
               key='top'
+              trigger='click'
               placement='top'
               overlay={
-                <Tooltip id='tooltip-emoji'>
+                <Popover id='popover-emoji'>
                   <Picker
                     set='apple'
                     onSelect={(emojiTag) => addEmoji(emojiTag)}
                   />
-                </Tooltip>
+                </Popover>
               }
             >
-              <button type='button' onClick={toogleEmojiBar}>
+              <button type='button'>
                 <img
                   src='https://img.icons8.com/ios-glyphs/30/000000/happy--v2.png'
                   alt='Смайлики'
