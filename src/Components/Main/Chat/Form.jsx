@@ -58,8 +58,8 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     setIsEmojiShown(!isEmojiShown);
   };
 
-  const addEmoji = ({ colons }) => {
-    setMessage(`${message} ${colons}`.trim());
+  const addEmoji = ({ native }) => {
+    setMessage(`${message} ${native}`.trim());
   };
 
   return (
