@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
-// import 'emoji-mart/css/emoji-mart.css';
+import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 
 const Form = ({ onSubmit, sendMessageMode }) => {
   const [message, setMessage] = useState('');
+  const [isEmojiShown, setIsEmojiShown] = useState(false);
 
   const submitBtRef = useRef(null);
 
@@ -52,6 +53,10 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     // }
   };
 
+  const toogleEmojiBar = () => {
+    setIsEmojiShown(!isEmojiShown);
+  };
+
   return (
     <div className='mt-auto px-5 py-3'>
       <form className='py-1 px-1 border rounded-2'>
@@ -65,7 +70,13 @@ const Form = ({ onSubmit, sendMessageMode }) => {
             onKeyDown={onKeyDown}
           />
           <div className='input-group-append'>
-            <Picker set='apple' />
+            {isEmojiShown && <Picker set='apple' />}
+            <button type='button' onClick={toogleEmojiBar}>
+              <img
+                src='https://img.icons8.com/ios-glyphs/30/000000/happy--v2.png'
+                alt='Смайлики'
+              />
+            </button>
             <button
               type='submit'
               onClick={formHandler}
