@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const Form = ({ onSubmit, sendMessageMode }) => {
   const [message, setMessage] = useState('');
@@ -57,6 +58,10 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     setIsEmojiShown(!isEmojiShown);
   };
 
+  const addEmoji = ({ colons }) => {
+    setMessage(`${message} ${colons}`.trim());
+  };
+
   return (
     <div className='mt-auto px-5 py-3'>
       <form className='py-1 px-1 border rounded-2'>
@@ -70,13 +75,29 @@ const Form = ({ onSubmit, sendMessageMode }) => {
             onKeyDown={onKeyDown}
           />
           <div className='input-group-append'>
-            {isEmojiShown && <Picker set='apple' />}
-            <button type='button' onClick={toogleEmojiBar}>
-              <img
-                src='https://img.icons8.com/ios-glyphs/30/000000/happy--v2.png'
-                alt='Смайлики'
-              />
-            </button>
+            {/* {isEmojiShown && (
+              <Picker set='apple' onSelect={(emojiTag) => addEmoji(emojiTag)} />
+            )} */}
+
+            <OverlayTrigger
+              key='top'
+              placement='top'
+              overlay={
+                <Tooltip id='tooltip-emoji'>
+                  <Picker
+                    set='apple'
+                    onSelect={(emojiTag) => addEmoji(emojiTag)}
+                  />
+                </Tooltip>
+              }
+            >
+              <button type='button' onClick={toogleEmojiBar}>
+                <img
+                  src='https://img.icons8.com/ios-glyphs/30/000000/happy--v2.png'
+                  alt='Смайлики'
+                />
+              </button>
+            </OverlayTrigger>
             <button
               type='submit'
               onClick={formHandler}
