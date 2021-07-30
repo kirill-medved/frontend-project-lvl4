@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import style from './Channels.module.scss';
 import Channel from './Channel.jsx';
-import { setCurrentChannelId } from '../../../store/channelsSlice.js';
+import { setCurrentChannelId } from '../../../../../configs/store/slices/channelsSlice';
 
 const CreateChannelModal = (props) => {
   const socket = io();

@@ -5,11 +5,13 @@ import { io } from 'socket.io-client';
 import { Col, Row } from 'react-bootstrap';
 import * as _ from 'lodash';
 
+import { Channels, Chat } from './components';
+import { useAuth } from '../../../hooks';
 import {
   filterChannelMessages,
   sendMessage,
   setMessages,
-} from '../../store/messagesSlice.js';
+} from '../../../configs/store/slices/messagesSlice.js';
 import {
   addNewChannel,
   filterChannelUsers,
@@ -17,9 +19,7 @@ import {
   setChannels,
   setCurrentChannelId,
   setCurrentChannelName,
-} from '../../store/channelsSlice.js';
-import { Channels, Chat } from './components';
-import { useAuth } from '../../../hooks';
+} from '../../../configs/store/slices/channelsSlice.js';
 
 export default () => {
   const auth = useAuth();

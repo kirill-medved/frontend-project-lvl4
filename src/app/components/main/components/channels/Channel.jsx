@@ -10,7 +10,7 @@ import style from './Channels.module.scss';
 import {
   setCurrentChannelId,
   setCurrentChannelName,
-} from '../../../store/channelsSlice.js';
+} from '../../../../../configs/store/slices/channelsSlice.js';
 
 const DeleteChannelModal = ({ name, id }) => {
   const socket = io();

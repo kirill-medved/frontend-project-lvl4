@@ -8,9 +8,9 @@ import { I18nextProvider } from 'react-i18next';
 
 import '../assets/application.scss';
 import App from './app';
-import store from './store/store.js';
 import resources from './public/locales/index.js';
 import { AuthContext } from './configs/contexts';
+import store from './configs/store';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
