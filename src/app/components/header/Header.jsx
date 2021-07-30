@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Navbar, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import TokenContext from '../context.js';
+import { useAuth } from '../../../hooks';
 
 const Header = () => {
-  const auth = useContext(TokenContext);
+  const auth = useAuth();
 
   const [t] = useTranslation();
 

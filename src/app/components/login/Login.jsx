@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
@@ -7,8 +7,8 @@ import { Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames/bind.js';
 
-import TokenContext from '../context.js';
 import style from './Login.module.scss';
+import { useAuth } from '../../../hooks';
 
 const validationSchema = yup.object({
   username: yup.string().required('Email is required'),
@@ -21,7 +21,7 @@ const validationSchema = yup.object({
 export default () => {
   const history = useHistory();
   const location = useLocation();
-  const auth = useContext(TokenContext);
+  const auth = useAuth();
 
   const cx = classNames.bind(style);
 

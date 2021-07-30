@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
 import { Col, Row } from 'react-bootstrap';
 import * as _ from 'lodash';
 
-import TokenContext from '../../context.js';
 import {
   filterChannelMessages,
   sendMessage,
@@ -20,9 +19,11 @@ import {
   setCurrentChannelName,
 } from '../../store/channelsSlice.js';
 import { Channels, Chat } from './components';
+import { useAuth } from '../../../hooks';
 
 export default () => {
-  const auth = useContext(TokenContext);
+  const auth = useAuth();
+
   const instance = axios.create({
     baseURL: '/api/v1/',
     headers: {
