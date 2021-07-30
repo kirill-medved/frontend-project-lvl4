@@ -19,8 +19,7 @@ import {
   setCurrentChannelId,
   setCurrentChannelName,
 } from '../../store/channelsSlice.js';
-import Channels from './Channels/Channels.jsx';
-import Chat from './Chat/index.jsx';
+import { Channels, Chat } from './components';
 
 export default () => {
   const auth = useContext(TokenContext);

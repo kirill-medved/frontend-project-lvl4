@@ -7,7 +7,7 @@ import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 
 import '../assets/application.scss';
-import App from './App.jsx';
+import App from './app/index.js';
 import TokenContext from './context.js';
 import store from './store/store.js';
 import resources from './public/locales/index.js';
