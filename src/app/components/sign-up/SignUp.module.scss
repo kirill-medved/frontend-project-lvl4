@@ -1,0 +1,22 @@
+.form {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    border: 1px solid #cecece;
+    border-radius: 15%;
+    width: 60%;
+    height: 70%;
+    padding: 10%;
+    margin-top: 40px;
+    -webkit-box-shadow: 15px 11px 25px 19px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 15px 11px 25px 19px rgba(34, 60, 80, 0.2);
+    box-shadow: 15px 11px 25px 19px rgba(34, 60, 80, 0.2);
+  }
+  &__submit {
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

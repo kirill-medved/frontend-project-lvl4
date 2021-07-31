@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames/bind.js';
 
-import style from './Login.module.scss';
+import style from './SignUp.module.scss';
 import { useAuth } from '../../../hooks';
 
 export default () => {
