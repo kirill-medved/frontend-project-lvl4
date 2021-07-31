@@ -11,11 +11,12 @@ import style from './Login.module.scss';
 import { useAuth } from '../../../hooks';
 
 const validationSchema = yup.object({
-  username: yup.string().required('Email is required'),
+  username: yup.string().required('Email is required').default(''),
   password: yup
     .string()
     .min(4, 'Password should be of minimum 4 characters length')
-    .required('Password is required'),
+    .required('Password is required')
+    .default(''),
 });
 
 export default () => {
@@ -48,10 +49,7 @@ export default () => {
   return (
     <div className='row h-100 bg-white flex-md-column'>
       <Formik
-        initialValues={{
-          username: '',
-          password: '',
-        }}
+        initialValues={validationSchema.cast()}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
       >

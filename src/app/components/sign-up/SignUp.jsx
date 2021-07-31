@@ -30,14 +30,17 @@ export default () => {
       .string()
       .required(t('signup.username.required'))
       .min(3, t('signup.username.min'))
-      .max(20, t('signup.username.max')),
+      .max(20, t('signup.username.max'))
+      .default(''),
     password: yup
       .string()
       .min(6, t('signup.password.min'))
-      .required(t('signup.password.required')),
+      .required(t('signup.password.required'))
+      .default(''),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('password'), null], t('signup.confirmPassword.error')),
+      .oneOf([yup.ref('password'), null], t('signup.confirmPassword.error'))
+      .default(''),
   });
 
   const submitHandler = async (values, { setErrors }) => {
@@ -56,11 +59,7 @@ export default () => {
   return (
     <div className='row h-100 bg-white flex-md-column'>
       <Formik
-        initialValues={{
-          username: '',
-          password: '',
-          confirmPassword: '',
-        }}
+        initialValues={validationSchema.cast()}
         validationSchema={validationSchema}
         onSubmit={submitHandler}
       >
