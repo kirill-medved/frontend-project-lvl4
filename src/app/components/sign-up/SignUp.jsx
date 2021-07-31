@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -8,6 +8,7 @@ import classNames from 'classnames/bind.js';
 
 import style from './SignUp.module.scss';
 import { useAuth } from '../../../hooks';
+import { TextInput } from '../../../components';
 
 export default () => {
   const history = useHistory();
@@ -43,7 +44,7 @@ export default () => {
       .default(''),
   });
 
-  const submitHandler = async (values, { setErrors }) => {
+  const onSubmit = async (values, { setErrors }) => {
     // same shape as initial values
     try {
       const { data } = await axios.post('/api/v1/signup', values);
@@ -61,43 +62,41 @@ export default () => {
       <Formik
         initialValues={validationSchema.cast()}
         validationSchema={validationSchema}
-        onSubmit={submitHandler}
+        onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
           <Form className={cx({ form__wrapper: true })}>
             <h1>{t('signup.title')}</h1>
 
-            <label htmlFor='username'>{t('signup.username.text')}</label>
-            <Field name='username' />
-
-            {/* If this field has been touched, and it contains an error, display it
-             */}
+            <TextInput
+              name='username'
+              labelText={t('signup.username.text')}
+              placeholder='Username'
+            />
             {touched.username && errors.username && (
-              <div style={{ color: 'red' }}>{errors.username}</div>
+              <div className={style.error__wrapper}>{errors.username}</div>
             )}
 
-            <label htmlFor='password'>{t('signup.password.text')}</label>
-            <Field name='password' type='password' placeholder='Password' />
-
-            {/* If this field has been touched, and it contains an error, display
-           it */}
+            <TextInput
+              name='password'
+              type='password'
+              placeholder='Password'
+              labelText={t('signup.password.text')}
+            />
             {touched.password && errors.password && (
-              <div style={{ color: 'red' }}>{errors.password}</div>
+              <div className={style.error__wrapper}>{errors.password}</div>
             )}
 
-            <label htmlFor='confirmPassword'>
-              {t('signup.confirmPassword.text')}
-            </label>
-            <Field
+            <TextInput
               name='confirmPassword'
               type='password'
               placeholder='Confirm password'
+              labelText={t('signup.confirmPassword.text')}
             />
-
-            {/* If this field has been touched, and it contains an error, display
-           it */}
             {touched.confirmPassword && errors.confirmPassword && (
-              <div style={{ color: 'red' }}>{errors.confirmPassword}</div>
+              <div className={style.error__wrapper}>
+                {errors.confirmPassword}
+              </div>
             )}
 
             <button

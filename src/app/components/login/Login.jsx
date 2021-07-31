@@ -9,6 +9,7 @@ import classNames from 'classnames/bind.js';
 
 import style from './Login.module.scss';
 import { useAuth } from '../../../hooks';
+import { TextInput } from '../../../components';
 
 const validationSchema = yup.object({
   username: yup.string().required('Email is required').default(''),
@@ -57,22 +58,23 @@ export default () => {
           <Form className={cx({ form__wrapper: true })}>
             <h1>{t('login.title')}</h1>
 
-            <label htmlFor='username'>{t('login.username')}</label>
-            <Field name='username' type='text' />
-
-            {/* If this field has been touched, and it contains an error, display it
-             */}
+            <TextInput
+              name='username'
+              labelText={t('login.username')}
+              placeholder='Username'
+            />
             {touched.username && errors.username && (
-              <div style={{ color: 'red' }}>{errors.username}</div>
+              <div className={style.error__wrapper}>{errors.username}</div>
             )}
 
-            <label htmlFor='password'>{t('login.password')}</label>
-            <Field name='password' type='password' />
-
-            {/* If this field has been touched, and it contains an error, display
-           it */}
+            <TextInput
+              name='password'
+              type='password'
+              placeholder='Password'
+              labelText={t('login.password')}
+            />
             {touched.password && errors.password && (
-              <div style={{ color: 'red' }}>{errors.password}</div>
+              <div className={style.error__wrapper}>{errors.password}</div>
             )}
             <button
               className={cx({
