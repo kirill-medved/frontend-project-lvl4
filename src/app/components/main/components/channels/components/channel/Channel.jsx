@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import classNames from 'classnames/bind.js';
+import classnames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { NavDropdown, Card } from 'react-bootstrap';
 
@@ -21,7 +21,6 @@ const Channel = ({
   channels,
   lastMessage,
 }) => {
-  const cx = classNames.bind(style);
   const channelRef = useRef(null);
   const dispatch = useDispatch();
 
@@ -30,16 +29,18 @@ const Channel = ({
     dispatch(setCurrentChannelName(name));
   };
 
+  const onClick = () => {
+    changeChannel();
+  };
+
   return (
     <Card
       id={id}
       ref={channelRef}
       bg={id === currentChannelId ? 'primary' : 'light'}
       text={id === currentChannelId ? 'white' : 'dark'}
-      onClick={changeChannel}
-      className={cx({
-        wrapper__channel: true,
-      })}
+      onClick={onClick}
+      className={classnames(style.wrapper__channel)}
       role='button'
       aria-hidden='true'
     >
@@ -64,11 +65,7 @@ const Channel = ({
             </>
           )}
         </Card.Title>
-        <Card.Text
-          className={cx({
-            lastMessage__truncate: true,
-          })}
-        >
+        <Card.Text className={classnames(style.lastMessage__truncate)}>
           {lastMessage && lastMessage.message}
         </Card.Text>
       </Card.Body>
