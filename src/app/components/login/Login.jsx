@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames/bind.js';
+import classnames from 'classnames';
 
 import style from './Login.module.scss';
 import { useAuth } from '../../../hooks';
@@ -25,8 +25,6 @@ export default () => {
   const location = useLocation();
   const auth = useAuth();
 
-  const cx = classNames.bind(style);
-
   const [t] = useTranslation();
 
   const { from } = location.state || { from: { pathname: '/' } };
@@ -36,7 +34,7 @@ export default () => {
     });
   };
 
-  const submitHandler = async (values, { setErrors }) => {
+  const onSubmit = async (values, { setErrors }) => {
     // same shape as initial values
     try {
       const { data } = await axios.post('/api/v1/login', values);
@@ -52,10 +50,10 @@ export default () => {
       <Formik
         initialValues={validationSchema.cast()}
         validationSchema={validationSchema}
-        onSubmit={submitHandler}
+        onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
-          <Form className={cx({ form__wrapper: true })}>
+          <Form className={classnames(style.form__wrapper)}>
             <h1>{t('login.title')}</h1>
 
             <TextInput
@@ -77,29 +75,30 @@ export default () => {
               <div className={style.error__wrapper}>{errors.password}</div>
             )}
             <button
-              className={cx({
-                form__submit: true,
-                btn: true,
-                'btn-primary': true,
-                'mb-2': true,
-              })}
+              className={classnames(
+                style.form__submit,
+                'btn',
+                'btn-primary',
+                'mb-2',
+              )}
               type='submit'
             >
-              Войти
+              {t('login.formSubmit')}
             </button>
           </Form>
         )}
       </Formik>
       <Navbar
-        className={cx({
-          redirect__wrapper: true,
-          'card-footer': true,
-          'justify-content-center': true,
-        })}
+        className={classnames(
+          style.redirect__wrapper,
+          'card-footer',
+          'justify-content-center',
+        )}
       >
         <Navbar.Collapse className='justify-content-center'>
           <Navbar.Text>
-            Нет аккаунта? <a href='/signup'>Регистрация</a>
+            {t('login.redirect.text')}
+            <a href='/signup'>{t('login.redirect.submit')}</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Navbar>

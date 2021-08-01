@@ -12,6 +12,10 @@ export default {
       password: 'Пароль',
       error: 'Неверные имя пользователя или пароль',
       formSubmit: 'Войти',
+      redirect: {
+        text: 'Нет аккаунта? ',
+        submit: 'Регистрация',
+      },
     },
     signup: {
       title: 'Регистрация',
