@@ -1,0 +1,19 @@
+.wrapper {
+  border-radius: 10%;
+  color: white;
+  max-width: 50%;
+  min-width: 120px;
+  margin: 5px;
+}
+.myMessage {
+  background-color: #c297fa;
+}
+.notMyMessage {
+  background-color: #73ace0;
+}
+.message {
+  word-wrap: break-word;
+  margin: 0;
+  margin-left: 10px;
+  font-size: 17px;
+}
