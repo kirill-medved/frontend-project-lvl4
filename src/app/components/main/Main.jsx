@@ -59,12 +59,9 @@ export default () => {
     dispatch(setChannels(res.data.channels));
     dispatch(setCurrentChannelId(res.data.currentChannelId));
 
-    dispatch(setCurrentChannelName(currentChannel.name)); // with this server
+    dispatch(setCurrentChannelName(currentChannel.name));
   }, [dispatch]);
 
-  // до того как вынес сокет вверх
-  // при создании нового канала происходило миллион
-  // re-render и один канал отрисовывался много раз
   useEffect(() => {
     socket.on('connect', () => {});
 

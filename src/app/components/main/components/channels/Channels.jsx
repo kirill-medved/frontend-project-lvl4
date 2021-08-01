@@ -1,7 +1,6 @@
 import React from 'react';
 import * as _ from 'lodash';
 
-import style from './Channels.module.scss';
 import { Channel } from './components';
 import { CreateChannelModal } from '../../../../../components/modals';
 
@@ -20,14 +19,14 @@ const Channels = ({
     setSendMessageMode((mode) => mapping[mode]());
   };
 
+  const onClick = () => {
+    sendMessageModeHandler();
+  };
+
   return (
     <div>
       <div className='d-flex justify-content-between'>
-        <button
-          type='button'
-          className='btn btn-primary'
-          onClick={sendMessageModeHandler}
-        >
+        <button type='button' className='btn btn-primary' onClick={onClick}>
           <img
             src='https://img.icons8.com/material-outlined/24/000000/settings--v1.png'
             alt='settings'
