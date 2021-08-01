@@ -66,9 +66,7 @@ export default () => {
   // при создании нового канала происходило миллион
   // re-render и один канал отрисовывался много раз
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log(socket.id); // x8WIv7-mJelg7on_ALbx
-    });
+    socket.on('connect', () => {});
 
     socket.on('newMessage', (newMessage) => {
       dispatch(sendMessage(newMessage));
@@ -82,11 +80,9 @@ export default () => {
 
     socket.on('newChannel', (newChannel) => {
       dispatch(addNewChannel(newChannel));
-      // dispatch(setCurrentChannelId(newChannel.id));
     });
 
     socket.on('removeChannel', ({ id }) => {
-      console.log(`remove id: ${id}`);
       dispatch(filterChannelMessages(id));
       dispatch(filterChannelUsers(id));
       dispatch(setCurrentChannelId(1));
