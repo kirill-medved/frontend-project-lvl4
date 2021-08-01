@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
-import 'emoji-mart/css/emoji-mart.css';
-import { Picker } from 'emoji-mart';
-import { OverlayTrigger, Popover } from 'react-bootstrap';
+import { EmojiMedia } from '../../../../../../../components';
 
 const Form = ({ formHandler, sendMessageMode }) => {
   const [message, setMessage] = useState('');
@@ -48,6 +46,8 @@ const Form = ({ formHandler, sendMessageMode }) => {
     setMessage(`${message} ${colons}`.trim());
   };
 
+  const onSelect = (emojiTag) => addEmoji(emojiTag);
+
   return (
     <div className='mt-auto px-5 py-3'>
       <form className='py-1 px-1 border rounded-2'>
@@ -61,26 +61,7 @@ const Form = ({ formHandler, sendMessageMode }) => {
             onKeyDown={onKeyDown}
           />
           <div className='input-group-append'>
-            <OverlayTrigger
-              key='top'
-              trigger='click'
-              placement='top'
-              overlay={
-                <Popover id='popover-emoji'>
-                  <Picker
-                    set='apple'
-                    onSelect={(emojiTag) => addEmoji(emojiTag)}
-                  />
-                </Popover>
-              }
-            >
-              <button type='button' className='btn btn-outline-secondary'>
-                <img
-                  src='https://img.icons8.com/ios-glyphs/30/000000/happy--v2.png'
-                  alt='Смайлики'
-                />
-              </button>
-            </OverlayTrigger>
+            <EmojiMedia onSelect={onSelect} />
             <button
               type='submit'
               onClick={onSubmit}

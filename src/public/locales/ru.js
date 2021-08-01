@@ -37,6 +37,11 @@ export default {
       },
       formSubmit: 'Зарегистрироваться',
     },
+    main: {
+      chat: {
+        emptyChat: 'Чат пока что пуст. Напишите первое сообщение!',
+      },
+    },
     api: {
       createChannelModal: {
         title: 'Добавить канал',
