@@ -4,7 +4,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames/bind.js';
+import classnames from 'classnames';
 
 import style from './SignUp.module.scss';
 import { useAuth } from '../../../hooks';
@@ -16,8 +16,6 @@ export default () => {
   const auth = useAuth();
 
   const [t] = useTranslation();
-
-  const cx = classNames.bind(style);
 
   const { from } = location.state || { from: { pathname: '/' } };
   const login = () => {
@@ -65,7 +63,7 @@ export default () => {
         onSubmit={onSubmit}
       >
         {({ errors, touched }) => (
-          <Form className={cx({ form__wrapper: true })}>
+          <Form className={classnames(style.form__wrapper)}>
             <h1>{t('signup.title')}</h1>
 
             <TextInput
@@ -100,12 +98,12 @@ export default () => {
             )}
 
             <button
-              className={cx({
-                form__submit: true,
-                btn: true,
-                'btn-primary': true,
-                'mb-2': true,
-              })}
+              className={classnames(
+                style.form__submit,
+                'btn',
+                'btn-primary',
+                'mb-2',
+              )}
               type='submit'
             >
               {t('signup.formSubmit')}
