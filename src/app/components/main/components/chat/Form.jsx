@@ -3,15 +3,15 @@ import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
-const Form = ({ onSubmit, sendMessageMode }) => {
+const Form = ({ formHandler, sendMessageMode }) => {
   const [message, setMessage] = useState('');
 
   const submitBtRef = useRef(null);
 
-  const formHandler = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (message.length > 0) {
-      onSubmit(message.trim());
+      formHandler(message.trim());
       setMessage('');
     }
   };
@@ -20,13 +20,11 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     const mapping = {
       standart: () => {
         if (e.code === 'Enter' && e.ctrlKey) {
-          console.log('standart');
           submitBtRef.current.click();
         }
       },
       alternative: () => {
         if (e.code === 'Enter' && e.ctrlKey) {
-          console.log('alternative');
           setMessage(`${message}\n`);
         }
       },
@@ -35,9 +33,7 @@ const Form = ({ onSubmit, sendMessageMode }) => {
     mapping[sendMessageMode]();
   };
 
-  const inputHandler = (e) => {
-    console.log(e); // Destructure to get a more accurate log
-
+  const onChange = (e) => {
     // Return if user presses the enter key
     if (sendMessageMode === 'alternative') {
       if (e.nativeEvent.inputType === 'insertLineBreak') {
@@ -46,11 +42,6 @@ const Form = ({ onSubmit, sendMessageMode }) => {
       }
     }
     setMessage(e.target.value);
-
-    // if (e.code === 'Enter') {
-
-    //   return;
-    // }
   };
 
   const addEmoji = ({ colons }) => {
@@ -64,7 +55,7 @@ const Form = ({ onSubmit, sendMessageMode }) => {
           <textarea
             value={message}
             data-testid='new-message'
-            onChange={inputHandler}
+            onChange={onChange}
             className='border-0 pt-1 form-control'
             placeholder='Введите сообщение...'
             onKeyDown={onKeyDown}
@@ -92,7 +83,7 @@ const Form = ({ onSubmit, sendMessageMode }) => {
             </OverlayTrigger>
             <button
               type='submit'
-              onClick={formHandler}
+              onClick={onSubmit}
               className='btn btn-outline-secondary'
               ref={submitBtRef}
             >

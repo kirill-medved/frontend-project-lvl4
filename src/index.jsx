@@ -18,7 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const useProvideAuth = () => {
   const [user, setUser] = useState(localStorage.getItem('token'));
-  console.log(user);
   const signin = (cb) => {
     setUser(localStorage.getItem('token'));
     cb();

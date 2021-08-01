@@ -19,13 +19,17 @@ const Header = () => {
     });
   };
 
+  const onClick = () => {
+    signoutHandler();
+  };
+
   return (
     <header>
       <Navbar className='bg-light justify-content-between'>
         <Container>
           <Navbar.Brand href='/'>{t('header.textLogo')}</Navbar.Brand>
           {auth.user && (
-            <Button onClick={signoutHandler} variant='outline-primary'>
+            <Button onClick={onClick} variant='outline-primary'>
               {t('header.button.signout')}
             </Button>
           )}

@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
-import TokenContext from './context.js';
 import {
   PrivateRoute,
   Header,

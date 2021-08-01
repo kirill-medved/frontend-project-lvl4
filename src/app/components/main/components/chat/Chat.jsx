@@ -25,7 +25,7 @@ export default ({
 }) => {
   const socket = io();
 
-  const onSubmit = (message) => {
+  const formHandler = (message) => {
     const date = new Date();
     const messageObj = {
       message,
@@ -47,7 +47,7 @@ export default ({
         username={username}
         containerRef={messagesContainerRef}
       />
-      <Form onSubmit={onSubmit} sendMessageMode={sendMessageMode} />
+      <Form formHandler={formHandler} sendMessageMode={sendMessageMode} />
     </div>
   );
 };
