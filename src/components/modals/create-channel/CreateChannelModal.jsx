@@ -56,7 +56,7 @@ const CreateChannelModal = (props) => {
   return (
     <div className='d-flex justify-content-center'>
       <Button variant='primary' className={style.showBtn} onClick={onClick}>
-        Создать новый канал
+        {t('api.createChannelModal.showBtn.text')}
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -66,7 +66,9 @@ const CreateChannelModal = (props) => {
         <Form>
           <Modal.Body>
             <Form.Group controlId='formBasicEmail'>
-              <Form.Label>Channel name</Form.Label>
+              <Form.Label>
+                {t('api.createChannelModal.form.label.text')}
+              </Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter channel name'
@@ -75,11 +77,11 @@ const CreateChannelModal = (props) => {
                 data-testid='add-channel'
               />
               <Form.Text className='text-muted'>
-                Channel name should be unique!
+                {t('api.createChannelModal.text.text')}
               </Form.Text>
               {error && (
                 <div className={style.error__wrapper}>
-                  Должно быть уникальным
+                  {t('api.createChannelModal.error.text')}
                 </div>
               )}
             </Form.Group>
