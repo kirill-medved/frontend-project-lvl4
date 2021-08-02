@@ -51,7 +51,7 @@ const RenameChannelModal = ({ channels, id }) => {
   return (
     <div>
       <p aria-hidden='true' onClick={onClick}>
-        Изменить название
+        {t('api.renameChannelModal.showBtn.text')}
       </p>
 
       <Modal show={show} onHide={handleClose}>
@@ -61,7 +61,9 @@ const RenameChannelModal = ({ channels, id }) => {
         <Form>
           <Modal.Body>
             <Form.Group controlId='formBasicEmail'>
-              <Form.Label>Название канала</Form.Label>
+              <Form.Label>
+                {t('api.renameChannelModal.form.label.text')}
+              </Form.Label>
               <Form.Control
                 type='text'
                 placeholder='Enter channel name'
@@ -70,11 +72,11 @@ const RenameChannelModal = ({ channels, id }) => {
                 data-testid='rename-channel'
               />
               <Form.Text className='text-muted'>
-                Channel name should be unique!
+                {t('api.renameChannelModal.form.text.text')}
               </Form.Text>
               {error && (
                 <div className={style.error_wrapper}>
-                  <p>Должно быть уникальным</p>
+                  <p>{t('api.renameChannelModal.form.error.text')}</p>
                 </div>
               )}
             </Form.Group>
