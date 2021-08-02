@@ -10,6 +10,7 @@ import {
   NotFound,
   SignUp,
 } from './components';
+import { LOGIN_ROUTE, MAIN_ROUTE, SIGN_UP_ROUTE } from '../configs';
 
 function App() {
   return (
@@ -18,11 +19,11 @@ function App() {
         <Header />
         <Container className='h-100 my-4 overflow-hidden rounded shadow'>
           <Switch>
-            <PrivateRoute path='/' exact>
+            <PrivateRoute path={MAIN_ROUTE} exact>
               <Main />
             </PrivateRoute>
-            <Route path='/login' render={() => <Login />} />
-            <Route path='/signup' render={() => <SignUp />} />
+            <Route path={LOGIN_ROUTE} render={() => <Login />} />
+            <Route path={SIGN_UP_ROUTE} render={() => <SignUp />} />
             <Route render={() => <NotFound />} />
           </Switch>
         </Container>
