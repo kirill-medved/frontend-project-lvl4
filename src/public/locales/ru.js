@@ -42,6 +42,11 @@ export default {
         emptyChat: 'Чат пока что пуст. Напишите первое сообщение!',
       },
     },
+    pageNotFound: {
+      title: {
+        text: 'Страница не найдена!',
+      },
+    },
     api: {
       createChannelModal: {
         title: 'Добавить канал',

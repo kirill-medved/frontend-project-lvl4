@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import * as _ from 'lodash';
 
 import { setCurrentChannelId } from '../../../configs/store/slices/channelsSlice.js';
+import style from 'CreateChannelModal.module.scss';
 
 const CreateChannelModal = (props) => {
   const socket = io();
@@ -54,11 +55,7 @@ const CreateChannelModal = (props) => {
 
   return (
     <div className='d-flex justify-content-center'>
-      <Button
-        variant='primary'
-        onClick={onClick}
-        style={{ textAlign: 'center' }}
-      >
+      <Button variant='primary' className={style.showBtn} onClick={onClick}>
         Создать новый канал
       </Button>
 
@@ -81,7 +78,9 @@ const CreateChannelModal = (props) => {
                 Channel name should be unique!
               </Form.Text>
               {error && (
-                <div style={{ color: 'red' }}>Должно быть уникальным</div>
+                <div className={style.error__wrapper}>
+                  Должно быть уникальным
+                </div>
               )}
             </Form.Group>
           </Modal.Body>

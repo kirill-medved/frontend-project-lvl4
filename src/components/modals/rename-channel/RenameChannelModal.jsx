@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 
 import { setCurrentChannelName } from '../../../configs/store/slices/channelsSlice';
+import style from './RenameChannelModal.module.scss';
 
 const RenameChannelModal = ({ channels, id }) => {
   const socket = io();
@@ -72,7 +73,7 @@ const RenameChannelModal = ({ channels, id }) => {
                 Channel name should be unique!
               </Form.Text>
               {error && (
-                <div style={{ color: 'red' }}>
+                <div className={style.error_wrapper}>
                   <p>Должно быть уникальным</p>
                 </div>
               )}
