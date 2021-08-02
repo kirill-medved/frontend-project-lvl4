@@ -10,6 +10,7 @@ import classnames from 'classnames';
 import style from './Login.module.scss';
 import { useAuth } from '../../../hooks';
 import { TextInput } from '../../../components';
+import { endpoints } from '../../../configs';
 
 const validationSchema = yup.object({
   username: yup.string().required('Email is required').default(''),
@@ -37,7 +38,7 @@ export default () => {
   const onSubmit = async (values, { setErrors }) => {
     // same shape as initial values
     try {
-      const { data } = await axios.post('/api/v1/login', values);
+      const { data } = await axios.post(endpoints.loginPath(), values);
       localStorage.setItem('token', data.token);
       localStorage.setItem('username', data.username);
       login();

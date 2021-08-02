@@ -9,6 +9,7 @@ import classnames from 'classnames';
 import style from './SignUp.module.scss';
 import { useAuth } from '../../../hooks';
 import { TextInput } from '../../../components';
+import { endpoints } from '../../../configs';
 
 export default () => {
   const history = useHistory();
@@ -45,7 +46,7 @@ export default () => {
   const onSubmit = async (values, { setErrors }) => {
     // same shape as initial values
     try {
-      const { data } = await axios.post('/api/v1/signup', values);
+      const { data } = await axios.post(endpoints.signUpPath(), values);
       localStorage.setItem('token', data.token);
       localStorage.setItem('username', data.username);
       login();

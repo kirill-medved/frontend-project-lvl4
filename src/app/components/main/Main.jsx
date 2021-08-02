@@ -20,6 +20,7 @@ import {
   setCurrentChannelId,
   setCurrentChannelName,
 } from '../../../configs/store/slices/channelsSlice.js';
+import { endpoints } from '../../../configs';
 
 export default () => {
   const auth = useAuth();
@@ -48,7 +49,7 @@ export default () => {
   );
 
   useEffect(async () => {
-    const res = await instance.get(`data`);
+    const res = await instance.get(endpoints.dataWithCredentialsPath());
 
     const currentChannel = _.find(
       res.data.channels,
