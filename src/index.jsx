@@ -7,10 +7,10 @@ import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 
 import '../assets/application.scss';
-import App from './App.jsx';
-import TokenContext from './context.js';
-import store from './store/store.js';
+import App from './app';
 import resources from './public/locales/index.js';
+import { AuthContext } from './configs/contexts';
+import store from './configs/store';
 
 if (process.env.NODE_ENV !== 'production') {
   localStorage.debug = 'chat:*';
@@ -18,7 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 const useProvideAuth = () => {
   const [user, setUser] = useState(localStorage.getItem('token'));
-  console.log(user);
   const signin = (cb) => {
     setUser(localStorage.getItem('token'));
     cb();
@@ -50,11 +49,11 @@ const Main = () => {
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <TokenContext.Provider value={auth}>
+        <AuthContext.Provider value={auth}>
           <I18nextProvider i18n={i18next}>
             <App />
           </I18nextProvider>
-        </TokenContext.Provider>
+        </AuthContext.Provider>
       </Provider>
     </React.StrictMode>
   );

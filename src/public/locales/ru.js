@@ -12,6 +12,10 @@ export default {
       password: 'Пароль',
       error: 'Неверные имя пользователя или пароль',
       formSubmit: 'Войти',
+      redirect: {
+        text: 'Нет аккаунта? ',
+        submit: 'Регистрация',
+      },
     },
     signup: {
       title: 'Регистрация',
@@ -33,16 +37,54 @@ export default {
       },
       formSubmit: 'Зарегистрироваться',
     },
+    main: {
+      chat: {
+        emptyChat: 'Чат пока что пуст. Напишите первое сообщение!',
+      },
+    },
+    pageNotFound: {
+      title: {
+        text: 'Страница не найдена!',
+      },
+    },
     api: {
       createChannelModal: {
         title: 'Добавить канал',
         submit: 'Отправить',
         cancel: 'Отменить',
+        showBtn: {
+          text: 'Создать новый канал',
+        },
+        form: {
+          label: {
+            text: 'Название канала',
+          },
+          text: {
+            text: 'Название канала должно быть уникальным!',
+          },
+          error: {
+            text: 'Должно быть уникальным!',
+          },
+        },
       },
       renameChannelModal: {
         title: 'Переименовать канал',
         submit: 'Отправить',
         cancel: 'Отменить',
+        showBtn: {
+          text: 'Изменить название',
+        },
+        form: {
+          label: {
+            text: 'Название канала',
+          },
+          text: {
+            text: 'Название канала должно быть уникальным!',
+          },
+          error: {
+            text: 'Должно быть уникальным!',
+          },
+        },
       },
       deleteChannelModal: {
         title: 'Удалить канал',
