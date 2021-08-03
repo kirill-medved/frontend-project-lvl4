@@ -9,8 +9,8 @@ import {
   Main,
   NotFound,
   SignUp,
-} from './components';
-import { LOGIN_ROUTE, MAIN_ROUTE, SIGN_UP_ROUTE } from '../configs';
+} from './components/index.js';
+import { LOGIN_ROUTE, MAIN_ROUTE, SIGN_UP_ROUTE } from '../configs/index.js';
 
 function App() {
   return (
